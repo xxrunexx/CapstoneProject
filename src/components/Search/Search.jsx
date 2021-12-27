@@ -1,12 +1,12 @@
 import * as React from 'react';
-// import IconButton from "@material-ui/core/IconButton";
+import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
-// import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from "@material-ui/icons/Search";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { makeStyles } from "@material-ui/core/styles";
 import Link from '@mui/material/Link';
-// import custom from './search.module.css';
+import custom from './search.module.css';
 
 const useStyles = makeStyles({
   root: {
@@ -43,17 +43,17 @@ const useStyles = makeStyles({
 const Search = () => {
   const classes = useStyles();
   return (
-    <Stack spacing={2} sx={{ width: '100%' }}>
+    <Stack spacing={2} sx={{ width: '100%' }} className={`mb-5`}>
       <TextField
         className={classes.root}
         label="Track invoice - ID"
         InputProps={{
           endAdornment: (
             <InputAdornment>
-              {/* <IconButton>
+              <IconButton>
                 <SearchIcon className={`text-white`} />
-              </IconButton> */}
-              <Link href="#" underline="none" className={`ps-3 text-white`}>Go</Link>
+              </IconButton>
+              <Link href="#" underline="none" className={`ps-3 text-white ${custom.goButton}`}>GO</Link>
             </InputAdornment>
           )
         }}

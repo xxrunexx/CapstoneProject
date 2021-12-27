@@ -21,7 +21,6 @@ const useStyles = makeStyles({
     },
     "& .MuiOutlinedInput-input": {
       color: "white",
-      backgroundColor: "gray"
     },
     "&:hover .MuiOutlinedInput-input": {
       color: "white"

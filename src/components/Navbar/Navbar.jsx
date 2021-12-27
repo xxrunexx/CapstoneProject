@@ -17,7 +17,7 @@ function Item(props) {
         {...other}
       />
     );
-  }
+}
   
 Item.propTypes = {
     sx: PropTypes.oneOfType([

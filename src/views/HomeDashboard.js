@@ -3,7 +3,6 @@ import Search from '../components/Search/Search';
 import Navbar from '../components/Navbar/Navbar';
 import Detail from '../components/Detail/Detail';
 import Custom from './homeDashboard.module.css';
-// import SearchValue from '../../components/Search/SearchValue';
 
 
 
@@ -14,7 +13,6 @@ const Homedashboard = () => {
                 <Navbar/>
                 <Search/>
                 <Detail value="Testing"/>
-                {/* <SearchValue/> */}
             </div>
         </div>
     );

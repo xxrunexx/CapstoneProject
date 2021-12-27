@@ -1,87 +1,114 @@
 import * as React from 'react';
 import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import { makeStyles } from "@material-ui/core/styles";
 import Link from '@mui/material/Link';
 import custom from './search.module.css';
+import Box from '@mui/material/Box';
 
 const useStyles = makeStyles({
   root: {
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "white",
+      borderColor: "black",
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "white",
+      borderColor: "black",
     },
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "white",
+      borderColor: "black",
     },
     "& .MuiOutlinedInput-input": {
-      color: "white",
+      color: "black",
     },
     "&:hover .MuiOutlinedInput-input": {
-      color: "white"
+      color: "black"
     },
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
-      color: "white"
+      color: "black"
     },
     "& .MuiInputLabel-outlined": {
-      color: "white"
+      color: "black"
     },
     "&:hover .MuiInputLabel-outlined": {
-      color: "white"
+      color: "black"
     },
     "& .MuiInputLabel-outlined.Mui-focused": {
-      color: "white"
+      color: "black"
     }
-  }
+  },
+  noBorder: {
+    border: "none",
+  },
 });
+
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        color: 'white',
+        fontWeight: '700',
+        height: 56,
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
 
 const Search = () => {
   const classes = useStyles();
   return (
-    <Stack spacing={2} sx={{ width: '100%' }} className={`mb-5`}>
-      <TextField
-        className={classes.root}
-        label="Track invoice - ID"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment>
-              <IconButton>
-                <SearchIcon className={`text-white`} />
-              </IconButton>
-              <Link href="#" underline="none" className={`ps-3 text-white ${custom.goButton}`}>GO</Link>
-            </InputAdornment>
-          )
-        }}
-      />
-      {/* <Autocomplete
-        freeSolo
-        id="free-solo-2-demo"
-        disableClearable
-        options={topFilms.map((option) => option.title)}
-        renderInput={(params) => (
+    <Box sx={{
+      display: 'grid',
+      gridAutoColumns: '1fr',
+      mb: 7,
+    }}>
+      <Item sx={{ 
+        gridRow: '1', 
+        gridColumn: '1 / 2',  
+        bgcolor: '#FFFFFF',
+      }}>
+          <IconButton className={`text-dark`}>
+            <SearchIcon className={custom.searchIcon}/>
+          </IconButton>
+      </Item>
+      <Item sx={{ 
+          gridRow: '1', 
+          gridColumn: '2 / 14', 
+          textAlign: 'center', 
+          fontSize: '1rem', 
+          borderRadius: 0, 
+          bgcolor: '#FFFFFF',
+      }}>
           <TextField
-            {...params}
-            label="Search input"
+            className={classes.root}
+            placeholder="Track your [ Invoice ID, Invoice Name ]"
+            fullWidth
             InputProps={{
-              ...params.InputProps,
-              type: 'search',
-              endAdornment: (
-                <InputAdornment>
-                  <IconButton>
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              )
+              classes:{notchedOutline:classes.noBorder}
             }}
           />
-        )}
-      /> */}
-    </Stack>
+      </Item>
+      <Item sx={{ 
+          gridRow: '1', 
+          gridColumn: '14 / 15', 
+          textAlign: 'center', 
+          fontSize: '1rem', 
+          borderRadius: 0, 
+          bgcolor: '#FFC700',
+          paddingTop: '4px',
+      }}>
+        <Link 
+          href="#" 
+          underline="none" 
+          className={`text-dark ${custom.goButton}`}
+        >
+            GO
+        </Link>
+      </Item>
+    </Box>
   );
 }
 

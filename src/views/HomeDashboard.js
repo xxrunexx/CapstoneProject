@@ -9,9 +9,11 @@ import Custom from './homeDashboard.module.css'
 const Homedashboard = () => {
     return (
         <div className={Custom.background}>
-            <Navbar/>
-            <Search/>
-            {/* <SearchValue/> */}
+            <div className={`container py-5`}>
+                <Navbar/>
+                <Search/>
+                {/* <SearchValue/> */}
+            </div>
         </div>
     );
 }

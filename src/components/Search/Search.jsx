@@ -1,22 +1,60 @@
 import * as React from 'react';
-import IconButton from "@material-ui/core/IconButton";
+// import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-// import Autocomplete from '@mui/material/Autocomplete';
+import { makeStyles } from "@material-ui/core/styles";
+import Link from '@mui/material/Link';
+// import custom from './search.module.css';
+
+const useStyles = makeStyles({
+  root: {
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white",
+    },
+    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white",
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white",
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "white",
+      backgroundColor: "gray"
+    },
+    "&:hover .MuiOutlinedInput-input": {
+      color: "white"
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+      color: "white"
+    },
+    "& .MuiInputLabel-outlined": {
+      color: "white"
+    },
+    "&:hover .MuiInputLabel-outlined": {
+      color: "white"
+    },
+    "& .MuiInputLabel-outlined.Mui-focused": {
+      color: "white"
+    }
+  }
+});
 
 const Search = () => {
+  const classes = useStyles();
   return (
-    <Stack spacing={2} sx={{ width: 655 }}>
+    <Stack spacing={2} sx={{ width: '100%' }}>
       <TextField
+        className={classes.root}
         label="Track invoice - ID"
         InputProps={{
           endAdornment: (
             <InputAdornment>
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
+              {/* <IconButton>
+                <SearchIcon className={`text-white`} />
+              </IconButton> */}
+              <Link href="#" underline="none" className={`ps-3 text-white`}>Go</Link>
             </InputAdornment>
           )
         }}

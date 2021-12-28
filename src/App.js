@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
-import Homedashboard from './views/HomeDashboard';
+import Homedashboard from './views/HomeDashboard/HomeDashboard';
+// import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </a>
       </header> */}
       <Homedashboard/>
+      {/* <Detailinvoice/> */}
     </div>
   );
 }

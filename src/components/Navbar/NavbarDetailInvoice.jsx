@@ -38,7 +38,7 @@ const Navbardetailinvoice = () => {
             alignItems: 'center',
             mb: 2
         }}>
-             <Item sx={{ 
+            <Item sx={{ 
                 gridRow: '1', 
                 gridColumn: '1', 
                 textAlign: 'left', 
@@ -50,7 +50,6 @@ const Navbardetailinvoice = () => {
                 <Link href="#" underline="none">
                     <ArrowCircleLeftIcon className={custom.arrowIcon} sx={{
                         mx:1,
-                        fontSize: '4rem',
                         color: '#FFC700'
                     }}/>
                 </Link>

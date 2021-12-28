@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
-import Homedashboard from './views/HomeDashboard/HomeDashboard';
-// import Detailinvoice from './views/DetailInvoice/DetailInvoice';
+// import Homedashboard from './views/HomeDashboard/HomeDashboard';
+import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 
 function App() {
   return (
@@ -20,8 +20,8 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Homedashboard/>
-      {/* <Detailinvoice/> */}
+      {/* <Homedashboard/> */}
+      <Detailinvoice/>
     </div>
   );
 }

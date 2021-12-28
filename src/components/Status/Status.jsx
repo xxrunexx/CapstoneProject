@@ -66,10 +66,10 @@ const Status = (props) => {
                     width:180, 
                     borderRadius: 6, 
                     pl:3, 
-                    py:0.5, 
+                    
                     mt:1.8
                 }}>
-                    <CircleIcon sx={{mr:2}}/>{props.status}
+                    <CircleIcon sx={{mr:2, mb:0.5}}/>{props.status}
                 </Item>
             </Item>
         </Box>

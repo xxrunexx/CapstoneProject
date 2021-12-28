@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import custom from './detailInvoice.module.css';
 
 function Item(props) {
     const { sx, ...other } = props;
@@ -110,6 +111,47 @@ const Detailinvoiceclient = (props) => {
                     }}>
                         <Item>From</Item>
                         <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].from}</Item>
+                    </Item>
+                </Box>
+                <Box sx={{
+                    mb:1, 
+                    fontSize: '1.5rem',
+                    display: 'grid',
+                    gridAutoColumns: '1fr',
+                    pr: 8,
+                    mt: 2,
+                }}>
+                    <Item className={custom.detailInvoiceLeft} sx={{
+                        gridRow: '1', 
+                        gridColumn: '1 / 2',
+                        px:3,
+                        py:2,
+                        bgcolor: '#131522', 
+                        borderRadius: 3,
+                    }}>
+                        <Item sx={{color:'white'}}>Payment Date</Item>
+                        <Item sx={{fontWeight:500, fontSize:'1rem', color:'white'}}>{props.data[0].payment_date}</Item>
+                    </Item>
+                    <Item className={custom.detailInvoiceRight} sx={{
+                        gridRow: '1', 
+                        gridColumn: '2 / 3',
+                        px:3,
+                        py:2,
+                        bgcolor: '#131522', 
+                        borderRadius: 3,
+                    }}>
+                        <Item sx={{
+                            color:'white',
+                        }}>
+                            Payment Date
+                        </Item>
+                        <Item sx={{
+                            fontWeight:500, 
+                            fontSize:'1rem', 
+                            color:'white',
+                        }}>
+                            {props.data[0].payment_date}
+                        </Item>
                     </Item>
                 </Box>
             </Item>

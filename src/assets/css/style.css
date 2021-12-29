@@ -11,11 +11,15 @@
     font-size: 18px;
     color: #FFC700;
     font-weight: 1000;
-    margin: 25px 5px;
+    margin-bottom: 5%;
+    text-align: end;
+    display: block;
+    
 }
 
 #btn-login {
     width: 100%;
+    margin-bottom: 5%;
 }
 
 #a-register {

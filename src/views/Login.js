@@ -59,7 +59,8 @@ function Login() {
                         variant="standard"
                         style={{
                             backgroundColor: "#E5E5E5",
-                            width: "100%"
+                            width: "100%",
+                            marginBottom: "5%",
                         }}
                     />
                     <FormControl 
@@ -69,6 +70,7 @@ function Login() {
                         style={{
                             backgroundColor: "#E5E5E5",
                             width: "100%",
+                            marginBottom: "5%",
                         }}
                     >
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>

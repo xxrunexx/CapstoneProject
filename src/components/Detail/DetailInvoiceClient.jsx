@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import custom from './detailInvoice.module.css';
+import Link from '@mui/material/Link';
 
 function Item(props) {
     const { sx, ...other } = props;
@@ -123,18 +124,19 @@ const Detailinvoiceclient = (props) => {
                 }}>
                     <Item className={custom.detailInvoiceLeft} sx={{
                         gridRow: '1', 
-                        gridColumn: '1 / 2',
+                        gridColumn: '1 / 3',
                         px:3,
                         py:2,
                         bgcolor: '#131522', 
                         borderRadius: 3,
                     }}>
-                        <Item sx={{color:'white'}}>Payment Date</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem', color:'white'}}>{props.data[0].payment_date}</Item>
+                        <Item sx={{color:'white'}}>Item Name</Item>
+                        <Item sx={{fontWeight:500, fontSize:'1rem', color:'white'}}>{props.data[0].item_name}</Item>
                     </Item>
-                    <Item className={custom.detailInvoiceRight} sx={{
+                    <Item className={custom.detailInvoiceMid} sx={{
                         gridRow: '1', 
-                        gridColumn: '2 / 3',
+                        gridColumn: '3 / 4',
+                        textAlign: 'right',
                         px:3,
                         py:2,
                         bgcolor: '#131522', 
@@ -143,16 +145,55 @@ const Detailinvoiceclient = (props) => {
                         <Item sx={{
                             color:'white',
                         }}>
-                            Payment Date
+                            Price
                         </Item>
                         <Item sx={{
                             fontWeight:500, 
                             fontSize:'1rem', 
                             color:'white',
                         }}>
-                            {props.data[0].payment_date}
+                            {'Rp. '}{props.data[0].price}
                         </Item>
                     </Item>
+                    <Item className={custom.detailInvoiceRight} sx={{
+                        gridRow: '1', 
+                        gridColumn: '4 / 5',
+                        textAlign: 'right',
+                        px:3,
+                        py:2,
+                        bgcolor: '#131522', 
+                        borderRadius: 3,
+                    }}>
+                        <Item sx={{
+                            color:'white',
+                        }}>
+                            Total
+                        </Item>
+                        <Item sx={{
+                            fontWeight:500, 
+                            fontSize:'1rem', 
+                            color:'white',
+                        }}>
+                            {'Rp. '}{props.data[0].total}
+                        </Item>
+                    </Item>
+                </Box>
+                <Box sx={{
+                    display: 'flex', 
+                    flexDirection: 'row-reverse', 
+                    pr: 8,
+                    mt: 3,
+                }}>
+                    <Link sx={{
+                        bgcolor: '#FFC700',
+                        color: '#131522',
+                        px:3,
+                        py:0.5,
+                        fontSize: '1.5rem',
+                        borderRadius: 3
+                    }} href="#" underline="none" className={custom.payNow}>
+                        {'PAY NOW'}
+                    </Link>
                 </Box>
             </Item>
         </Box>

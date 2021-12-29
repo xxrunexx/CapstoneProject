@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Switch>
-          {/* <Route exact path='/' co2mponent={Home}/> */}
+          {/* <Route exact path='/' component={Home}/> */}
           <Route exact path='/login' component={Login}/>
         </Switch>
       </Router>

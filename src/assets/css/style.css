@@ -1,7 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 #title {
-    font-family: 'Michroma', sans-serif, 'Robot';
+    font-family: 'Michroma', sans-serif, 'Roboto';
     font-size: 72px;
+    color: #E5E5E5;
+}
+
+#a-forgetpass {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #FFC700;
+    font-weight: 1000;
+    margin: 25px 5px;
+}
+
+#btn-login {
+    width: 100%;
+}
+
+#a-register {
+    text-align: center;
+    display: block;
     color: #E5E5E5;
 }

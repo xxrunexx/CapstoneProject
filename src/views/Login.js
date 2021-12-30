@@ -13,9 +13,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import { styled } from '@mui/material/styles';
 
 // Import assets
-// import "../assets/css/style.css"
 import styles from './Login.module.css'
-// import styles from './Login.module.css'
 import wavebg from '../assets/img/wave.svg'
 
 function Login() {

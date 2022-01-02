@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Import views
 import Login from './views/Login';
 import Home from './views/HomeDashboard';
+import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={Home}/>
+          <Route exact path='/detail' component={Detailinvoice}/>
           <Route exact path='/login' component={Login}/>
         </Switch>
       </Router>

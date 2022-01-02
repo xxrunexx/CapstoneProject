@@ -1,7 +1,7 @@
 import React from 'react';
-import Search from '../components/Search/Search';
-import Navbar from '../components/Navbar/Navbar';
-import Detail from '../components/Detail/Detail';
+import Search from '../../components/Search/Search';
+import Navbar from '../../components/Navbar/Navbar';
+import Detail from '../../components/Detail/Detail';
 import Custom from './homeDashboard.module.css';
 
 

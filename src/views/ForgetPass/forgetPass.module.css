@@ -1,13 +1,12 @@
-
 *{
     font-family: "Roboto";
 }
 .background{
     background-color: #131522;
-    height: 100vh;
+    height: 177vh;
 }
 
-@media (min-width: 320px) and (max-width: 1919px) {
+@media (min-width : 10px) and (max-width: 10px){
     .background{
         height: 100%;
     }

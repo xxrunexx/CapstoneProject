@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 const ForgetPass = () => {
     return (
         <Box className={Custom.background}>
-            <Box className={`container py-4 text-white`}>
+            <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack/> 
                 <FormEmail/>
             </Box>

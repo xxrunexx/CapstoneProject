@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import custom from './formInvoice.module.css';
 import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -298,10 +299,49 @@ const Forminvoice = () => {
                     py:1, 
                     fontSize:'1.2rem'
               }}>
-                <span>ADD NEW ITEM</span>
+                <Link href="#" underline="none" className={custom.addNewItem}>
+                    {'ADD NEW ITEM'}
+                </Link>
               </Box>
-            </Item>
-          <Item><h1>New Invoice</h1></Item>
+          </Item>
+          <Item>
+          <Box sx={{ flexGrow: 1}}>
+              <Grid container justifyContent="space-between" spacing={2}>
+                <Grid item xs={12} md={3} >
+                    <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
+                        <Box 
+                            sx={{
+                                bgcolor: '#D84343', 
+                                borderRadius:2, 
+                                color:'black', 
+                                py:1, 
+                                fontSize:'1.2rem'
+                        }}>
+                            <Link href="#" underline="none" className={custom.addNewItem}>
+                                {'ADD NEW ITEM'}
+                            </Link>
+                        </Box>
+                    </Item>
+                </Grid>
+                <Grid item xs={12} md={3} >
+                    <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
+                        <Box 
+                            sx={{
+                                bgcolor: '#FFC700', 
+                                borderRadius:2, 
+                                color:'black', 
+                                py:1, 
+                                fontSize:'1.2rem'
+                        }}>
+                            <Link href="#" underline="none" className={custom.addNewItem}>
+                                {'CREATE INVOICE'}
+                            </Link>
+                        </Box>
+                    </Item>
+                </Grid>
+              </Grid>
+            </Box>
+          </Item>
         </Grid>
       </Grid>
     </Box>

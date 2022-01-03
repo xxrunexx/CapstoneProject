@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import custom from './navbarDetailInvoice.module.css';
+import custom from './navbarArrowBack.module.css';
 
 function Item(props) {
     const { sx, ...other } = props;
@@ -29,7 +29,7 @@ Item.propTypes = {
     ]),
 };
 
-const Navbardetailinvoice = () => {
+const NavbarArrowBack = () => {
     return (
         <Box sx={{
             display: 'grid',
@@ -58,4 +58,4 @@ const Navbardetailinvoice = () => {
     );
 }
 
-export default Navbardetailinvoice;
+export default NavbarArrowBack;

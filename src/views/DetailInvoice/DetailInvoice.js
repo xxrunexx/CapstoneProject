@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Custom from './detailInvoice.module.css';
-import Navbardetailinvoice from '../../components/Navbar/NavbarDetailInvoice';
+import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
 import Status from '../../components/Status/Status';
 import Detailinvoiceclient from '../../components/Detail/DetailInvoiceClient';
 import Box from '@mui/material/Box';
@@ -22,9 +22,9 @@ const data = [
 
 const Detailinvoice = () => {
     return (
-        <Box sx={{height:'100%'}} className={Custom.background}>
+        <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <Navbardetailinvoice/> 
+                <NavbarArrowBack/> 
                 <Status status="Processed"/>
                 <Detailinvoiceclient data={data}/>
             </Box>

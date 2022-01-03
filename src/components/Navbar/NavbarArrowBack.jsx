@@ -29,7 +29,7 @@ Item.propTypes = {
     ]),
 };
 
-const Navbardetailinvoice = () => {
+const NavbarArrowBack = () => {
     return (
         <Box sx={{
             display: 'grid',
@@ -58,4 +58,4 @@ const Navbardetailinvoice = () => {
     );
 }
 
-export default Navbardetailinvoice;
+export default NavbarArrowBack;

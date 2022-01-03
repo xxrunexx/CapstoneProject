@@ -322,7 +322,7 @@ const Forminvoice = () => {
                                 fontSize:'1.2rem'
                         }}>
                             <Link href="#" underline="none" className={custom.addNewItem}>
-                                {'ADD NEW ITEM'}
+                                {'DISCARD'}
                             </Link>
                         </Box>
                     </Item>

@@ -3,7 +3,7 @@
 }
 .background{
     background-color: #131522;
-    height: 100vh;
+    height: 101vh;
 }
 
 @media (min-width: 320px) and (max-width: 1919px) {

@@ -185,6 +185,8 @@ const Forminvoice = () => {
                             sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                             className={classes.root}
                             placeholder="Input Date for Invoice ..."
+                            type="date"
+                            defaultValue="2017-05-24"
                             value={valueInvoiceDate}
                             onChange={handleChangeInvoiceDate}
                             fullWidth
@@ -224,6 +226,8 @@ const Forminvoice = () => {
                             sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                             className={classes.root}
                             placeholder="Input Client Address ..."
+                            type="date"
+                            defaultValue="2017-05-24"
                             value={valuePaymentDate}
                             onChange={handleChangePaymentDate}
                             fullWidth

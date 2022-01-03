@@ -5,15 +5,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Import views
 import Login from './views/Login';
-import Home from './views/HomeDashboard';
+import ForgetPass from './views/ForgetPass/ForgetPass';
 
 function App() {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path='/' component={Home}/>
           <Route exact path='/login' component={Login}/>
+          <Route exact path='/forgetpass' component={ForgetPass}/>
         </Switch>
       </Router>
     </>

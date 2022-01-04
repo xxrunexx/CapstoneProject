@@ -1,9 +1,5 @@
-// Import dependencies
-// import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-// Import views
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
 

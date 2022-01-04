@@ -8,6 +8,7 @@ import Login from './views/Login';
 import Home from './views/HomeDashboard/HomeDashboard';
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
+import Newclient from './views/NewClient/NewClient';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path='/' component={Home}/>
           <Route exact path='/detail' component={Detailinvoice}/>
           <Route exact path='/addInvoice' component={Newinvoice}/>
+          <Route exact path='/addClient' component={Newclient}/>
           <Route exact path='/login' component={Login}/>
         </Switch>
       </Router>

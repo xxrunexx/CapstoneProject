@@ -7,12 +7,12 @@ import LockIcon from '@mui/icons-material/Lock';
 
 import styles from './Register.module.css'
 import wavebg from '../assets/img/wave.svg'
+import logo from '../assets/img/logo.png'
 import PersonIcon from '@mui/icons-material/Person';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import MapIcon from '@mui/icons-material/Map';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
-import SendIcon from '@mui/icons-material/Send';
 
 function Register() {
     const [values, setValues] = React.useState({
@@ -25,9 +25,8 @@ function Register() {
             <img src={wavebg} alt="Wavebg"/>
             <Grid container direction="column" justifyContent="center" alignItems="center">
                 <Grid  item xs={6} className={styles.gridRegisterForm}>
-                    
                         <p id={styles.title}> 
-                        <SendIcon color = '#FFC700' fontSize = "extralarge"/> invoice.in 
+                        <img src={logo} alt="logo" className = {styles.logo}/> invoice.in 
                         </p>
                         <TextField
                             required
@@ -140,7 +139,7 @@ function Register() {
                             placeholder= "Company Site"
                         />
 
-                    <a id= {styles.aTerms} href="#">By signing up, I agree to the Privacy Policy and Terms of Service</a>
+                    <p id= {styles.aTerms} >By signing up, I agree to the Privacy Policy and Terms of Service</p>
                     <Button variant="contained" id= {styles.btnRegister}>CREATE ACCOUNT</Button>
                    
                 </Grid>

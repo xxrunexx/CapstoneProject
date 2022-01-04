@@ -150,7 +150,7 @@ const Formclient = () => {
               }}
             />
           </Item>
-          <Item>
+          <Item sx={{mt:10}}>
             <Box sx={{ flexGrow: 1}}>
               <Grid container justifyContent="space-between" spacing={2}>
                 <Grid item xs={12} md={3} >
@@ -180,7 +180,7 @@ const Formclient = () => {
                                 fontSize:'1.2rem'
                         }}>
                             <Link href="#" underline="none" className={custom.addNewItem}>
-                                {'CREATE INVOICE'}
+                                {'CREATE CLIENT'}
                             </Link>
                         </Box>
                     </Item>

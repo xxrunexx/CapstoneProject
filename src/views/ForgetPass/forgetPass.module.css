@@ -5,9 +5,3 @@
     background-color: #131522;
     height: 177vh;
 }
-
-@media (min-width : 10px) and (max-width: 10px){
-    .background{
-        height: 100%;
-    }
-}

@@ -9,6 +9,7 @@ import Home from './views/HomeDashboard/HomeDashboard';
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
 import Newclient from './views/NewClient/NewClient';
+import BillIssuerUpdated from './views/BillIssuerUpdated/BillIssuerUpdated';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path='/addClient' component={Newclient}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>
+          <Route exact path='/billIssuerUpdated' component={BillIssuerUpdated}/>
         </Switch>
       </Router>
     </>

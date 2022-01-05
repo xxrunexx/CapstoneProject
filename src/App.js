@@ -6,6 +6,7 @@ import Home from './views/HomeDashboard/HomeDashboard';
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
 import Newclient from './views/NewClient/NewClient';
+import ProfileUpdated from './views/ProfileUpdated/ProfileUpdated';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path='/addClient' component={Newclient}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>
+          <Route exact path='/profileupdated' component={ProfileUpdated}/>
         </Switch>
       </Router>
     </>

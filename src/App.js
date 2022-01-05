@@ -1,5 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Register from './views/Register';
+// import Register from './views/Register/Register';
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
 import Home from './views/HomeDashboard/HomeDashboard';
@@ -12,6 +15,7 @@ function App() {
     <>
       <Router>
         <Switch>
+        <Route exact path='/register' component={Register}/>
           <Route exact path='/' component={Home}/>
           <Route exact path='/detail' component={Detailinvoice}/>
           <Route exact path='/addInvoice' component={Newinvoice}/>

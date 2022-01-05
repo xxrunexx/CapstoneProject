@@ -17,7 +17,7 @@ const Detaildashboard = (props) => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
-                <Grid item xs={8} >
+                <Grid item xs={10} >
                     <Item><h1>Invoices</h1></Item>
                     <Item sx={{fontSize:'1.2rem', mb:9}}><span>There are 3 total invoices</span></Item>
                     <Item sx={{
@@ -29,17 +29,17 @@ const Detaildashboard = (props) => {
                     }}>
                         <Box sx={{ flexGrow: 1}}>
                             <Grid container justifyContent="space-between" spacing={2}>
-                                <Grid item xs={12} md={2} >
+                                <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'left', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         {props.data[0].id}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {`Due ${props.data[0].payment_due}`}
+                                        {`${props.data[0].payment_due}`}
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={2} >
+                                <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         {props.data[0].bill_to}
                                     </Item>
@@ -69,17 +69,17 @@ const Detaildashboard = (props) => {
                     }}>
                         <Box sx={{ flexGrow: 1}}>
                             <Grid container justifyContent="space-between" spacing={2}>
-                                <Grid item xs={12} md={2} >
+                                <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'left', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         {props.data[0].id}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {`Due ${props.data[0].payment_due}`}
+                                        {`${props.data[0].payment_due}`}
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={2} >
+                                <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         {props.data[0].bill_to}
                                     </Item>
@@ -109,17 +109,17 @@ const Detaildashboard = (props) => {
                     }}>
                         <Box sx={{ flexGrow: 1}}>
                             <Grid container justifyContent="space-between" spacing={2}>
-                                <Grid item xs={12} md={2} >
+                                <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'left', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         {props.data[0].id}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {`Due ${props.data[0].payment_due}`}
+                                        {`${props.data[0].payment_due}`}
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={2} >
+                                <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         {props.data[0].bill_to}
                                     </Item>

@@ -1,0 +1,23 @@
+.detailInvoiceLeft{
+    color: white !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.detailInvoiceRight{
+    color: white;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.detailInvoiceMid{
+    color: white;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.payNow:hover{
+    color: white;
+}

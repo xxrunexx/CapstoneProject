@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Link from '@mui/material/Link';
 import custom from './detailDraft.module.css';
-import Statuspaid from '../Status/StatusPaid';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -14,8 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: 'white',
     boxShadow: 'none'
 }));
-
-const Detailpaid = (props) => {
+const Detaildashboard = (props) => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -51,7 +49,7 @@ const Detailpaid = (props) => {
                                         {props.data[0].total}
                                     </Item>
                                 </Grid>
-                                <Statuspaid status={'Paid'}/>
+                                <props.component status={props.status}/>
                                 <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'right', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         <Link href="#" underline="none">
@@ -91,7 +89,7 @@ const Detailpaid = (props) => {
                                         {props.data[0].total}
                                     </Item>
                                 </Grid>
-                                <Statuspaid status={'Paid'}/>
+                                <props.component status={props.status}/>
                                 <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'right', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         <Link href="#" underline="none">
@@ -131,7 +129,7 @@ const Detailpaid = (props) => {
                                         {props.data[0].total}
                                     </Item>
                                 </Grid>
-                                <Statuspaid status={'Paid'}/>
+                                <props.component status={props.status}/>
                                 <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'right', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         <Link href="#" underline="none">
@@ -148,4 +146,4 @@ const Detailpaid = (props) => {
     );
 }
 
-export default Detailpaid;
+export default Detaildashboard;

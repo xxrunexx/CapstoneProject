@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Custom from './dashboard.module.css';
 import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
-import Detailunpaid from '../../components/Detail/DetailUnpaid';
+import Statusunpaid from '../../components/Status/StatusUnpaid';
+import Detaildashboard from '../../components/Detail/DetailDashboard';
 import Box from '@mui/material/Box';
 
 const Dashboardunpaid = () => {
@@ -17,7 +18,7 @@ const Dashboardunpaid = () => {
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack/> 
-                <Detailunpaid data={data}/>
+                <Detaildashboard status={'Unpaid'} data={data} component={Statusunpaid}/> 
             </Box>
         </Box>
     );

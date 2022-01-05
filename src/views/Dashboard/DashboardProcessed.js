@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Custom from './dashboard.module.css';
 import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
-import Detailprocessed from '../../components/Detail/DetailProcessed';
+import Statusprocessed from '../../components/Status/StatusProcessed';
+import Detaildashboard from '../../components/Detail/DetailDashboard';
 import Box from '@mui/material/Box';
 
 const Dashboardprocessed = () => {
@@ -17,7 +18,7 @@ const Dashboardprocessed = () => {
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack/> 
-                <Detailprocessed data={data}/>
+                <Detaildashboard status={'Processed'} data={data} component={Statusprocessed}/> 
             </Box>
         </Box>
     );

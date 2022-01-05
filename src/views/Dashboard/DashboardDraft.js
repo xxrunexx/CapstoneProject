@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Custom from './dashboard.module.css';
 import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
-import Detaildraft from '../../components/Detail/DetailDraft';
 import Box from '@mui/material/Box';
+import Statusdraft from '../../components/Status/StatusDraft';
+import Detaildashboard from '../../components/Detail/DetailDashboard';
 
 const Dashboarddraft = () => {
     const data = [
@@ -16,8 +17,8 @@ const Dashboarddraft = () => {
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/> 
-                <Detaildraft data={data}/>
+                <NavbarArrowBack/>
+                <Detaildashboard status={'Draft'} data={data} component={Statusdraft}/> 
             </Box>
         </Box>
     );

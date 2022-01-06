@@ -28,7 +28,7 @@ const Updateinvoice = (props) => {
                     <Item sx={{pt:4, pb:3, px:4, borderRadius:5}}>
                         <Box sx={{ flexGrow: 1}}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} md={5} >
+                                <Grid item xs={12} md={12} lg={5} >
                                     <Item>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
@@ -44,7 +44,7 @@ const Updateinvoice = (props) => {
                                         </Box>
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={7}>
+                                <Grid item xs={12} md={12} lg={7}>
                                     <Item>
                                         <Box sx={{ flexGrow: 1}}>
                                             <Grid container spacing={2}>

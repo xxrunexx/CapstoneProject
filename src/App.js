@@ -10,6 +10,7 @@ import Register from './views/Register';
 // import Register from './views/Register/Register';
 import NewPass from './views/NewPass/NewPass';
 import Newclient from './views/NewClient/NewClient';
+import ProfileUpdated from './views/ProfileUpdated/ProfileUpdated';
 import PassUpdated from './views/PassUpdated/PassUpdated';
 import Dashboarddraft from './views/Dashboard/DashboardDraft';
 import Dashboardpaid from './views/Dashboard/DashboardPaid';
@@ -34,6 +35,7 @@ function App() {
           <Route exact path='/register' component={Register}/>
           <Route exact path='/newPass' component={NewPass}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>
+          <Route exact path='/profileupdated' component={ProfileUpdated}/>
           <Route exact path='/passUpdated' component={PassUpdated}/>
         </Switch>
       </Router>

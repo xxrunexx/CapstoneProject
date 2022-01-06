@@ -1,18 +1,20 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Register from './views/Register';
-// import Register from './views/Register/Register';
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
 import Home from './views/HomeDashboard/HomeDashboard';
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
+import Register from './views/Register';
+// import Register from './views/Register/Register';
+import NewPass from './views/NewPass/NewPass';
 import Newclient from './views/NewClient/NewClient';
 import Dashboarddraft from './views/Dashboard/DashboardDraft';
 import Dashboardpaid from './views/Dashboard/DashboardPaid';
 import Dashboardunpaid from './views/Dashboard/DashboardUnpaid';
 import Dashboardprocessed from './views/Dashboard/DashboardProcessed';
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route exact path='/addInvoice' component={Newinvoice}/>
           <Route exact path='/addClient' component={Newclient}/>
           <Route exact path='/login' component={Login}/>
+          <Route exact path='/register' component={Register}/>
+          <Route exact path='/newPass' component={NewPass}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>
         </Switch>
       </Router>

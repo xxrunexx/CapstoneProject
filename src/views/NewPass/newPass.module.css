@@ -5,9 +5,9 @@
     background-color: #131522;
 }
 
-@media (min-width : 968px) and (max-width : 1919px){
+@media (min-width : 1919px) and (max-width : 1919px){
     .background{
         height: 100vh;
         background-color: #131522;
     }
-} 
+}

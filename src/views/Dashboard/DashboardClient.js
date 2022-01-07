@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Custom from './dashboard.module.css';
-import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
-import Statusprocessed from '../../components/Status/StatusProcessed';
-import Detaildashboard from '../../components/Detail/DetailDashboard';
+import Custom from './dashboardClient.module.css';
 import TitleDashboard from '../../components/Detail/TitleDashboard';
+import ButtonBillIssuer from '../../components/Navbar/ButtonBillIssuer';
+import Statusprocessed from '../../components/Status/StatusProcessed';
+import StatusPaid from '../../components/Status/StatusPaid';
+import StatusDraft from '../../components/Status/StatusDraft';
+import Detaildashboard from '../../components/Detail/DetailDashboard';
 import Box from '@mui/material/Box';
 
 const Dashboardprocessed = () => {
@@ -18,9 +20,11 @@ const Dashboardprocessed = () => {
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/>
+                <ButtonBillIssuer/> 
                 <TitleDashboard/>
                 <Detaildashboard status={'Processed'} data={data} component={Statusprocessed}/> 
+                <Detaildashboard status={'Paid'} data={data} component={StatusPaid}/>
+                <Detaildashboard status={'Draft'} data={data} component={StatusDraft}/>
             </Box>
         </Box>
     );

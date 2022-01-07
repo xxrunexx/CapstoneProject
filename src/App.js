@@ -17,6 +17,7 @@ import Dashboarddraft from './views/Dashboard/DashboardDraft';
 import Dashboardpaid from './views/Dashboard/DashboardPaid';
 import Dashboardunpaid from './views/Dashboard/DashboardUnpaid';
 import Dashboardprocessed from './views/Dashboard/DashboardProcessed';
+import DashboardClient from './views/Dashboard/DashboardClient';
 
 function App() {
   return (
@@ -37,8 +38,9 @@ function App() {
           <Route exact path='/newPass' component={NewPass}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>
           <Route exact path='/billIssuerUpdated' component={BillIssuerUpdated}/>
-          <Route exact path='/profileupdated' component={ProfileUpdated}/>
+          <Route exact path='/clientupdated' component={ProfileUpdated}/>
           <Route exact path='/passUpdated' component={PassUpdated}/>
+          <Route exact path='/client' component={DashboardClient}/>
         </Switch>
       </Router>
     </>

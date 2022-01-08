@@ -1,201 +1,159 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import custom from './detailInvoice.module.css';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import CircleIcon from '@mui/icons-material/Circle';
+import custom from './detailInvoice.module.css';
 
-function Item(props) {
-    const { sx, ...other } = props;
-    return (
-      <Box
-        sx={{
-          color: '#131522',
-          fontWeight: '700',
-          ...sx,
-        }}
-        {...other}
-      />
-    );
-}
-  
-Item.propTypes = {
-    sx: PropTypes.oneOfType([
-        PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-        ),
-        PropTypes.func,
-        PropTypes.object,
-    ]),
-};
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    // padding: theme.spacing(2),
+    textAlign: 'left',
+    backgroundColor: '#E5E5E5',
+    color: '#131522',
+    boxShadow: 'none',
+}));
 
 const Detailinvoiceclient = (props) => {
     return (
-        <Box sx={{
-            display: 'grid',
-            gridAutoColumns: '1fr',
-            gap: 1,
-            alignItems: 'center',
-            mb:2,
-            mx: 20,
-        }}>
-            <Item sx={{ 
-                gridRow: '1', 
-                gridColumn: '1', 
-                textAlign: 'left', 
-                fontSize: '2rem', 
-                borderRadius: 3,
-                p: 1,
-                pt: 3,
-                pl: 8,
-                height: 520,
-                bgcolor: '#E5E5E5',
-            }}>
-                <Box sx={{mb:2}}>{props.data[0].id}</Box>
-                <Box sx={{
-                    mb:1, 
-                    fontSize: '1.5rem',
-                    display: 'grid',
-                    gridAutoColumns: '1fr',
-                    gap: 1,
-                    pr: 8,
-                }}>
-                    <Item sx={{
-                        gridRow: '1', 
-                        gridColumn: '1 / 2', 
-                    }}>
-                        <Item>Invoice Date</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].invoice_date}</Item>
+        <Box sx={{ flexGrow: 1}}>
+            <Grid container justifyContent="center">
+                <Grid item xs={8} >
+                    <Item sx={{pt:4, pb:3, px:5, borderRadius:5}}>
+                        <Box sx={{ flexGrow: 1}}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={12} lg={5} >
+                                    <Item>
+                                        <Box sx={{ flexGrow: 1,}}>
+                                            <Grid container spacing={2}>
+                                                <Grid item xs={12} md={4} >
+                                                    <h3>Status</h3> 
+                                                </Grid>
+                                                <Grid item xs={12} md={5} sx={{mt:0.2}} >
+                                                    <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py:0.8, borderRadius:6}}>
+                                                        <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{props.status}
+                                                    </Item>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Item>
+                                </Grid>
+                            </Grid>
+                        </Box>
                     </Item>
-                    <Item sx={{
-                        gridRow: '1', 
-                        gridColumn: '2 / 3', 
-                    }}>
-                        <Item>Bill To</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].bill_to}</Item>
+                </Grid>
+                <Grid item xs={8} sx={{mt:2}} >
+                    <Item sx={{py:7, px:5, borderRadius:5}}>
+                        <Box sx={{ flexGrow: 1}}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={12} lg={12} >
+                                    <Item>
+                                        <Box sx={{ flexGrow: 1,}}>
+                                            <Grid container spacing={2}>
+                                                <Grid item xs={12} md={4} >
+                                                    <h3>#5F892S3</h3> 
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Item>
+                                </Grid>
+                                <Grid item xs={12} md={12} lg={12} >
+                                    <Item>
+                                        <Box sx={{ flexGrow: 1,}}>
+                                            <Grid container spacing={2}>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Invoice Date</h5> 
+                                                    <span>Dec 24, 2021</span>
+                                                </Grid>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Bill To</h5> 
+                                                    <span>Harun Rasyid</span> 
+                                                </Grid>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Send To</h5> 
+                                                    <span>rasyid.id3@gmail.com</span> 
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Item>
+                                </Grid>
+                                <Grid item xs={12} md={12} lg={12} >
+                                    <Item>
+                                        <Box sx={{ flexGrow: 1,}}>
+                                            <Grid container spacing={2}>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Payment Date</h5> 
+                                                    <span>Dec 31, 2021</span>
+                                                </Grid>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Address</h5> 
+                                                    <span>Tiban Lama RT 02 RW 15 Sekupang 45311 Batam</span> 
+                                                </Grid>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>From</h5> 
+                                                    <span>Biznet Branch Batam Gedung Graha Pena, Jl. Ahmad Yani, Tlk. Tering, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444 (0778) 4093781</span> 
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Item>
+                                </Grid>
+                                <Grid item xs={12} md={12} lg={12} >
+                                    <Item sx={{bgcolor:'#131522', color:'white', borderRadius:5, px:3, py:3}}>
+                                        <Box sx={{ flexGrow: 1,}}>
+                                            <Grid container spacing={2}>
+                                                <Grid item xs={12} md={6} >
+                                                    <div className={`mb-3 ${custom.headInfo}`}>
+                                                        <span>Item Name</span>
+                                                    </div>
+                                                    <div className={custom.detailInfo}>
+                                                        <span>2P Internet + TV</span>
+                                                    </div>
+                                                </Grid>
+                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}}>
+                                                    <div className={`mb-3 ${custom.headInfo}`}>
+                                                        <span>Price</span>
+                                                    </div>
+                                                    <div className={custom.detailInfo}>
+                                                        <span>Rp. 240.000</span>
+                                                    </div> 
+                                                </Grid>
+                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}}>
+                                                    <div className={`mb-3 ${custom.headInfo}`}>
+                                                        <span>Total</span>
+                                                    </div>
+                                                    <div className={custom.detailInfo}>
+                                                        <span>Rp. 240.000</span>
+                                                    </div> 
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Item>
+                                </Grid>
+                                <Grid item xs={12} md={12} lg={12} >
+                                    <Box sx={{
+                                        display: 'flex', 
+                                        flexDirection: 'row-reverse', 
+                                        mt: 3,
+                                    }}>
+                                        <Link sx={{
+                                            bgcolor: '#FFC700',
+                                            color: '#131522',
+                                            px:3,
+                                            py:0.5,
+                                            fontSize: '1.5rem',
+                                            borderRadius: 3
+                                        }} href="#" underline="none" className={custom.payNow}>
+                                            {'PAY NOW'}
+                                        </Link>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Box>
                     </Item>
-                    <Item sx={{
-                        gridRow: '1', 
-                        gridColumn: '3 / 4', 
-                    }}>
-                        <Item>Send To</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].send_to}</Item>
-                    </Item>
-                </Box>
-                <Box sx={{
-                    mb:1, 
-                    fontSize: '1.5rem',
-                    display: 'grid',
-                    gridAutoColumns: '1fr',
-                    gap: 1,
-                    pr: 8,
-                }}>
-                    <Item sx={{
-                        gridRow: '1', 
-                        gridColumn: '1 / 2',
-                        pr:3 
-                    }}>
-                        <Item>Payment Date</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].payment_date}</Item>
-                    </Item>
-                    <Item sx={{
-                        gridRow: '1', 
-                        gridColumn: '2 / 3',
-                        pr:3 
-                    }}>
-                        <Item>Address</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].address}</Item>
-                    </Item>
-                    <Item sx={{
-                        gridRow: '1', 
-                        gridColumn: '3 / 4',
-                        pr:3 
-                    }}>
-                        <Item>From</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem'}}>{props.data[0].from}</Item>
-                    </Item>
-                </Box>
-                <Box sx={{
-                    mb:1, 
-                    fontSize: '1.5rem',
-                    display: 'grid',
-                    gridAutoColumns: '1fr',
-                    pr: 8,
-                    mt: 2,
-                }}>
-                    <Item className={custom.detailInvoiceLeft} sx={{
-                        gridRow: '1', 
-                        gridColumn: '1 / 3',
-                        px:3,
-                        py:2,
-                        bgcolor: '#131522', 
-                        borderRadius: 3,
-                    }}>
-                        <Item sx={{color:'white'}}>Item Name</Item>
-                        <Item sx={{fontWeight:500, fontSize:'1rem', color:'white'}}>{props.data[0].item_name}</Item>
-                    </Item>
-                    <Item className={custom.detailInvoiceMid} sx={{
-                        gridRow: '1', 
-                        gridColumn: '3 / 4',
-                        textAlign: 'right',
-                        px:3,
-                        py:2,
-                        bgcolor: '#131522', 
-                        borderRadius: 3,
-                    }}>
-                        <Item sx={{
-                            color:'white',
-                        }}>
-                            Price
-                        </Item>
-                        <Item sx={{
-                            fontWeight:500, 
-                            fontSize:'1rem', 
-                            color:'white',
-                        }}>
-                            {'Rp. '}{props.data[0].price}
-                        </Item>
-                    </Item>
-                    <Item className={custom.detailInvoiceRight} sx={{
-                        gridRow: '1', 
-                        gridColumn: '4 / 5',
-                        textAlign: 'right',
-                        px:3,
-                        py:2,
-                        bgcolor: '#131522', 
-                        borderRadius: 3,
-                    }}>
-                        <Item sx={{
-                            color:'white',
-                        }}>
-                            Total
-                        </Item>
-                        <Item sx={{
-                            fontWeight:500, 
-                            fontSize:'1rem', 
-                            color:'white',
-                        }}>
-                            {'Rp. '}{props.data[0].total}
-                        </Item>
-                    </Item>
-                </Box>
-                <Box sx={{
-                    display: 'flex', 
-                    flexDirection: 'row-reverse', 
-                    pr: 8,
-                    mt: 3,
-                }}>
-                    <Link sx={{
-                        bgcolor: '#FFC700',
-                        color: '#131522',
-                        px:3,
-                        py:0.5,
-                        fontSize: '1.5rem',
-                        borderRadius: 3
-                    }} href="#" underline="none" className={custom.payNow}>
-                        {'PAY NOW'}
-                    </Link>
-                </Box>
-            </Item>
+                </Grid>
+            </Grid>
         </Box>
     );
 }

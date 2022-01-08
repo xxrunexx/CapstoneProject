@@ -5,7 +5,7 @@
     background-color: #131522;
 }
 
-@media (min-width: 320px) {
+@media (min-width: 900px) {
     .background{
         height: 100vh;
     }

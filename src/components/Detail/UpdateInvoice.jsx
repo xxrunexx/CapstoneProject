@@ -132,7 +132,7 @@ const Updateinvoice = (props) => {
                                     <Item sx={{bgcolor:'#131522', color:'white', borderRadius:5, px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
-                                                <Grid item xs={12} md={6} >
+                                                <Grid item xs={12} md={6} className={custom.responsive}>
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Item Name</span>
                                                     </div>
@@ -140,7 +140,7 @@ const Updateinvoice = (props) => {
                                                         <span>2P Internet + TV</span>
                                                     </div>
                                                 </Grid>
-                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}}>
+                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}} className={custom.responsive}>
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Price</span>
                                                     </div>
@@ -148,7 +148,7 @@ const Updateinvoice = (props) => {
                                                         <span>Rp. 240.000</span>
                                                     </div> 
                                                 </Grid>
-                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}}>
+                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}} className={custom.responsive}>
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Total</span>
                                                     </div>

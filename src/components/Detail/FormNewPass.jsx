@@ -70,10 +70,8 @@ const FormNewPass = () => {
       <Grid container justifyContent="center">
         <Grid item xs={8} >
         <Item sx={{
-                    textAlign: 'center',
-                    color:'#E5E5E5', 
+                    textAlign: 'center', 
                     py:1, 
-                    fontSize:'1.2rem',
                     fontFamily: 'Michroma',
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -86,9 +84,7 @@ const FormNewPass = () => {
           
         <Item sx={{
                     textAlign: 'center',
-                    color:'#E5E5E5', 
                     py:1, 
-                    fontSize:'1.2rem',
                     fontFamily: 'Michroma',
                     fontStyle: 'normal',
                     fontWeight: 'normal',

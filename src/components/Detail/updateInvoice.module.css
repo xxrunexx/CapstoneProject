@@ -1,5 +1,9 @@
-.payNow:hover{
-    color: white;
+.link{
+    color: #131522 !important;
+}
+
+.link:hover{
+    color: white !important;
 }
 
 .headInfo{

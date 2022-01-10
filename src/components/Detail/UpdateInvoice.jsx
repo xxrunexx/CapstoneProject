@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import CircleIcon from '@mui/icons-material/Circle';
-import custom from './detailInvoice.module.css';
+import custom from './updateInvoice.module.css';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -16,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none',
 }));
 
-const Detailinvoiceclient = (props) => {
+const Updateinvoice = (props) => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -35,6 +35,35 @@ const Detailinvoiceclient = (props) => {
                                                     <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py:0.8, borderRadius:6}}>
                                                         <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{props.status}
                                                     </Item>
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                    </Item>
+                                </Grid>
+                                <Grid item xs={12} md={12} lg={7}>
+                                    <Item>
+                                        <Box sx={{ flexGrow: 1}}>
+                                            <Grid container spacing={2} justifyContent="flex-end">
+                                                <Grid item xs={12} md={2}>
+                                                    <Item sx={{textAlign: 'center', bgcolor: '#6C6C73', py:1, borderRadius:2}}>
+                                                        <Link href="#" underline="none" className={custom.link}>
+                                                            {'Edit'}
+                                                        </Link>
+                                                    </Item>
+                                                </Grid>
+                                                <Grid item xs={12} md={2}>
+                                                    <Item sx={{textAlign: 'center', bgcolor: 'rgba(231,70,70,0.90)', py:1, borderRadius:2}}>
+                                                        <Link href="#" underline="none" className={custom.link}>
+                                                            {'Delete'}
+                                                        </Link>
+                                                    </Item> 
+                                                </Grid>
+                                                <Grid item xs={12} md={4}>
+                                                    <Item sx={{textAlign: 'center', bgcolor: '#FFC700', py:1, borderRadius:2}}>
+                                                        <Link href="#" underline="none" className={custom.link}>
+                                                            {'Mark as Paid'}
+                                                        </Link>
+                                                    </Item> 
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -103,7 +132,7 @@ const Detailinvoiceclient = (props) => {
                                     <Item sx={{bgcolor:'#131522', color:'white', borderRadius:5, px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
-                                                <Grid item xs={12} md={6} className={custom.responsive} >
+                                                <Grid item xs={12} md={6} className={custom.responsive}>
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Item Name</span>
                                                     </div>
@@ -131,24 +160,6 @@ const Detailinvoiceclient = (props) => {
                                         </Box>
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={12} lg={12} >
-                                    <Box sx={{
-                                        display: 'flex', 
-                                        flexDirection: 'row-reverse', 
-                                        mt: 3,
-                                    }}>
-                                        <Link sx={{
-                                            bgcolor: '#FFC700',
-                                            color: '#131522',
-                                            px:3,
-                                            py:0.5,
-                                            fontSize: '1.5rem',
-                                            borderRadius: 3
-                                        }} href="#" underline="none" className={`${custom.payNow}`}>
-                                            {'PAY NOW'}
-                                        </Link>
-                                    </Box>
-                                </Grid>
                             </Grid>
                         </Box>
                     </Item>
@@ -158,4 +169,4 @@ const Detailinvoiceclient = (props) => {
     );
 }
 
-export default Detailinvoiceclient;
+export default Updateinvoice;

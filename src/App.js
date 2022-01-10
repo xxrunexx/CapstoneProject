@@ -17,6 +17,7 @@ import Dashboarddraft from './views/Dashboard/DashboardDraft';
 import Dashboardpaid from './views/Dashboard/DashboardPaid';
 import Dashboardunpaid from './views/Dashboard/DashboardUnpaid';
 import Dashboardprocessed from './views/Dashboard/DashboardProcessed';
+import Editinvoice from './views/EditInvoice/EditInvoice';
 import DashboardClient from './views/Dashboard/DashboardClient';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route exact path='/dashboard/paid' component={Dashboardpaid}/>
           <Route exact path='/dashboard/unpaid' component={Dashboardunpaid}/>
           <Route exact path='/dashboard/processed' component={Dashboardprocessed}/>
+          <Route exact path='/editInvoice' component={Editinvoice}/>
           <Route exact path='/detail' component={Detailinvoice}/>
           <Route exact path='/addInvoice' component={Newinvoice}/>
           <Route exact path='/addClient' component={Newclient}/>

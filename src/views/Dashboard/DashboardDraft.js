@@ -4,6 +4,7 @@ import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
 import Box from '@mui/material/Box';
 import Statusdraft from '../../components/Status/StatusDraft';
 import Detaildashboard from '../../components/Detail/DetailDashboard';
+import TitleDashboard from '../../components/Detail/TitleDashboard';
 
 const Dashboarddraft = () => {
     const data = [
@@ -18,6 +19,7 @@ const Dashboarddraft = () => {
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack/>
+                <TitleDashboard/>
                 <Detaildashboard status={'Draft'} data={data} component={Statusdraft}/> 
             </Box>
         </Box>

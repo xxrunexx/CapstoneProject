@@ -5,11 +5,11 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import custom from './formNewPass.module.css';
+import custom from './formBillIssuerInfo.module.css';
 import Link from '@mui/material/Link';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { InputAdornment } from '@mui/material';
-import forgetPass from '../../assets/img/newPass.png';
+import billIssuerInfo from '../../assets/img/billIssuerInfo.png';
 import LockResetIcon from '@mui/icons-material/LockReset';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -57,14 +57,34 @@ const useStyles = makeStyles({
     },
 });
 
-const FormNewPass = () => {
+const FormBillIssuerInfo = (props) => {
+    const [valueName, setValueName] = React.useState('');
+    const [valueEmail, setValueEmail] = React.useState('');
     const [valuePassword, setValuePassword] = React.useState('');
-    const [valueConfirmPassword, setValueConfirmPassword] = React.useState('');
+    const [valueCompanyName, setValueCompanyName] = React.useState('');
+    const [valueCompanyAddress, setValueCompanyAddress] = React.useState('');
+    const [valueCompanyPhone, setValueCompanyPhone] = React.useState('');
+    const [valueCompanySite, setValueCompanySite] = React.useState('');
+    const handleChangeName = (event) => {
+      setValueName(event.target.value);
+    };
+    const handleChangeEmail = (event) => {
+      setValueEmail(event.target.value);
+    };
     const handleChangePassword = (event) => {
       setValuePassword(event.target.value);
     };
-    const handleChangeConfirmPassword = (event) => {
-      setValueConfirmPassword(event.target.value);
+    const handleChangeCompanyName = (event) => {
+      setValueCompanyName(event.target.value);
+    };
+    const handleChangeCompanyAddress = (event) => {
+      setValueCompanyAddress(event.target.value);
+    };
+    const handleChangeCompanyPhone = (event) => {
+      setValueCompanyPhone(event.target.value);
+    };
+    const handleChangeCompanySite = (event) => {
+      setValueCompanySite(event.target.value);
     };
 
     const classes = useStyles();
@@ -82,7 +102,7 @@ const FormNewPass = () => {
                     lineHeight: '91px',
                     color: '#E5E5E5',                    
           }}>
-            <img src={forgetPass} alt="forgetPass"  position="center"/>
+            <img src={billIssuerInfo} alt="billIssuerInfo"  position="center"/>
           </Item>
           
         <Item sx={{
@@ -93,25 +113,25 @@ const FormNewPass = () => {
                     fontWeight: 'normal',
                     fontSize: '64px',
                     lineHeight: '91px',
-                    color: '#E5E5E5',                    
+                    color: '#E5E5E5',    
           }}>
-            <p>NEW CREDENTIALS</p>
+            <p>{props.data[0].name}</p>
           </Item>
           <Item sx={{
                     textAlign: 'center',
                     color:'#E5E5E5', 
                     py:1, 
-                    fontSize:'1.2rem'
+                    fontSize: '36px',
           }}>
-            <p>Your identity has been verified! Set your new password</p>
+            <p>{props.data[0].company_name}</p>
           </Item>
           <Item>
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              placeholder="New Password"
-              value={valuePassword}
-              onChange={handleChangePassword}
+              placeholder = {props.data[0].email}
+              value={valueEmail}
+              onChange={handleChangeEmail}
               fullWidth
               InputProps={{
                 startAdornment: (
@@ -122,13 +142,14 @@ const FormNewPass = () => {
                 }}
             />
           </Item>
+
           <Item>
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              placeholder="Confirm Password"
-              value={valueConfirmPassword}
-              onChange={handleChangeConfirmPassword}
+              placeholder={props.data[0].company_address}
+              value={valuePassword}
+              onChange={handleChangePassword}
               fullWidth
               InputProps={{
                 startAdornment: (
@@ -138,6 +159,79 @@ const FormNewPass = () => {
                 ),
                 }}
             />
+            
+          </Item>
+          <Item>
+            <TextField
+              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+              className={classes.root}
+              placeholder="Confirm Password"
+              value={valueCompanyName}
+              onChange={handleChangeCompanyName}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                    <LockOpenIcon />
+                    </InputAdornment>
+                ),
+                }}
+            />
+            {props.data[0].company_phone}
+          </Item>
+          <Item>
+            <TextField
+              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+              className={classes.root}
+              placeholder="Confirm Password"
+              value={valueCompanyAddress}
+              onChange={handleChangeCompanyAddress}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                    <LockOpenIcon />
+                    </InputAdornment>
+                ),
+                }}
+            />
+            {props.data[0].company_site}
+          </Item>
+          <Item>
+            <TextField
+              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+              className={classes.root}
+              placeholder="Confirm Password"
+              value={valueCompanyPhone}
+              onChange={handleChangeCompanyPhone}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                    <LockOpenIcon />
+                    </InputAdornment>
+                ),
+                }}
+            />
+            {props.data[0].company_site}
+          </Item>
+          <Item>
+            <TextField
+              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+              className={classes.root}
+              placeholder="Confirm Password"
+              value={valueCompanySite}
+              onChange={handleChangeCompanySite}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                    <LockOpenIcon />
+                    </InputAdornment>
+                ),
+                }}
+            />
+            {props.data[0].company_site}
           </Item>
           <Item sx={{textAlign: 'center',}}>
               <Box 
@@ -159,4 +253,4 @@ const FormNewPass = () => {
     );
 }
 
-export default FormNewPass;
+export default FormBillIssuerInfo;

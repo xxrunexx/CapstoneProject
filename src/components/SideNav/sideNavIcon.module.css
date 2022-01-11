@@ -11,12 +11,21 @@
     color: white !important;
 }
 
-.btnClose{
-    color: #FFC700 !important;
+.toggleTop{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.toggleTop:hover{
+    color: white !;
+    background-color: transparent !important;
+}
+
+/* .btnClose{
     font-size: 1.2rem;
 }
 
 .btnClose:hover{
     background-color: white !important;
     color: #131522 !important;
-}
+} */

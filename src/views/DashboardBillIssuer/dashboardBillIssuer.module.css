@@ -3,5 +3,10 @@
 }
 .background{
     background-color: #131522;
-    height: 102vh;
 }
+
+/* @media (min-width: 900px) {
+    .background{
+        height: 100vh;
+    }
+} */

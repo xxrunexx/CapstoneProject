@@ -9,7 +9,7 @@ import custom from './formEmail.module.css';
 import Link from '@mui/material/Link';
 import EmailIcon from '@mui/icons-material/Email';
 import { InputAdornment } from '@mui/material';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import forgetPass from '../../assets/img/forgetPass.png'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -71,9 +71,9 @@ const FormEmail = () => {
         <Grid item xs={8} >
         <Item sx={{
                     textAlign: 'center',
-                    color:'#E5E5E5', 
+                    // color:'#E5E5E5', 
                     py:1, 
-                    fontSize:'1.2rem',
+                    // fontSize:'1.2rem',
                     fontFamily: 'Michroma',
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -86,9 +86,9 @@ const FormEmail = () => {
           
         <Item sx={{
                     textAlign: 'center',
-                    color:'#E5E5E5', 
+                    // color:'#E5E5E5', 
                     py:1, 
-                    fontSize:'1.2rem',
+                    // fontSize:'1.2rem',
                     fontFamily: 'Michroma',
                     fontStyle: 'normal',
                     fontWeight: 'normal',
@@ -104,7 +104,7 @@ const FormEmail = () => {
                     py:1, 
                     fontSize:'1.2rem'
           }}>
-            <p>Provide your account’s email for which you want to reset your password</p>
+            <p>{'Provide your account’s email for which you want to reset your password'}</p>
           </Item>
           <Item>
             <TextField

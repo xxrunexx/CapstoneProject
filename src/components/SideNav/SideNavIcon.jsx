@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Sidenavicon = () => {
+const Sidenavicon = (props) => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
@@ -36,6 +36,7 @@ const Sidenavicon = () => {
                                 variant="contained" 
                                 className={custom.toggleTop} 
                                 sx={{bgcolor:'transparent',color: '#131522',}}
+                                onClick={props.show}
                             >
                                 <CircleIcon/><CircleIcon/><CircleIcon/>
                             </Button>

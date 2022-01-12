@@ -15,10 +15,10 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
 
 function Register() {
-    const [values, setValues] = React.useState({
-        password: '',
-        showPassword: false,
-      });
+    // const [values, setValues] = React.useState({
+    //     password: '',
+    //     showPassword: false,
+    //   });
 
     return (
         <div className={styles.bgRegister} >

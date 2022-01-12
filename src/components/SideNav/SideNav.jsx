@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Sidenav = () => {
+const Sidenav = (props) => {
     return (
         <Item className={custom.leftSidebar} sx={{width:'80%'}}>
             <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}}/></Box>
@@ -58,6 +58,7 @@ const Sidenav = () => {
                                 variant="contained" 
                                 className={custom.btnClose} 
                                 sx={{px:3, bgcolor:'#131522'}}
+                                onClick={props.show}
                             >
                                 CLOSE
                             </Button>

@@ -7,10 +7,14 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import custom from './formBillIssuerInfo.module.css';
 import Link from '@mui/material/Link';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { InputAdornment } from '@mui/material';
 import billIssuerInfo from '../../assets/img/billIssuerInfo.png';
-import LockResetIcon from '@mui/icons-material/LockReset';
+import LockIcon from '@mui/icons-material/Lock';
+import EmailIcon from '@mui/icons-material/Email';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LanguageIcon from '@mui/icons-material/Language';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -57,6 +61,7 @@ const useStyles = makeStyles({
     },
 });
 
+
 const FormBillIssuerInfo = (props) => {
     const [valueName, setValueName] = React.useState('');
     const [valueEmail, setValueEmail] = React.useState('');
@@ -100,11 +105,10 @@ const FormBillIssuerInfo = (props) => {
                     fontWeight: 'normal',
                     fontSize: '64px',
                     lineHeight: '91px',
-                    color: '#E5E5E5',                    
+                    color: '#E5E5E5',               
           }}>
             <img src={billIssuerInfo} alt="billIssuerInfo"  position="center"/>
-          </Item>
-          
+          </Item> 
         <Item sx={{
                     textAlign: 'center',
                     py:1, 
@@ -113,7 +117,9 @@ const FormBillIssuerInfo = (props) => {
                     fontWeight: 'normal',
                     fontSize: '64px',
                     lineHeight: '91px',
-                    color: '#E5E5E5',    
+                    color: '#E5E5E5',
+                    paddingTop: '0px',
+                    paddingBottom: '0px' , 
           }}>
             <p>{props.data[0].name}</p>
           </Item>
@@ -122,39 +128,44 @@ const FormBillIssuerInfo = (props) => {
                     color:'#E5E5E5', 
                     py:1, 
                     fontSize: '36px',
+                    paddingTop: '0px',
+                    paddingBottom: '10px' , 
           }}>
             <p>{props.data[0].company_name}</p>
           </Item>
           <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder = {props.data[0].email}
-              value={valueEmail}
-              onChange={handleChangeEmail}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <LockResetIcon />
-                    </InputAdornment>
-                ),
-                }}
-            />
+             <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Email"
+                fullWidth
+                value={props.data[0].email}
+                onChange={handleChangeEmail}
+                variant="filled"
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                      <EmailIcon />
+                      </InputAdornment>
+                  ),
+                  }}
+           />
           </Item>
-
           <Item>
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              placeholder={props.data[0].company_address}
-              value={valuePassword}
+              id="outlined-uncontrolled"
+              label="Password"
+              value={props.data[0].password}
               onChange={handleChangePassword}
+              variant="filled"
               fullWidth
               InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <LockOpenIcon />
+                    <LockIcon />
                     </InputAdornment>
                 ),
                 }}
@@ -165,73 +176,77 @@ const FormBillIssuerInfo = (props) => {
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              placeholder="Confirm Password"
-              value={valueCompanyName}
+              id="outlined-uncontrolled"
+              label="Company Name"
+              value={props.data[0].company_name}
               onChange={handleChangeCompanyName}
+              variant="filled"
               fullWidth
               InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <LockOpenIcon />
+                    <ApartmentIcon />
                     </InputAdornment>
                 ),
                 }}
             />
-            {props.data[0].company_phone}
           </Item>
           <Item>
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="Confirm Password"
-              value={valueCompanyAddress}
+              className={classes.root}              
+              id="outlined-uncontrolled"
+              label="Company Address"
+              value={props.data[0].company_address}
               onChange={handleChangeCompanyAddress}
+              variant="filled"
               fullWidth
               InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <LockOpenIcon />
+                    <LocationOnIcon />
                     </InputAdornment>
                 ),
                 }}
             />
-            {props.data[0].company_site}
           </Item>
           <Item>
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              placeholder="Confirm Password"
-              value={valueCompanyPhone}
+              id="outlined-uncontrolled"
+              label="Company Phone"
+              value={props.data[0].company_phone}
               onChange={handleChangeCompanyPhone}
+              variant="filled"
               fullWidth
               InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <LockOpenIcon />
+                    <PhoneIcon />
                     </InputAdornment>
                 ),
                 }}
             />
-            {props.data[0].company_site}
           </Item>
           <Item>
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              placeholder="Confirm Password"
-              value={valueCompanySite}
+              id="outlined-uncontrolled"
+              label="Company Site"
+              value={props.data[0].company_site}
               onChange={handleChangeCompanySite}
+              variant="filled"
               fullWidth
               InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <LockOpenIcon />
+                    <LanguageIcon />
                     </InputAdornment>
                 ),
                 }}
             />
-            {props.data[0].company_site}
           </Item>
           <Item sx={{textAlign: 'center',}}>
               <Box 

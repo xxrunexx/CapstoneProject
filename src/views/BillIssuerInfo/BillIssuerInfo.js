@@ -3,18 +3,6 @@ import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
 import FormBillIssuerInfo from '../../components/Detail/FormBillIssuerInfo';
 import Custom from './billIssuerInfo.module.css';
 import Box from '@mui/material/Box';
-import Statusprocessed from '../../components/Status/StatusProcessed';
-
-// const BillIssuerInfo = () => {
-//     return (
-//         <Box className={Custom.background}>
-//             <Box className={`container py-5 text-white`}>
-//                 <NavbarArrowBack/> 
-//                 <FormEmail/>
-//             </Box>
-//         </Box>
-//     );
-// }
 
 const BillIssuerInfo = () => {
     const data = [
@@ -32,12 +20,7 @@ const BillIssuerInfo = () => {
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
             <NavbarArrowBack/>
-            <FormBillIssuerInfo status={'Processed'} data={data} component={Statusprocessed}/>
-                {/* <ButtonBillIssuer/>  */}
-                {/* <TitleDashboard/>
-                <Detaildashboard status={'Processed'} data={data} component={Statusprocessed}/> 
-                <Detaildashboard status={'Paid'} data={data} component={StatusPaid}/>
-                <Detaildashboard status={'Draft'} data={data} component={StatusDraft}/> */}
+            <FormBillIssuerInfo  data={data} component={FormBillIssuerInfo}/>
             </Box>
         </Box>
     );

@@ -90,32 +90,66 @@ const Dashboardbipage = (props) => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
-                <Grid item xs={show ? 2 : 1} container justifyContent="center" sx={{
-                    color: '#131522', 
-                    backgroundColor: '#FFC700',
-                    position:'fixed',
-                    py:2
-                }}>
+                <Grid 
+                    item 
+                    xs={show ? 2 : 1} 
+                    container 
+                    justifyContent="center" 
+                    sx={{
+                        color: '#131522', 
+                        backgroundColor: '#FFC700',
+                        position:'fixed',
+                        py:2
+                    }}
+                >
                     {show ? <Sidenav show={handle} /> : <Sidenavicon show={handle} />}
                 </Grid>
-                <Grid item xs={9} container justifyContent="center" sx={{
-                    mx: show ? '21%' : '16%',
-                    py:8.9
-                }}>
+                <Grid 
+                    item 
+                    xs={9} 
+                    container 
+                    justifyContent="center" 
+                    sx={{
+                        mx: show ? '21%' : '16%',
+                        py:8.9
+                    }}
+                >
                     <Box sx={{ flexGrow: 1}}>
                         <Grid container sx={{color:'white'}}>
-                            <Grid item xs={6} container justifyContent="start">
+                            <Grid 
+                                item 
+                                xs={6} 
+                                container 
+                                justifyContent="start"
+                            >
                                 <Item>
                                     <h1>Invoices</h1>
                                     <h5>There are 3 total Invoices</h5>
                                 </Item>
                             </Grid>
-                            <Grid item xs={6} container justifyContent="end" alignItems='center' sx={{marginLeft:'-0.5%'}}>
+                            <Grid 
+                                item 
+                                xs={6} 
+                                container 
+                                justifyContent="end" 
+                                alignItems='center'
+                                sx={{marginLeft:'-0.5%'}}
+                            >
                                 <Item>
-                                    <Button variant="contained" className={`${custom.btn} ${custom.btnWidth}`}><AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Client</Button>
+                                    <Button 
+                                        variant="contained" 
+                                        className={`${custom.btn} ${custom.btnWidth}`}
+                                    >
+                                        <AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Client
+                                    </Button>
                                 </Item>
                                 <Item sx={{marginLeft:'8%'}}>
-                                    <Button variant="contained" className={`${custom.btn} ${custom.btnWidth}`}><AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Invoice</Button>
+                                    <Button 
+                                        variant="contained" 
+                                        className={`${custom.btn} ${custom.btnWidth}`}
+                                    >
+                                        <AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Invoice
+                                    </Button>
                                 </Item>
                             </Grid>
                         </Grid>

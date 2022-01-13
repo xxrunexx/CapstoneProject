@@ -15,9 +15,19 @@ const Dashboardbillissuer = () => {
             total: '250.000',
         },
     ];
+
+    const clientInfo = [
+        { 
+            name: 'Harun Rasyid', 
+            email: 'rasyid.id3@gmail.com', 
+            nik: '35151545421454',
+            phone: '08979484545',
+            address: 'Batam Indonesia'
+        },
+    ];
     return (
         <Box className={Custom.background}>
-            <Dashboardbipage data={data} component={StatusPaid} status={'Paid'} />
+            <Dashboardbipage data={data} client={clientInfo} component={StatusPaid} status={'Paid'} />
         </Box>
     );
 }

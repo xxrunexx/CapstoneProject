@@ -38,32 +38,32 @@ const Sidenavicon = (props) => {
                                 sx={{bgcolor:'transparent',color: '#131522',}}
                                 onClick={props.show}
                             >
-                                <CircleIcon/><CircleIcon/><CircleIcon/>
+                                <CircleIcon className={custom.iconCircle}/><CircleIcon className={custom.iconCircle}/><CircleIcon className={custom.iconCircle}/>
                             </Button>
                         </Box>
                         <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                             <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <PersonIcon sx={{fontSize:'3rem', mr:1}}/>
+                                <PersonIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
                             </Link>
                         </Box>
                         <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                             <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <PaidIcon sx={{fontSize:'3rem', mr:1}}/>
+                                <PaidIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
                             </Link>
                         </Box>
                         <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                             <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <AccountBalanceWalletIcon sx={{fontSize:'3rem', mr:1}}/>
+                                <AccountBalanceWalletIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
                             </Link>
                         </Box>
                         <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                             <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <ReceiptIcon sx={{fontSize:'3rem', mr:1}}/>
+                                <ReceiptIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
                             </Link>
                         </Box>
                         <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                             <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <NoteAltIcon sx={{fontSize:'3rem', mr:1}}/>
+                                <NoteAltIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
                             </Link>
                         </Box>
                     </Item>

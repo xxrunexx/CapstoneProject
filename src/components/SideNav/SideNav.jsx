@@ -23,31 +23,36 @@ const Item = styled(Paper)(({ theme }) => ({
 const Sidenav = (props) => {
     return (
         <Item className={custom.leftSidebar} sx={{width:'80%'}}>
-            <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}}/></Box>
-            <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}}>Raviy Bayu</Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}}>
+            <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/></Box>
+            <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>Raviy Bayu</Box>
+            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                 <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <PersonIcon sx={{fontSize:'3rem', mr:1}}/>Client
+                    <PersonIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                    <span className={custom.sideNavTitle}>Client</span>
                 </Link>
             </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}}>
+            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                 <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <PaidIcon sx={{fontSize:'3rem', mr:1}}/>Paid
+                    <PaidIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                    <span className={custom.sideNavTitle}>Paid</span>
                 </Link>
             </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}}>
+            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                 <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <AccountBalanceWalletIcon sx={{fontSize:'3rem', mr:1}}/>Unpaid
+                    <AccountBalanceWalletIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                    <span className={custom.sideNavTitle}>Unpaid</span>
                 </Link>
             </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}}>
+            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                 <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <ReceiptIcon sx={{fontSize:'3rem', mr:1}}/>Processed
+                    <ReceiptIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                    <span className={custom.sideNavTitle}>Processed</span>
                 </Link>
             </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}}>
+            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                 <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <NoteAltIcon sx={{fontSize:'3rem', mr:1}}/>Draft
+                    <NoteAltIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                    <span className={custom.sideNavTitle}>Draft</span>
                 </Link>
             </Box>
             <Box sx={{ flexGrow: 1, mt:5}}>

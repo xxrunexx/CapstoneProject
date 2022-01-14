@@ -8,7 +8,7 @@ import StatusDraft from '../../components/Status/StatusDraft';
 import Detaildashboard from '../../components/Detail/DetailDashboard';
 import Box from '@mui/material/Box';
 
-const Dashboardprocessed = () => {
+const DashboardClient = () => {
     const data = [
         { 
             id: '#5F892S3', 
@@ -30,4 +30,4 @@ const Dashboardprocessed = () => {
     );
 }
 
-export default Dashboardprocessed;
+export default DashboardClient;

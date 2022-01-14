@@ -58,10 +58,13 @@ const useStyles = makeStyles({
 });
 
 const FormNewPass = () => {
-    const [valueEmail, setValueEmail] = React.useState('');
-
-    const handleChangeEmail = (event) => {
-        setValueEmail(event.target.value);
+    const [valuePassword, setValuePassword] = React.useState('');
+    const [valueConfirmPassword, setValueConfirmPassword] = React.useState('');
+    const handleChangePassword = (event) => {
+      setValuePassword(event.target.value);
+    };
+    const handleChangeConfirmPassword = (event) => {
+      setValueConfirmPassword(event.target.value);
     };
 
     const classes = useStyles();
@@ -107,8 +110,8 @@ const FormNewPass = () => {
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
               placeholder="New Password"
-              value={valueEmail}
-              onChange={handleChangeEmail}
+              value={valuePassword}
+              onChange={handleChangePassword}
               fullWidth
               InputProps={{
                 startAdornment: (
@@ -124,8 +127,8 @@ const FormNewPass = () => {
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
               placeholder="Confirm Password"
-              value={valueEmail}
-              onChange={handleChangeEmail}
+              value={valueConfirmPassword}
+              onChange={handleChangeConfirmPassword}
               fullWidth
               InputProps={{
                 startAdornment: (

@@ -19,6 +19,7 @@ import Dashboardunpaid from './views/Dashboard/DashboardUnpaid';
 import Dashboardprocessed from './views/Dashboard/DashboardProcessed';
 import Editinvoice from './views/EditInvoice/EditInvoice';
 import DashboardClient from './views/Dashboard/DashboardClient';
+import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Switch>
         <Route exact path='/register' component={Register}/>
           <Route exact path='/' component={Home}/>
+          <Route exact path='/dashboard' component={Dashboardbillissuer}/>
           <Route exact path='/dashboard/draft' component={Dashboarddraft}/>
           <Route exact path='/dashboard/paid' component={Dashboardpaid}/>
           <Route exact path='/dashboard/unpaid' component={Dashboardunpaid}/>

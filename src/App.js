@@ -21,6 +21,7 @@ import Editinvoice from './views/EditInvoice/EditInvoice';
 import DashboardClient from './views/Dashboard/DashboardClient';
 import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
+import PaymentGateway from './views/PaymentGateway/PaymentGateway';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route exact path='/passUpdated' component={PassUpdated}/>
           <Route exact path='/client' component={DashboardClient}/>
           <Route exact path='/billissuer' component={BillIssuerInfo}/>
+          <Route exact path='/paymentGateway' component={PaymentGateway}/>
         </Switch>
       </Router>
     </>

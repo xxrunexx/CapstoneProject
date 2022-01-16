@@ -10,6 +10,7 @@ import EmailIcon from '@mui/icons-material/Email';
 // import Visibility from '@mui/icons-material/Visibility';
 // import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LockIcon from '@mui/icons-material/Lock';
+import logo from '../assets/img/logo.png';
 // import { styled } from '@mui/material/styles';
 
 // Import assets
@@ -43,6 +44,7 @@ function Login() {
             <Grid container direction="column" justifyContent="center" alignItems="center">
                 <Grid item xs={6} className={styles.gridLoginform}>
                         <p id={styles.title}>
+                        <img src={logo} alt="logo" className = {styles.logo}/>
                             <i class="far fa-paper-plane">
                                 </i>invoice.in
                         </p>

@@ -20,13 +20,16 @@ function Register() {
     //     showPassword: false,
     //   });
 
+
     return (
         <div className={styles.bgRegister} >
             <img src={wavebg} alt="Wavebg"/>
             <Grid container direction="column" justifyContent="center" alignItems="center">
                 <Grid  item xs={6} className={styles.gridRegisterForm}>
-                        <p id={styles.title}> 
-                        <img src={logo} alt="logo" className = {styles.logo}/> invoice.in 
+                <p id={styles.title}>
+                        <img src={logo} alt="logo" className = {styles.logo}/>
+                            <i class="far fa-paper-plane">
+                                </i>invoice.in
                         </p>
                         <TextField
                             required

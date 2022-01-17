@@ -3,12 +3,12 @@ import React from 'react'
 import { Grid, TextField, Button } from '@mui/material'
 import { InputAdornment } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
-// import IconButton from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 // import OutlinedInput from '@mui/material/OutlinedInput';
 // import InputLabel from '@mui/material/InputLabel';
 // import FormControl from '@mui/material/FormControl';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LockIcon from '@mui/icons-material/Lock';
 // import { styled } from '@mui/material/styles';
 import styles from './Login.module.css';
@@ -27,12 +27,12 @@ function Login() {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    // const handleClickShowPassword = () => {
-    // setValues({
-    //     ...values,
-    //     showPassword: !values.showPassword,
-    // });
-    // };
+    const handleClickShowPassword = () => {
+        setValues({
+            ...values,
+            showPassword: !values.showPassword,
+        });
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -45,7 +45,7 @@ function Login() {
             <Grid container direction="column" justifyContent="center" alignItems="center">
                 <Grid item xs={6} className={styles.gridLoginform}>
                     <p id={styles.title}>
-                        <img src={Logo} style={{width:'70px'}}/> invoice.in
+                        <img src={Logo} alt="logo" style={{width:'70px'}}/> invoice.in
                     </p>
                     <form onSubmit={handleSubmit} method="POST">
                         <TextField
@@ -67,7 +67,7 @@ function Login() {
                             required
                             className= {styles.textfieldLogin}
                             id="outlined-password-input"
-                            type="password"
+                            type={values.showPassword ? 'text' : 'password'}
                             onChange={handleChange('password')}
                             autoComplete="current-password"
                             InputProps={{
@@ -76,58 +76,21 @@ function Login() {
                                     <LockIcon />
                                     </InputAdornment>
                                 ),
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            edge="end"
+                                        >
+                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                                
                             }}
                             placeholder= "Password"
                         />
-                    {/* <TextField
-                        id="input-with-icon-textfield"
-                        label= "Email"
-                        required
-                        InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                            <EmailIcon />
-                            </InputAdornment>
-                        ),
-                        }}
-                        variant="standard"
-                        style={{
-                            backgroundColor: "#E5E5E5",
-                            width: "100%",
-                            marginBottom: "5%",
-                        }}
-                    />
-                    <FormControl 
-                        // sx={{ m: 1, width: '25ch' }} 
-                        required
-                        variant="standard"
-                        style={{
-                            backgroundColor: "#E5E5E5",
-                            width: "100%",
-                            marginBottom: "5%",
-                        }}
-                    >
-                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
-                            label="Password"
-                        />
-                    </FormControl> */}
                         <Link href="#" underline="none" id={styles.aForgetpass}>
                             {'Forget Password ?'}
                         </Link>

@@ -28,106 +28,39 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const useStyles = makeStyles({
-    root: {
-      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "black",
-      },
-      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "black",
-      },
-      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "black",
-      },
-      "& .MuiOutlinedInput-input": {
-        color: "black",
-        padding: "10px 14px",
-      },
-      "&:hover .MuiOutlinedInput-input": {
-        color: "black"
-      },
-      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
-        color: "black"
-      },
-      "& .MuiInputLabel-outlined": {
-        color: "black"
-      },
-      "&:hover .MuiInputLabel-outlined": {
-        color: "black"
-      },
-      "& .MuiInputLabel-outlined.Mui-focused": {
-        color: "black"
-      }
-    },
-    noBorder: {
-      border: "none",
-    },
-});
-
-
 const DetailPaymentGateway = (props) => {
-    const [valueEmail, setValueEmail] = React.useState('');
-    const handleChangeEmail = (event) => {
-      setValueEmail(event.target.value);
-    };
-  
-
-    const classes = useStyles();
     return (
     <Box sx={{ flexGrow: 1}}>
-      <Grid item xs={12} md={12} lg={12} >
-          <Item sx={{
-                    textAlign: 'right',
-                    color:'#E5E5E5', 
-                    py:1, 
-                    fontSize: '36px',
-                    paddingTop: '0px',
-                    paddingBottom: '10px' , 
-                    }}>
-            <Box sx={{ flexGrow: 1}}>
-              <Grid container spacing={2} >
-                <Grid item xs={12} md={12} lg={12} >
-                  <Item>
-                    <Box sx={{ flexGrow: 1,}}>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12} md={4} >
-                          <img src={logo} alt="logo" className = {custom.logo}/>
-                        </Grid>
-                        <Grid item xs={12} md={4} >
-                          <p>{props.data[0].company_name}</p> 
-                          <span>{props.data[0].company_email}</span> 
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </Item>
-                </Grid>
+      <Grid >
+        <Item>
+          <Box sx={{ flexGrow: 1}}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6} >
+                <img src={logo} alt="logo" className = {custom.logo}/>
               </Grid>
-            </Box>
-          </Item>
+              <Grid item xs={12} md={6} >
+                <h1>{props.data[0].company_name}</h1> 
+                <h3>{props.data[0].company_email}</h3> 
+              </Grid>
+            </Grid>
+          </Box>
+        </Item>
       </Grid>
-      <Grid>
-        <Grid item xs={8} >
-          <Item>
-             <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                id="outlined-uncontrolled"
-                label="Email"
-                fullWidth
-                value={props.data[0].email}
-                onChange={handleChangeEmail}
-                variant="filled"
-                InputProps={{
-                  startAdornment: (
-                      <InputAdornment position="start">
-                      <EmailIcon />
-                      </InputAdornment>
-                  ),
-                  }}
-           />
-          </Item>
-        </Grid>
-      </Grid>
+      <Grid item xs={12} md={12} lg={12} >
+        <Item>
+          <Box sx={{ flexGrow: 1}}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6} >
+                <h5>Total</h5> 
+              </Grid>
+              <Grid item xs={12} md={6} >
+                <h5>{props.data[0].total}</h5>
+              </Grid>
+            </Grid>
+          </Box>
+        </Item> <hr item width='50%' textAlign='left' marginLeft='0' color='#FFC700'></hr>
+      </Grid> 
+      
     </Box>
     );
 }

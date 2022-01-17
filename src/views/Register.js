@@ -24,8 +24,8 @@ function Register() {
     return (
         <div className={styles.bgRegister} >
             <img src={wavebg} alt="Wavebg"/>
-            <Grid container direction="column" justifyContent="center" alignItems="center">
-                <Grid  item xs={6} className={styles.gridRegisterForm}>
+            <Grid container direction="column" justifyContent="center" alignItems="center" marginTop='4%'>
+                <Grid  item xs={6} className={styles.gridRegisterForm}  >
                 <p id={styles.title}>
                         <img src={logo} alt="logo" className = {styles.logo}/>
                             <i class="far fa-paper-plane">

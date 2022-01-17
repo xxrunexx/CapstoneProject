@@ -9,6 +9,7 @@ const PaymentGateway = () => {
         { 
             company_name: 'Biznet Branch Batam', 
             company_email : 'home_care@biznetnetworks.com',
+            total : 'Rp. 240.000'
         },
     ];
     return (

@@ -4,7 +4,6 @@ import { Grid, TextField, Button } from '@mui/material'
 import { InputAdornment } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-
 import styles from './Register.module.css'
 import wavebg from '../assets/img/wave.svg'
 import logo from '../assets/img/logo.png'

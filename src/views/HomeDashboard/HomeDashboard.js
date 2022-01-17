@@ -1,21 +1,16 @@
-// import React from 'react';
-// import Search from '../../components/Search/Search';
-// import Navbar from '../../components/Navbar/Navbar';
-// import Detail from '../../components/Detail/Detail';
-// import Custom from './homeDashboard.module.css';
+import React from 'react';
+import Dashboardhome from '../../components/Detail/DashboardHome';
+import Custom from './homeDashboard.module.css';
+import Box from '@mui/material/Box';
 
 
 
-// const Homedashboard = () => {
-//     return (
-//         <div className={Custom.background}>
-//             <div className={`container py-5`}>
-//                 <Navbar/>
-//                 <Search/>
-//                 <Detail value="Testing"/>
-//             </div>
-//         </div>
-//     );
-// }
+const Homedashboard = () => {
+    return (
+        <Box className={Custom.background}>
+            <Dashboardhome />
+        </Box>
+    );
+}
 
-// export default Homedashboard;
+export default Homedashboard;

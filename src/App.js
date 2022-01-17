@@ -27,8 +27,9 @@ function App() {
     <>
       <Router>
         <Switch>
-        <Route exact path='/register' component={Register}/>
           <Route exact path='/' component={Home}/>
+          <Route exact path='/login' component={Login}/>
+          <Route exact path='/register' component={Register}/>
           <Route exact path='/dashboard' component={Dashboardbillissuer}/>
           <Route exact path='/dashboard/draft' component={Dashboarddraft}/>
           <Route exact path='/dashboard/paid' component={Dashboardpaid}/>
@@ -38,7 +39,6 @@ function App() {
           <Route exact path='/detail' component={Detailinvoice}/>
           <Route exact path='/addInvoice' component={Newinvoice}/>
           <Route exact path='/addClient' component={Newclient}/>
-          <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/newPass' component={NewPass}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>

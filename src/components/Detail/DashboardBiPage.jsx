@@ -157,7 +157,7 @@ const Dashboardbipage = (props) => {
                             <Grid item xs={12} md={6} container justifyContent="start">
                                 <TextField
                                     sx={{bgcolor: '#FFFFFF', borderRadius:2.5}}
-                                    className={`${classes.root}`}
+                                    className={classes.root}
                                     placeholder="Search"
                                     fullWidth
                                     InputProps={{

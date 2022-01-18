@@ -123,7 +123,7 @@ const Dashboardbipage = (props) => {
                                 justifyContent="start"
                             >
                                 <Item>
-                                    <h1>Invoices</h1>
+                                    <h1>invoices</h1>
                                     <h5>There are 3 total Invoices</h5>
                                 </Item>
                             </Grid>
@@ -402,7 +402,7 @@ const Dashboardbipage = (props) => {
                                 />
                             </Grid>
                             <Grid container justifyContent="center" alignItems="center" sx={{mt:4, mb:2}}>
-                                <Button variant="contained" fullWidth sx={{borderRadius:2, color:'#FFC700', bgcolor:'#131522'}} className={custom.modalUpdate}>Update</Button>
+                                <Button variant="contained" fullWidth sx={{borderRadius:2, color:'#FFC700', bgcolor:'#131522'}} className={custom.modalUpdate}>update</Button>
                             </Grid>
                         </Grid>
                     </Grid>

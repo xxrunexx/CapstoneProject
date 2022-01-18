@@ -12,6 +12,7 @@ import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PaidIcon from '@mui/icons-material/Paid';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -64,6 +65,11 @@ const Sidenavicon = (props) => {
                         <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                             <Link href="#" underline="hover" className={custom.linkSideNav}>
                                 <NoteAltIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                            </Link>
+                        </Box>
+                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mt:5}}>
+                            <Link href="#" underline="hover" className={custom.linkSideNav}>
+                                <LogoutIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
                             </Link>
                         </Box>
                     </Item>

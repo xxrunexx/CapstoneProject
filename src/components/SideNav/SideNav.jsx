@@ -12,6 +12,7 @@ import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PaidIcon from '@mui/icons-material/Paid';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -22,7 +23,12 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Sidenav = (props) => {
     return (
-        <Item className={custom.leftSidebar} sx={{width:'80%'}}>
+        <Item className={custom.leftSidebar} sx={{width:'80%'}}> 
+                    <Grid container sx={{color:'#131522'}}>
+                        <Grid item container justifyContent="end">
+                            <Button variant="text" sx={{color:'#131522', minWidth:'10px', padding:0}} onClick={props.show}><CloseIcon/></Button>
+                        </Grid>
+                    </Grid>
             <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/></Box>
             <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>Raviy Bayu</Box>
             <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
@@ -63,9 +69,9 @@ const Sidenav = (props) => {
                                 variant="contained" 
                                 className={custom.btnClose} 
                                 sx={{px:3, bgcolor:'#131522'}}
-                                onClick={props.show}
+                                
                             >
-                                CLOSE
+                                LOGOUT
                             </Button>
                         </Item>
                     </Grid>

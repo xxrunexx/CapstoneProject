@@ -35,32 +35,30 @@ const DetailPaymentGateway = (props) => {
         <Item>
           <Box sx={{ flexGrow: 1}}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6} >
-                <img src={logo} alt="logo" className = {custom.logo}/>
+              <Grid item xs={12} md={6}>
+                <Grid item xs={6} container justifyContent="start" sx={{mb:3}}>
+                  <img src={logo} alt="logo" className = {custom.logo}/>
+                </Grid>
+                <Box sx={{ flexGrow: 1}}>
+                  <Grid container spacing={2} sx={{px:4}}>
+                    <Grid item xs={6} container justifyContent="start">
+                      <h3>Total</h3> 
+                    </Grid>
+                    <Grid item xs={6} container justifyContent="end">
+                      <h3>Rp. 240.000</h3> 
+                    </Grid>
+                  </Grid>
+                </Box>
               </Grid>
               <Grid item xs={12} md={6} >
                 <h1>{props.data[0].company_name}</h1> 
                 <h3>{props.data[0].company_email}</h3> 
               </Grid>
+              <hr item width='50%' textAlign='left' marginLeft='0' color='#FFC700'></hr>
             </Grid>
           </Box>
         </Item>
       </Grid>
-      <Grid item xs={12} md={12} lg={12} >
-        <Item>
-          <Box sx={{ flexGrow: 1}}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6} >
-                <h5>Total</h5> 
-              </Grid>
-              <Grid item xs={12} md={6} >
-                <h5>{props.data[0].total}</h5>
-              </Grid>
-            </Grid>
-          </Box>
-        </Item> <hr item width='50%' textAlign='left' marginLeft='0' color='#FFC700'></hr>
-      </Grid> 
-      
     </Box>
     );
 }

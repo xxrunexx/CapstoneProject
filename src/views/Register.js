@@ -66,7 +66,7 @@ function Register() {
                 .post(
                     'http://localhost:8000/billissuer/register',
                     {
-                        username: values.name,
+                        name: values.name,
                         password: values.password,
                         email: values.email,
                     //     company_name: values.companyName,
@@ -91,34 +91,6 @@ function Register() {
                     console.log(error);
                 });
         }
-        axios
-          .post(
-            'http://localhost:8000/billissuer/register',
-            {
-                username: values.name,
-                password: values.password,
-                email: values.email,
-            //     company_name: values.companyName,
-            //     company_address: values.companyAddress,
-            //     company_phone: values.companyPhone,
-            //     company_site: values.companySite
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Authorization: 'Bearer token...',
-                },
-            }
-          )
-          .then(function (response) {
-            // handle success
-            setMsg(response.data.message);
-            console.log('axios', response);
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
     };
 
     return (

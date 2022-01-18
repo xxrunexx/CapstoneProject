@@ -15,6 +15,7 @@ import styles from './Login.module.css';
 import wavebg from '../assets/img/wave.svg';
 import Link from '@mui/material/Link';
 import Logo from '../assets/img/logo.png';
+import axios from 'axios';
 
 function Login() {
     const [values, setValues] = React.useState({
@@ -34,9 +35,37 @@ function Login() {
         });
     };
 
+    const [, setMsg] = React.useState('');
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(values.email, values.password);
+        // console.log(values.email, values.password);
+        axios
+          .post(
+            'http://localhost:8000/billissuer/login',
+            {
+                email: values.email,
+                password: values.password,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer token...',
+                },
+            }
+          )
+          .then(function (response) {
+            // handle success
+            setMsg(response.data.message);
+            console.log('axios', response);
+            // localStorage.setItem("token", response.data.data.token);
+            console.log(response.data.data.token);
+            // window.location.href = "/dashboard";
+          })
+          .catch(function (error) {
+            // handle error
+            console.log('error');
+          });
     };
 
     return (

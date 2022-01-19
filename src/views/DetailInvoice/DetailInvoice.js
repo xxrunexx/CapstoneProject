@@ -19,11 +19,11 @@ const data = [
     },
 ];
 
-const Detailinvoice = () => {
+const Detailinvoice = ({ history }) => {
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/> 
+                <NavbarArrowBack history={history}/> 
                 <Detailinvoiceclient status="Processed" data={data}/>
             </Box>
         </Box>

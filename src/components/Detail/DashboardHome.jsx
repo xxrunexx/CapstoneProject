@@ -56,6 +56,16 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Dashboardhome = (props) => {
     const classes = useStyles();
+    const passLogin= () => {
+        props.history.push({
+          pathname: "/login",
+        });
+    };
+    const passSearch= () => {
+        props.history.push({
+          pathname: "/detail",
+        });
+    };
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -88,6 +98,7 @@ const Dashboardhome = (props) => {
                                     <Button 
                                         variant="contained" 
                                         className={`${custom.btn} ${custom.btnWidth}`}
+                                        onClick={passLogin}
                                     >
                                         <LoginOutlinedIcon sx={{marginRight:'8%'}}/>Login Bill Issuer
                                     </Button>
@@ -109,7 +120,16 @@ const Dashboardhome = (props) => {
                                         ),
                                         endAdornment: (
                                             <InputAdornment>
-                                                <Button variant="contained" className={custom.btn} sx={{py:1.2, bgcolor:'#FFC700', color: '#131522', borderRadius:2}}>Go</Button>
+                                                <Button 
+                                                    variant="contained" 
+                                                    className={custom.btn} 
+                                                    onClick={passSearch}
+                                                    sx={{
+                                                        py:1.2, 
+                                                        bgcolor:'#FFC700', 
+                                                        color: '#131522', 
+                                                        borderRadius:2
+                                                    }}>Go</Button>
                                             </InputAdornment>
                                         ),
                                         classes:{notchedOutline:classes.noBorder},

@@ -57,7 +57,7 @@ const useStyles = makeStyles({
     },
 });
 
-const FormEmail = () => {
+const FormEmail = ({ history }) => {
     const [valueEmail, setValueEmail] = React.useState('');
 
     const handleChangeEmail = (event) => {
@@ -65,6 +65,11 @@ const FormEmail = () => {
     };
 
     const classes = useStyles();
+    const passNewPassword= () => {
+      history.push({
+        pathname: "/newPass",
+      });
+  };
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
@@ -132,7 +137,7 @@ const FormEmail = () => {
                     py:1, 
                     fontSize:'1.2rem'
               }}>
-                <Link href="#" underline="none" className={custom.addNewItem}>
+                <Link component="button" underline="none" className={custom.addNewItem} onClick={passNewPassword}>
                     {'NEXT'}
                 </Link>
               </Box>

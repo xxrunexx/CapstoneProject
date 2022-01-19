@@ -29,7 +29,10 @@ Item.propTypes = {
     ]),
 };
 
-const NavbarArrowBack = () => {
+const NavbarArrowBack = ({history}) => {
+    const passBack= () => {
+        history.goBack();
+    };
     return (
         <Box sx={{
             display: 'grid',
@@ -47,7 +50,7 @@ const NavbarArrowBack = () => {
                 p: 1,
                 height: 80,
             }}>
-                <Link href="#" underline="none">
+                <Link component="button" underline="none" onClick={passBack}>
                     <ArrowCircleLeftIcon className={custom.arrowIcon} sx={{
                         mx:1,
                         color: '#FFC700'

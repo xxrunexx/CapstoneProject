@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import Logo from '../assets/img/logo.png';
 import axios from 'axios';
 
-function Login() {
+function Login({history}) {
     const [values, setValues] = React.useState({
         email:'',
         password: '',
@@ -67,15 +67,31 @@ function Login() {
             console.log('error');
           });
     };
-
+    const passHome= () => {
+        history.push({
+            pathname: "/",
+        });
+    };
+    const passForgetPass= () => {
+        history.push({
+            pathname: "/forgetpass",
+        });
+    };
+    const passRegister= () => {
+        history.push({
+            pathname: "/register",
+        });
+    };
     return (
         <div className={styles.bgLogin}>
             <img src={wavebg} alt="Wavebg"/>
             <Grid container direction="column" justifyContent="center" alignItems="center">
                 <Grid item xs={6} className={styles.gridLoginform}>
-                    <p id={styles.title}>
-                        <img src={Logo} alt="logo" style={{width:'70px'}}/> invoice.in
-                    </p>
+                    <Link component="button" underline="none" onClick={passHome}>                        
+                        <p id={styles.title}>
+                            <img src={Logo} alt="logo" style={{width:'70px'}}/> invoice.in
+                        </p>
+                    </Link>
                     <form onSubmit={handleSubmit} method="POST">
                         <TextField
                             required
@@ -120,12 +136,12 @@ function Login() {
                             }}
                             placeholder= "Password"
                         />
-                        <Link href="#" underline="none" id={styles.aForgetpass}>
+                        <Link sx={{ml:44}} component="button" underline="none" onClick={passForgetPass} id={styles.aForgetpass}>
                             {'Forget Password ?'}
                         </Link>
-                        <Button variant="contained" type="submit" id= {styles.btnLogin}>Login</Button>
+                        <Button variant="contained" type="submit" id={styles.btnLogin}>Login</Button>
                     </form>
-                    <Link href="#" underline="none" id={styles.aRegister}>
+                    <Link sx={{mx:20}} component="button" underline="none" onClick={passRegister} id={styles.aRegister}>
                         {`Don't have an account ? `}<span style={{color:'#FFC700'}}>Click Here</span>
                     </Link>
                 </Grid>

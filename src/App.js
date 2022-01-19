@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
@@ -23,12 +24,13 @@ import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
 
 function App() {
+  const history = useHistory();
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={Login}/>
+          <Route exact path='/' component={Home} history={history}/>
+          <Route exact path='/login' component={Login} history={history}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/dashboard' component={Dashboardbillissuer}/>
           <Route exact path='/dashboard/draft' component={Dashboarddraft}/>
@@ -36,7 +38,7 @@ function App() {
           <Route exact path='/dashboard/unpaid' component={Dashboardunpaid}/>
           <Route exact path='/dashboard/processed' component={Dashboardprocessed}/>
           <Route exact path='/editInvoice' component={Editinvoice}/>
-          <Route exact path='/detail' component={Detailinvoice}/>
+          <Route exact path='/detail' component={Detailinvoice} history={history}/>
           <Route exact path='/addInvoice' component={Newinvoice}/>
           <Route exact path='/addClient' component={Newclient}/>
           <Route exact path='/register' component={Register}/>

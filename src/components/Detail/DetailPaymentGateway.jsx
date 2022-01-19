@@ -21,11 +21,12 @@ import LanguageIcon from '@mui/icons-material/Language';
 import bni from '../../assets/img/bni.png';
 import bri from '../../assets/img/bri.png';
 import dana from '../../assets/img/dana.png';
+import gopay from '../../assets/img/gopay.png';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1.5),
-    textAlign: 'right',
+    textAlign: 'left',
     backgroundColor: '#131522',
     color: 'white',
     boxShadow: 'none'
@@ -43,31 +44,30 @@ const DetailPaymentGateway = (props) => {
                   <img src={logo} alt="logo" className = {custom.logo}/>
                 </Grid>
               </Grid>
-              <Grid item xs={12} md={6} >
+              <Grid item xs={12} md={6} container justifyContent="right" sx={{mb:3}} >
                 <h1>{props.data[0].company_name}</h1> 
                 <h3>{props.data[0].company_email}</h3> 
               </Grid>
               <Box sx={{ flexGrow: 1}}>
                   <Grid container spacing={2} sx={{px:4}}>
                     <Grid item xs={6} container justifyContent="start">
-                      <h3>Total</h3> 
+                      <h3 className = {custom.total}>Total</h3> 
                     </Grid>
-                    <Grid item xs={6} container justifyContent="start">
+                    <Grid item xs={6} >
                       <h3>{props.data[0].total}</h3> 
                     </Grid>
-                  </Grid> <hr item width='50%' textAlign='left' marginLeft='0' color='#FFC700'></hr>
+                  </Grid> <hr item width='50%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
                 </Box>
             </Grid>
           </Box>
         </Item>
       </Grid>
-      <Grid container justifyContent="center" color='#C4C4C4'>
+      <Grid container justifyContent="right" color='#C4C4C4'>
                 <Grid item xs={8} sx={{mt:2}} >
-                    <Item sx={{py:7, px:5, borderRadius:5}}>
                         <Box sx={{ flexGrow: 1}}>
-                            <Grid container spacing={2}>
+                            <Grid container spacing={1}>
                                 <Grid item xs={12} md={12} lg={12} >
-                                    <Item>
+                                    <Item sx={{pt:4, pb:3, px:5, bgcolor:'#FFC700', color:'#131522'}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
@@ -88,14 +88,14 @@ const DetailPaymentGateway = (props) => {
                                                     <img src={bni} alt="bni"  position="center"/>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
-                                                    <img src={bri} alt="bri"  position="center"/>
+                                                    <img src={bri} alt="bri"  position="center" className = {custom.payment}/>
                                                 </Grid>
                                             </Grid>
                                         </Box>
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={12} lg={12} >
-                                    <Item>
+                                    <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
@@ -111,58 +111,24 @@ const DetailPaymentGateway = (props) => {
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={12} lg={12} >
-                                    <Item sx={{bgcolor:'#C4C4C4', color:'#131522', borderRadius:5, px:3, py:3}}>
+                                    <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
-                                                <Grid item xs={12} md={6} className={custom.responsive} >
-                                                    <div className={`mb-3 ${custom.headInfo}`}>
-                                                        <span>Item Name</span>
-                                                    </div>
-                                                    <div className={custom.detailInfo}>
-                                                        <span>2P Internet + TV</span>
-                                                    </div>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Gopay</h5> 
                                                 </Grid>
-                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}} className={custom.responsive}>
-                                                    <div className={`mb-3 ${custom.headInfo}`}>
-                                                        <span>Price</span>
-                                                    </div>
-                                                    <div className={custom.detailInfo}>
-                                                        <span>Rp. 240.000</span>
-                                                    </div> 
+                                                <Grid item xs={12} md={4} >
                                                 </Grid>
-                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}} className={custom.responsive}>
-                                                    <div className={`mb-3 ${custom.headInfo}`}>
-                                                        <span>Total</span>
-                                                    </div>
-                                                    <div className={custom.detailInfo}>
-                                                        <span>Rp. 240.000</span>
-                                                    </div> 
+                                                <Grid item xs={12} md={4} >
+                                                    <img src={gopay} alt="gopay"  position="center"/>
                                                 </Grid>
                                             </Grid>
                                         </Box>
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={12} lg={12} >
-                                    <Box sx={{
-                                        display: 'flex', 
-                                        flexDirection: 'row-reverse', 
-                                        mt: 3,
-                                    }}>
-                                        <Link sx={{
-                                            bgcolor: '#FFC700',
-                                            color: '#131522',
-                                            px:3,
-                                            py:0.5,
-                                            fontSize: '1.5rem',
-                                            borderRadius: 3
-                                        }} href="#" underline="none" className={`${custom.payNow}`}>
-                                            {'PAY NOW'}
-                                        </Link>
-                                    </Box>
-                                </Grid>
                             </Grid>
                         </Box>
-                    </Item>
+                 
                 </Grid>
             </Grid>
     </Box>

@@ -8,6 +8,7 @@ import Home from './views/HomeDashboard/HomeDashboard';
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
 import Register from './views/Register';
+import Registerdetail from './views/RegisterDetail';
 // import Register from './views/Register/Register';
 import NewPass from './views/NewPass/NewPass';
 import Newclient from './views/NewClient/NewClient';
@@ -31,7 +32,8 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} history={history}/>
           <Route exact path='/login' component={Login} history={history}/>
-          <Route exact path='/register' component={Register}/>
+          <Route exact path='/register' component={Register} history={history}/>
+          <Route exact path='/registerDetail' component={Registerdetail} history={history}/>
           <Route exact path='/dashboard' component={Dashboardbillissuer}/>
           <Route exact path='/dashboard/draft' component={Dashboarddraft}/>
           <Route exact path='/dashboard/paid' component={Dashboardpaid}/>
@@ -41,7 +43,6 @@ function App() {
           <Route exact path='/detail' component={Detailinvoice} history={history}/>
           <Route exact path='/addInvoice' component={Newinvoice}/>
           <Route exact path='/addClient' component={Newclient}/>
-          <Route exact path='/register' component={Register}/>
           <Route exact path='/newPass' component={NewPass}/>
           <Route exact path='/forgetpass' component={ForgetPass}/>
           <Route exact path='/billIssuerUpdated' component={BillIssuerUpdated}/>

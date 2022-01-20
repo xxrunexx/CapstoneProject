@@ -8,16 +8,12 @@ import styles from './Register.module.css'
 import wavebg from '../assets/img/wave.svg'
 import logo from '../assets/img/logo.png'
 import PersonIcon from '@mui/icons-material/Person';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import MapIcon from '@mui/icons-material/Map';
-import PhoneIcon from '@mui/icons-material/Phone';
-import LanguageIcon from '@mui/icons-material/Language';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
 
-function Register() {
+function Register({history}) {
     const [values, setValues] = React.useState({
         name:'',
         email:'',
@@ -69,10 +65,6 @@ function Register() {
                         name: values.name,
                         password: values.password,
                         email: values.email,
-                    //     company_name: values.companyName,
-                    //     company_address: values.companyAddress,
-                    //     company_phone: values.companyPhone,
-                    //     company_site: values.companySite
                     },
                     {
                         headers: {
@@ -85,6 +77,10 @@ function Register() {
                     // handle success
                     setMsg(response.data.message);
                     console.log('axios', response);
+                    localStorage.setItem("data", response.data.data.id);
+                    history.push({
+                        pathname: "/registerDetail",
+                    });
                 })
                 .catch(function (error) {
                     // handle error
@@ -186,64 +182,8 @@ function Register() {
                             }}
                             placeholder= "Confirm Password"
                         />
-                        <TextField
-                            required
-                            className= {styles.textfieldRegister}
-                            // id="outlined-required"
-                            onChange={handleChange('companyName')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                    <BusinessCenterIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            placeholder= "Company Name"
-                        />
-                        <TextField
-                            required
-                            className= {styles.textfieldRegister}
-                            // id="outlined-required"
-                            onChange={handleChange('companyAddress')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                    <MapIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            placeholder= "Company Address"
-                        />
-                        <TextField
-                            required
-                            className= {styles.textfieldRegister}
-                            // id="outlined-required"
-                            onChange={handleChange('companyPhone')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                    <PhoneIcon />
-                                    </InputAdornment>
-                                ),
-                                }}
-                            placeholder= "Company Phone"
-                        />
-                        <TextField
-                            required
-                            className= {styles.textfieldRegister}
-                            // id="outlined-required"
-                            onChange={handleChange('companySite')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                    <LanguageIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            placeholder= "Company Site"
-                        />
                         <p id= {styles.aTerms} >By signing up, I agree to the Privacy Policy and Terms of Service</p>
-                        <Button variant="contained" type="submit" id= {styles.btnRegister}>CREATE ACCOUNT</Button>
+                        <Button variant="contained" type="submit" id= {styles.btnRegister}>NEXT</Button>
                     </form>
                 </Grid>
             </Grid>

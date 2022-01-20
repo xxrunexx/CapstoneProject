@@ -24,7 +24,7 @@ const Sidenav = (props) => {
     return (
         <Item className={custom.leftSidebar} sx={{width:'80%'}}>
             <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/></Box>
-            <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>Raviy Bayu</Box>
+            <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>{props.auth.name}</Box>
             <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                 <Link href="#" underline="hover" className={custom.linkSideNav}>
                     <PersonIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>

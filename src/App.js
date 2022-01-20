@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
 
 import Login from './views/Login';
@@ -23,30 +23,8 @@ import DashboardClient from './views/Dashboard/DashboardClient';
 import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
 
-function PrivateRoute({ children, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        localStorage.getItem("token") === "true" ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
-
 function App() {
   const history = useHistory();
-  const token = JSON.parse(localStorage.getItem('token'));
-  console.log(token);
   return (
     <>
       <Router>

@@ -102,7 +102,7 @@ const Dashboardbipage = (props) => {
                         py:2
                     }}
                 >
-                    {show ? <Sidenav show={handle} /> : <Sidenavicon show={handle} />}
+                    {show ? <Sidenav show={handle} auth={props.auth} /> : <Sidenavicon show={handle} />}
                 </Grid>
                 <Grid 
                     item 

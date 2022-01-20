@@ -82,6 +82,8 @@ const Formclient = () => {
     };
     const classes = useStyles();
 
+    const authToken = localStorage.getItem('token');
+
     // Axios
     // useEffect(() => {
       axios
@@ -102,12 +104,28 @@ const Formclient = () => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    // Authorization: 'Bearer token...',
+                    'Authorization': `Bearer ${authToken}`,// iki atek login gak? atek
                 },
             }
           )
           .then(function (response) {
             // handle success
+            // wes ngunu tok kah ? terus aku get decode e bener a gae user token
+            // haruse se uwes
+            // masalah e sijine tak share ga kenek server e disahre sisan
+            // gelem running nang kunu ta tak weh i link repo e 
+            // wait
+            // https://github.com/xxrunexx/Invoice.id-BE 
+            // branch development
+            // db ne iso mysql / mariadb bebas 
+            // dbname e invoicein wes ono auto migrate e 
+            // langsung run ae > go run main.go
+            // coba en se iki versi 1.17
+            // wokeh, tapi tak tinggal nang apotek sek yo
+            // oke 
+            // iki golang e versi piro ae gamasalah kan? nngonku versi 1.5 lek gasalah
+            // iyo bay gaopo, 
+            // aku nek nyoba yaopo?
             setMsg(response.data.message);
             console.log('axios', response);
           })

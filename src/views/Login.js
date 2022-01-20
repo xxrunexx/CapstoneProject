@@ -50,7 +50,11 @@ function Login({history}) {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer token...',
+                    // Authorization: 'Bearer token...',iki wes iso nyimpen nang local ga?
+                    // wes onok nang local e
+                    // berarti kari nambahi header nang saben axios e
+                    // piyee
+                    // 
                 },
             }
           )
@@ -59,6 +63,7 @@ function Login({history}) {
             setMsg(response.data.data.message);
             console.log('axios', response);
             localStorage.setItem("token", response.data.data.token);
+            localStorage.setItem("loggedIn", "bill_issuer");
             console.log(response.data.data.token);
             history.push('/dashboard');
             // window.location.href = "/dashboard";

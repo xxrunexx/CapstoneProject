@@ -15,6 +15,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
+import axios from 'axios';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -63,35 +64,37 @@ const useStyles = makeStyles({
 
 
 const FormBillIssuerInfo = (props) => {
-    const [valueName, setValueName] = React.useState('');
-    const [valueEmail, setValueEmail] = React.useState('');
-    const [valuePassword, setValuePassword] = React.useState('');
-    const [valueCompanyName, setValueCompanyName] = React.useState('');
-    const [valueCompanyAddress, setValueCompanyAddress] = React.useState('');
-    const [valueCompanyPhone, setValueCompanyPhone] = React.useState('');
-    const [valueCompanySite, setValueCompanySite] = React.useState('');
-    const handleChangeName = (event) => {
-      setValueName(event.target.value);
-    };
-    const handleChangeEmail = (event) => {
-      setValueEmail(event.target.value);
-    };
-    const handleChangePassword = (event) => {
-      setValuePassword(event.target.value);
-    };
-    const handleChangeCompanyName = (event) => {
-      setValueCompanyName(event.target.value);
-    };
-    const handleChangeCompanyAddress = (event) => {
-      setValueCompanyAddress(event.target.value);
-    };
-    const handleChangeCompanyPhone = (event) => {
-      setValueCompanyPhone(event.target.value);
-    };
-    const handleChangeCompanySite = (event) => {
-      setValueCompanySite(event.target.value);
-    };
+    const [resultUser, setResultUser] = React.useState(null);
+    const [resultUserDetail, setResultUserDetail] = React.useState(null);
 
+    React.useEffect(() => {
+      axios.get(`http://localhost:8000/billissuer/${props.authData.userId}`)
+      .then((response)=>{
+        setResultUser(response.data)
+      });
+
+      axios.get(`http://localhost:8000/billissuerdetail/${props.authData.userId}`)
+      .then((response)=>{
+        setResultUserDetail(response.data)
+      });
+    }, []);
+
+    console.log('user : ', resultUser?.data);
+    console.log('user Detail : ', resultUserDetail?.data);
+
+    const [values, setValues] = React.useState({
+      name: resultUser?.data.name,
+      email: resultUser?.data.email,
+      password: resultUser?.data.password,
+      companyName: resultUserDetail?.data.company_name,
+      companyAddress: resultUserDetail?.data.company_address,
+      companyPhone: resultUserDetail?.data.company_phone,
+      companySite: resultUserDetail?.data.company_site,
+    });
+    
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
     const classes = useStyles();
     return (
     <Box sx={{ flexGrow: 1}}>
@@ -121,7 +124,7 @@ const FormBillIssuerInfo = (props) => {
                     paddingTop: '0px',
                     paddingBottom: '0px' , 
           }}>
-            <p>{props.data[0].name}</p>
+            <p>{resultUser?.data.name}</p>
           </Item>
           <Item sx={{
                     textAlign: 'center',
@@ -131,7 +134,7 @@ const FormBillIssuerInfo = (props) => {
                     paddingTop: '0px',
                     paddingBottom: '10px' , 
           }}>
-            <p>{props.data[0].company_name}</p>
+            <p>{resultUserDetail?.data.company_name}</p>
           </Item>
           <Item>
              <TextField
@@ -140,8 +143,8 @@ const FormBillIssuerInfo = (props) => {
                 id="outlined-uncontrolled"
                 label="Email"
                 fullWidth
-                value={props.data[0].email}
-                onChange={handleChangeEmail}
+                value={values.email}
+                onChange={handleChange('email')}
                 variant="filled"
                 InputProps={{
                   startAdornment: (
@@ -157,9 +160,10 @@ const FormBillIssuerInfo = (props) => {
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
               id="outlined-uncontrolled"
+              type='password'
               label="Password"
-              value={props.data[0].password}
-              onChange={handleChangePassword}
+              value={values.password}
+              onChange={handleChange('password')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -178,8 +182,8 @@ const FormBillIssuerInfo = (props) => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Name"
-              value={props.data[0].company_name}
-              onChange={handleChangeCompanyName}
+              value={values.companyName}
+              onChange={handleChange('companyName')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -197,8 +201,8 @@ const FormBillIssuerInfo = (props) => {
               className={classes.root}              
               id="outlined-uncontrolled"
               label="Company Address"
-              value={props.data[0].company_address}
-              onChange={handleChangeCompanyAddress}
+              value={values.companyAddress}
+              onChange={handleChange('companyAddress')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -216,8 +220,8 @@ const FormBillIssuerInfo = (props) => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Phone"
-              value={props.data[0].company_phone}
-              onChange={handleChangeCompanyPhone}
+              value={values.companyPhone}
+              onChange={handleChange('companyPhone')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -235,8 +239,8 @@ const FormBillIssuerInfo = (props) => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Site"
-              value={props.data[0].company_site}
-              onChange={handleChangeCompanySite}
+              value={values.companySite}
+              onChange={handleChange('companySite')}
               variant="filled"
               fullWidth
               InputProps={{

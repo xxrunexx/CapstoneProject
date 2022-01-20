@@ -50,7 +50,7 @@ const DetailPaymentGateway = (props) => {
               </Grid>
               <Box sx={{ flexGrow: 1}}>
                   <Grid container spacing={2} sx={{px:4}}>
-                    <Grid item xs={6} container justifyContent="start">
+                    <Grid item xs={6} >
                       <h3 className = {custom.total}>Total</h3> 
                     </Grid>
                     <Grid item xs={6} >
@@ -80,7 +80,7 @@ const DetailPaymentGateway = (props) => {
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
-                                            <Grid container spacing={2}>
+                                            <Grid container spacing={1}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Transfer Bank</h5> 
                                                 </Grid>
@@ -97,7 +97,7 @@ const DetailPaymentGateway = (props) => {
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
-                                            <Grid container spacing={2}>
+                                            <Grid container spacing={1}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Dana</h5> 
                                                 </Grid>
@@ -113,7 +113,7 @@ const DetailPaymentGateway = (props) => {
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
-                                            <Grid container spacing={2}>
+                                            <Grid container spacing={1}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Gopay</h5> 
                                                 </Grid>

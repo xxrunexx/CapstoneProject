@@ -48,16 +48,21 @@ const DetailPaymentGateway = (props) => {
                 <h1>{props.data[0].company_name}</h1> 
                 <h3>{props.data[0].company_email}</h3> 
               </Grid>
-              <Box sx={{ flexGrow: 1}}>
-                  <Grid container spacing={2} sx={{px:4}}>
-                    <Grid item xs={6} >
-                      <h3 className = {custom.total}>Total</h3> 
-                    </Grid>
-                    <Grid item xs={6} >
-                      <h3>{props.data[0].total}</h3> 
-                    </Grid>
-                  </Grid> <hr item width='50%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
-                </Box>
+              <Grid item xs={12} md={6}>
+                <Grid>
+                    <Box sx={{ flexGrow: 1}}>
+                        <Grid container spacing={2} sx={{px:4}}>
+                            <Grid item xs={6} container justifyContent="start">
+                            <h3 className = {custom.total}>Total</h3> 
+                            </Grid>
+                            <Grid item xs={6} container justifyContent="end">
+                            <h3>{props.data[0].total}</h3> 
+                            </Grid>
+                        </Grid> 
+                    </Box>
+                </Grid>
+                <hr item width='89%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
+              </Grid>
             </Grid>
           </Box>
         </Item>

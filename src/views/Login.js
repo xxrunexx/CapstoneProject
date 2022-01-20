@@ -56,10 +56,11 @@ function Login({history}) {
           )
           .then(function (response) {
             // handle success
-            setMsg(response.data.message);
+            setMsg(response.data.data.message);
             console.log('axios', response);
-            // localStorage.setItem("token", response.data.data.token);
+            localStorage.setItem("token", response.data.data.token);
             console.log(response.data.data.token);
+            history.push('/dashboard');
             // window.location.href = "/dashboard";
           })
           .catch(function (error) {

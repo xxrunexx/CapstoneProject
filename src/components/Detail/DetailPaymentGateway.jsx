@@ -1,23 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { makeStyles } from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
 import custom from './detailPaymentGateway.module.css';
-// import styles from './detailPaymentGateway.module.css';
-import Link from '@mui/material/Link';
-import { InputAdornment } from '@mui/material';
-import billIssuerInfo from '../../assets/img/billIssuerInfo.png';
 import logo from '../../assets/img/logo.png';
-import LockIcon from '@mui/icons-material/Lock';
-import CircleIcon from '@mui/icons-material/Circle';
-import EmailIcon from '@mui/icons-material/Email';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PhoneIcon from '@mui/icons-material/Phone';
-import LanguageIcon from '@mui/icons-material/Language';
 import Button from '@mui/material/Button';
 import bni from '../../assets/img/bni.png';
 import bri from '../../assets/img/bri.png';
@@ -49,7 +36,7 @@ const DetailPaymentGateway = (props) => {
                 <h1>{props.data[0].company_name}</h1> 
                 <h3>{props.data[0].company_email}</h3> 
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={5}>
                 <Grid>
                     <Box sx={{ flexGrow: 1}}>
                         <Grid container spacing={2} sx={{px:4}}>
@@ -58,21 +45,17 @@ const DetailPaymentGateway = (props) => {
                             </Grid>
                             <Grid item xs={6} container justifyContent="end">
                             <h3>{props.data[0].total}</h3> 
-                            </Grid>
+                            </Grid> 
+                             <hr item width='89%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
                         </Grid> 
-                    </Box>
+                        </Box>
                 </Grid>
-                <hr item width='89%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
               </Grid>
-            </Grid>
-          </Box>
-        </Item>
-      </Grid>
-      <Grid container justifyContent="right" color='#C4C4C4'>
+              <Grid container justifyContent="right" color='#C4C4C4'>
                 <Grid item xs={8} sx={{mt:2}} >
                         <Box sx={{ flexGrow: 1}}>
-                            <Grid justifyContent="space-between" alignItems="center" spacing={2}>
-                                <Grid item xs={12} md={12} lg={12}>
+                        <Grid justifyContent="space-between" alignItems="center" spacing={2}>
+                                <Grid item xs={12} md={12} lg={9}>
                                     <Item sx={{pt:4, pb:3, px:5, bgcolor:'#FFC700', color:'#131522'}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
@@ -83,7 +66,7 @@ const DetailPaymentGateway = (props) => {
                                         </Box>
                                     </Item>
                                 </Grid> 
-                                <Grid item xs={12} md={12} lg={12} >
+                                <Grid item xs={12} md={12} lg={9} >
                                     <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container justifyContent="space-between" alignItems="center" spacing={2}>
@@ -127,9 +110,12 @@ const DetailPaymentGateway = (props) => {
                                 </Grid>
                             </Grid>
                         </Box>
-                 
+                    </Grid>
                 </Grid>
             </Grid>
+          </Box>
+        </Item>
+      </Grid>
     </Box>
     );
 }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
-import Home from './views/HomeDashboard/HomeDashboard';
+import Home from './views/HomeDashboard/HomeDashboard'; 
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
 import Register from './views/Register';

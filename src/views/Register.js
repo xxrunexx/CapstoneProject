@@ -77,7 +77,7 @@ function Register({history}) {
                     // handle success
                     setMsg(response.data.message);
                     console.log('axios', response);
-                    localStorage.setItem("data", response.data.data.id);
+                    localStorage.setItem("userID", response.data.data.id);
                     history.push({
                         pathname: "/registerDetail",
                     });

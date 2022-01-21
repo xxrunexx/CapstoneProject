@@ -15,7 +15,6 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
-import axios from 'axios';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -63,33 +62,17 @@ const useStyles = makeStyles({
 });
 
 
-const FormBillIssuerInfo = (props) => {
-    const [resultUser, setResultUser] = React.useState(null);
-    const [resultUserDetail, setResultUserDetail] = React.useState(null);
-
-    React.useEffect(() => {
-      axios.get(`http://localhost:8000/billissuer/${props.authData.userId}`)
-      .then((response)=>{
-        setResultUser(response.data)
-      });
-
-      axios.get(`http://localhost:8000/billissuerdetail/${props.authData.userId}`)
-      .then((response)=>{
-        setResultUserDetail(response.data)
-      });
-    }, []);
-
-    console.log('user : ', resultUser?.data);
-    console.log('user Detail : ', resultUserDetail?.data);
-
+const FormBillIssuerInfo = ({userData, userDetailData}) => {
+    console.log(userData);
+    console.log(userDetailData);
     const [values, setValues] = React.useState({
-      name: resultUser?.data.name,
-      email: resultUser?.data.email,
-      password: resultUser?.data.password,
-      companyName: resultUserDetail?.data.company_name,
-      companyAddress: resultUserDetail?.data.company_address,
-      companyPhone: resultUserDetail?.data.company_phone,
-      companySite: resultUserDetail?.data.company_site,
+      name: userData?.data.name,
+      email: userData?.data.email,
+      password: userData?.data.password,
+      companyName: userDetailData?.data.company_name,
+      companyAddress: userDetailData?.data.company_address,
+      companyPhone: userDetailData?.data.company_phone,
+      companySite: userDetailData?.data.company_site,
     });
     
     const handleChange = (prop) => (event) => {
@@ -100,7 +83,7 @@ const FormBillIssuerInfo = (props) => {
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
         <Grid item xs={8} >
-        <Item sx={{
+          <Item sx={{
                     textAlign: 'center', 
                     py:1, 
                     fontFamily: 'Michroma',
@@ -112,7 +95,7 @@ const FormBillIssuerInfo = (props) => {
           }}>
             <img src={billIssuerInfo} alt="billIssuerInfo"  position="center"/>
           </Item> 
-        <Item sx={{
+          <Item sx={{
                     textAlign: 'center',
                     py:1, 
                     fontFamily: 'Michroma',
@@ -124,7 +107,7 @@ const FormBillIssuerInfo = (props) => {
                     paddingTop: '0px',
                     paddingBottom: '0px' , 
           }}>
-            <p>{resultUser?.data.name}</p>
+            <p>{userData?.data.name}</p>
           </Item>
           <Item sx={{
                     textAlign: 'center',
@@ -134,7 +117,7 @@ const FormBillIssuerInfo = (props) => {
                     paddingTop: '0px',
                     paddingBottom: '10px' , 
           }}>
-            <p>{resultUserDetail?.data.company_name}</p>
+            <p>{userDetailData?.data.company_name}</p>
           </Item>
           <Item>
              <TextField

@@ -22,14 +22,19 @@ const Registerdetail = ({history}) => {
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    const dataResp = localStorage.getItem('data');
+    const dataResp = localStorage.getItem('userID');
+    // console.log(dataResp);
+    // console.log(values.companyName);
+    // console.log(values.companyAddress);
+    // console.log(values.companyPhone);
+    // console.log(values.companySite);
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
             .post(
                 'http://localhost:8000/billissuerdetail/add',
                 {
-                    bill_issuer_id: dataResp.id,
+                    bill_issuer_id: dataResp,
                     company_name: values.companyName,
                     company_address: values.companyAddress,
                     company_phone: values.companyPhone,
@@ -46,9 +51,9 @@ const Registerdetail = ({history}) => {
                 // handle success
                 setMsg(response.data.message);
                 console.log('axios', response);
-                localStorage.removeItem('data');
+                localStorage.removeItem('userID');
                 history.push({
-                    pathname: "/registerDetail",
+                    pathname: "/login",
                 });
             })
             .catch(function (error) {

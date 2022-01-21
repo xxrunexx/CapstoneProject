@@ -4,6 +4,7 @@ import FormBillIssuerInfo from '../../components/Detail/FormBillIssuerInfo';
 import Custom from './billIssuerInfo.module.css';
 import Box from '@mui/material/Box';
 import jwt_decode from "jwt-decode";
+import axios from 'axios';
 
 const BillIssuerInfo = () => {
     const data = [
@@ -21,14 +22,26 @@ const BillIssuerInfo = () => {
     let authData = jwt_decode(authToken);
     console.log(authData.userId);
     
-    // };
-    // console.log(mappedUserInfo);
-    // console.log(userDetail());
+    const [resultUser, setResultUser] = React.useState(null);
+    const [resultUserDetail, setResultUserDetail] = React.useState(null);
+
+    React.useEffect(() => {
+      axios.get(`http://localhost:8000/billissuer/${authData.userId}`)
+      .then((response)=>{
+        setResultUser(response.data)
+      });
+
+      axios.get(`http://localhost:8000/billissuerdetail/${authData.userId}`)
+      .then((response)=>{
+        setResultUserDetail(response.data)
+      });
+    }, []);
+
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack/>
-                <FormBillIssuerInfo  data={data} component={FormBillIssuerInfo} authData={authData}/>
+                <FormBillIssuerInfo  data={data} component={FormBillIssuerInfo} userData={resultUser} userDetailData={resultUserDetail}/>
             </Box>
         </Box>
     );

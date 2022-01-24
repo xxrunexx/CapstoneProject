@@ -120,7 +120,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
             <p>{userDetailData?.data.company_name}</p>
           </Item>
           <Item>
-             <TextField
+              <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 id="outlined-uncontrolled"
@@ -136,7 +136,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
                       </InputAdornment>
                   ),
                   }}
-           />
+              />
           </Item>
           <Item>
             <TextField

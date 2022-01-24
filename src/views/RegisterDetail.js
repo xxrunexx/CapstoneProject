@@ -9,8 +9,10 @@ import MapIcon from '@mui/icons-material/Map';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-const Registerdetail = ({history}) => {
+const Registerdetail = () => {
+    const history = useHistory();
     const [values, setValues] = React.useState({
         companyName:'',
         companyAddress:'',
@@ -109,7 +111,7 @@ const Registerdetail = ({history}) => {
                                     <PhoneIcon />
                                     </InputAdornment>
                                 ),
-                                }}
+                            }}
                             placeholder= "Company Phone"
                         />
                         <TextField

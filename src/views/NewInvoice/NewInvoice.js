@@ -4,11 +4,11 @@ import Forminvoice from '../../components/Detail/FormInvoice';
 import Custom from './newInvoice.module.css';
 import Box from '@mui/material/Box';
 
-const Newinvoice = () => {
+const Newinvoice = ({history}) => {
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/> 
+                <NavbarArrowBack history={history}/> 
                 <Forminvoice/>
             </Box>
         </Box>

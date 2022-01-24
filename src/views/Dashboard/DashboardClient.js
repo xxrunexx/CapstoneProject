@@ -2,9 +2,9 @@ import * as React from 'react';
 import Custom from './dashboardClient.module.css';
 import TitleDashboard from '../../components/Detail/TitleDashboard';
 import ButtonBillIssuer from '../../components/Navbar/ButtonBillIssuer';
-import Statusprocessed from '../../components/Status/StatusProcessed';
-import StatusPaid from '../../components/Status/StatusPaid';
-import StatusDraft from '../../components/Status/StatusDraft';
+// import Statusprocessed from '../../components/Status/StatusProcessed';
+// import StatusPaid from '../../components/Status/StatusPaid';
+// import StatusDraft from '../../components/Status/StatusDraft';
 import Detaildashboard from '../../components/Detail/DetailDashboard';
 import Box from '@mui/material/Box';
 
@@ -17,14 +17,15 @@ const DashboardClient = () => {
             total: '250.000',
         },
     ];
+    const status = 'Paid';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <ButtonBillIssuer/> 
                 <TitleDashboard/>
-                <Detaildashboard status={'Processed'} data={data} component={Statusprocessed}/> 
-                <Detaildashboard status={'Paid'} data={data} component={StatusPaid}/>
-                <Detaildashboard status={'Draft'} data={data} component={StatusDraft}/>
+                <Detaildashboard status={status} data={data}/> 
+                <Detaildashboard status={status} data={data}/>
+                <Detaildashboard status={status} data={data}/>
             </Box>
         </Box>
     );

@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import custom from './dashboardHome.module.css';
 import { InputAdornment } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -55,14 +56,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Dashboardhome = (props) => {
+    const history = useHistory();
     const classes = useStyles();
     const passLogin= () => {
-        props.history.push({
+        history.push({
           pathname: "/login",
         });
     };
     const passSearch= () => {
-        props.history.push({
+        history.push({
           pathname: "/detail",
         });
     };

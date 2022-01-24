@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
 
-const BillIssuerInfo = () => {
+const BillIssuerInfo = ({history}) => {
     const data = [
         { 
             name : 'Raviy Bayu',
@@ -40,7 +40,7 @@ const BillIssuerInfo = () => {
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/>
+                <NavbarArrowBack history={history}/>
                 <FormBillIssuerInfo  data={data} component={FormBillIssuerInfo} userData={resultUser} userDetailData={resultUserDetail}/>
             </Box>
         </Box>

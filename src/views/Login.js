@@ -16,8 +16,10 @@ import wavebg from '../assets/img/wave.svg';
 import Link from '@mui/material/Link';
 import Logo from '../assets/img/logo.png';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-function Login({history}) {
+function Login() {
+    const history = useHistory();
     const [values, setValues] = React.useState({
         email:'',
         password: '',

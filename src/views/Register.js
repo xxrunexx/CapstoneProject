@@ -12,8 +12,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-function Register({history}) {
+function Register() {
+    const history = useHistory();
     const [values, setValues] = React.useState({
         name:'',
         email:'',

@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import custom from './formInvoice.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -55,45 +56,20 @@ const useStyles = makeStyles({
 });
 
 const Forminvoice = () => {
-    const [valueID, setValueID] = React.useState('');
-    const [valueName, setValueName] = React.useState('');
-    const [valueEmail, setValueEmail] = React.useState('');
-    const [valueAddress, setValueAddress] = React.useState('');
-    const [valueInvoiceDate, setValueInvoiceDate] = React.useState('');
-    const [valueTerms, setValueTerms] = React.useState('3-Days');
-    const [valuePaymentDate, setValuePaymentDate] = React.useState('');
-    const [valueItemName, setValueItemName] = React.useState('');
-    const [valuePrice, setValuePrice] = React.useState('');
-    const [valueTotal, setValueTotal] = React.useState('');
-    const handleChangeID = (event) => {
-        setValueID(event.target.value);
-    };
-    const handleChangeName = (event) => {
-        setValueName(event.target.value);
-    };
-    const handleChangeEmail = (event) => {
-        setValueEmail(event.target.value);
-    };
-    const handleChangeAddress = (event) => {
-        setValueAddress(event.target.value);
-    };
-    const handleChangeInvoiceDate = (event) => {
-        setValueInvoiceDate(event.target.value);
-    };
-    const handleChangeTerms = (event) => {
-        setValueTerms(event.target.value);
-    };
-    const handleChangePaymentDate = (event) => {
-        setValuePaymentDate(event.target.value);
-    };
-    const handleChangeItemName = (event) => {
-        setValueItemName(event.target.value);
-    };
-    const handleChangePrice = (event) => {
-        setValuePrice(event.target.value);
-    };
-    const handleChangeTotal = (event) => {
-        setValueTotal(event.target.value);
+    const classes = useStyles();
+    const [values, setValues] = React.useState({
+        clientID:0,
+        name:'',
+        email:'',
+        address:'',
+        invoiceDate:'',
+        terms:'3-Days',
+        paymentDate:'',
+        itemName:'',
+        total:''
+    });
+    const handleChange = (prop) => (event) => {
+      setValues({ ...values, [prop]: event.target.value });
     };
     const days = [
         {
@@ -113,239 +89,226 @@ const Forminvoice = () => {
           label: '30 Day',
         },
     ];
-    const classes = useStyles();
+    const handleSubmit = (e) => {
+      e.preventDefault();
+    }
+    const history = useHistory();
+    const linkDiscard = () => {
+        history.push({
+          pathname: '/dashboard'
+        })
+    }
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
         <Grid item xs={8} >
           <Item><h1>New Invoice</h1></Item>
-          <Item>
-            <span className={custom.titleInput}>Client's ID</span>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="Input Client ID ..."
-              value={valueID}
-              onChange={handleChangeID}
-              fullWidth
-              InputProps={{
-                classes:{notchedOutline:classes.noBorder}
-              }}
-            />
-          </Item>
-          <Item>
-            <span className={custom.titleInput}>Client's Name</span>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="Input Client Name ..."
-              value={valueName}
-              onChange={handleChangeName}
-              fullWidth
-              InputProps={{
-                classes:{notchedOutline:classes.noBorder}
-              }}
-            />
-          </Item>
-          <Item>
-            <span className={custom.titleInput}>Client's Email</span>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="Input Client Email ..."
-              value={valueEmail}
-              onChange={handleChangeEmail}
-              fullWidth
-              InputProps={{
-                classes:{notchedOutline:classes.noBorder}
-              }}
-            />
-          </Item>
-          <Item>
-            <span className={custom.titleInput}>Client's Address</span>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="Input Client Address ..."
-              value={valueAddress}
-              onChange={handleChangeAddress}
-              fullWidth
-              InputProps={{
-                classes:{notchedOutline:classes.noBorder}
-              }}
-            />
-          </Item>
-          <Item>
-            <Box sx={{ flexGrow: 1}}>
-              <Grid container justifyContent="center" spacing={2}>
-                <Grid item xs={12} md={4} >
-                    <Item className={custom.multipleInput}>
-                        <span className={custom.titleInput}>Invoice Date</span>
-                        <TextField
-                            sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                            className={classes.root}
-                            placeholder="Input Date for Invoice ..."
-                            type="date"
-                            defaultValue="2017-05-24"
-                            value={valueInvoiceDate}
-                            onChange={handleChangeInvoiceDate}
-                            fullWidth
-                            InputProps={{
-                                classes:{notchedOutline:classes.noBorder}
-                            }}
-                        />
-                    </Item>
+          <form onSubmit={handleSubmit} method="post">
+            <Item>
+              <span className={custom.titleInput}>Client's ID</span>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                placeholder="Input Client ID ..."
+                onChange={handleChange('clientID')}
+                fullWidth
+                InputProps={{
+                  classes:{notchedOutline:classes.noBorder}
+                }}
+              />
+            </Item>
+            <Item>
+              <span className={custom.titleInput}>Client's Name</span>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                placeholder="Input Client Name ..."
+                onChange={handleChange('name')}
+                fullWidth
+                InputProps={{
+                  classes:{notchedOutline:classes.noBorder}
+                }}
+              />
+            </Item>
+            <Item>
+              <span className={custom.titleInput}>Client's Email</span>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                placeholder="Input Client Email ..."
+                onChange={handleChange('email')}
+                fullWidth
+                InputProps={{
+                  classes:{notchedOutline:classes.noBorder}
+                }}
+              />
+            </Item>
+            <Item>
+              <span className={custom.titleInput}>Client's Address</span>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                placeholder="Input Client Address ..."
+                onChange={handleChange('address')}
+                fullWidth
+                InputProps={{
+                  classes:{notchedOutline:classes.noBorder}
+                }}
+              />
+            </Item>
+            <Item>
+              <Box sx={{ flexGrow: 1}}>
+                <Grid container justifyContent="center" spacing={2}>
+                  <Grid item xs={12} md={4} >
+                      <Item className={custom.multipleInput}>
+                          <span className={custom.titleInput}>Invoice Date</span>
+                          <TextField
+                              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                              className={classes.root}
+                              placeholder="Input Date for Invoice ..."
+                              type="date"
+                              defaultValue="2022-11-24"
+                              onChange={handleChange('invoiceDate')}
+                              fullWidth
+                              InputProps={{
+                                  classes:{notchedOutline:classes.noBorder}
+                              }}
+                          />
+                      </Item>
+                  </Grid>
+                  <Grid item xs={12} md={4} >
+                      <Item className={custom.multipleInput}>
+                          <span className={custom.titleInput}>Payment Terms</span>
+                          <TextField
+                              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                              id="outlined-select-currency"
+                              className={classes.root}
+                              select
+                              value={values.terms}
+                              onChange={handleChange('terms')}
+                              fullWidth
+                              InputProps={{
+                                  classes:{notchedOutline:classes.noBorder}
+                              }}
+                          >
+                              {days.map((option, key) => (
+                                  <MenuItem key={key} value={option.value}>
+                                      {option.label}
+                                  </MenuItem>
+                              ))}
+                          </TextField>
+                      </Item>
+                  </Grid>
+                  <Grid item xs={12} md={4} >
+                      <Item className={custom.multipleInput}>
+                          <span className={custom.titleInput}>Payment Date</span>
+                          <TextField
+                              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                              className={classes.root}
+                              placeholder="Input Client Address ..."
+                              type="date"
+                              defaultValue="2022-11-24"
+                              onChange={handleChange('paymentDate')}
+                              fullWidth
+                              InputProps={{
+                                  classes:{notchedOutline:classes.noBorder},
+                              }}
+                              InputLabelProps={{ shrink: true }}
+                          />
+                      </Item>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} md={4} >
-                    <Item className={custom.multipleInput}>
-                        <span className={custom.titleInput}>Payment Terms</span>
-                        <TextField
-                            sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                            id="outlined-select-currency"
-                            className={classes.root}
-                            select
-                            value={valueTerms}
-                            onChange={handleChangeTerms}
-                            fullWidth
-                            InputProps={{
-                                classes:{notchedOutline:classes.noBorder}
-                            }}
-                        >
-                            {days.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Item>
-                </Grid>
-                <Grid item xs={12} md={4} >
-                    <Item className={custom.multipleInput}>
-                        <span className={custom.titleInput}>Payment Date</span>
-                        <TextField
-                            sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                            className={classes.root}
-                            placeholder="Input Client Address ..."
-                            type="date"
-                            defaultValue="2017-05-24"
-                            value={valuePaymentDate}
-                            onChange={handleChangePaymentDate}
-                            fullWidth
-                            InputProps={{
-                                classes:{notchedOutline:classes.noBorder}
-                            }}
-                        />
-                    </Item>
-                </Grid>
-              </Grid>
-            </Box>
-          </Item>
-          <Item>
-            <Box sx={{ flexGrow: 1}}>
-              <Grid container justifyContent="center" spacing={2}>
-                <Grid item xs={12} md={6} >
-                    <Item className={custom.multipleInput}>
-                        <span className={custom.titleInput}>Item Name</span>
-                        <TextField
-                            sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                            className={classes.root}
-                            placeholder="Input Item Name for Invoice ..."
-                            value={valueItemName}
-                            onChange={handleChangeItemName}
-                            fullWidth
-                            InputProps={{
-                                classes:{notchedOutline:classes.noBorder}
-                            }}
-                        />
-                    </Item>
-                </Grid>
-                <Grid item xs={12} md={3} >
-                    <Item className={custom.multipleInput}>
-                        <span className={custom.titleInput}>Price</span>
-                        <TextField
-                            sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                            className={classes.root}
-                            placeholder="Input Price ..."
-                            value={valuePrice}
-                            onChange={handleChangePrice}
-                            fullWidth
-                            InputProps={{
-                                classes:{notchedOutline:classes.noBorder}
-                            }}
-                        />
-                    </Item>
-                </Grid>
-                <Grid item xs={12} md={3} >
-                    <Item className={custom.multipleInput}>
-                        <span className={custom.titleInput}>Total</span>
-                        <TextField
-                            sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                            className={classes.root}
-                            placeholder="Input Total ..."
-                            value={valueTotal}
-                            onChange={handleChangeTotal}
-                            fullWidth
-                            InputProps={{
-                                classes:{notchedOutline:classes.noBorder}
-                            }}
-                        />
-                    </Item>
-                </Grid>
-              </Grid>
-            </Box>
-          </Item>
-          <Item sx={{textAlign: 'center',}}>
-              <Box 
-                sx={{
-                    bgcolor: '#FFC700', 
-                    borderRadius:2, 
-                    color:'black', 
-                    py:1, 
-                    fontSize:'1.2rem'
-              }}>
-                <Link href="#" underline="none" className={custom.addNewItem}>
-                    {'ADD NEW ITEM'}
-                </Link>
               </Box>
-          </Item>
-          <Item>
-          <Box sx={{ flexGrow: 1}}>
-              <Grid container justifyContent="space-between" spacing={2}>
-                <Grid item xs={12} md={3} >
-                    <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
-                        <Box 
-                            sx={{
-                                bgcolor: '#D84343', 
-                                borderRadius:2, 
-                                color:'black', 
-                                py:1, 
-                                fontSize:'1.2rem'
-                        }}>
-                            <Link href="#" underline="none" className={custom.addNewItem}>
-                                {'DISCARD'}
-                            </Link>
-                        </Box>
-                    </Item>
+            </Item>
+            <Item>
+              <Box sx={{ flexGrow: 1}}>
+                <Grid container justifyContent="center" spacing={2}>
+                  <Grid item xs={12} md={6} >
+                      <Item className={custom.multipleInput}>
+                          <span className={custom.titleInput}>Item Name</span>
+                          <TextField
+                              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                              className={classes.root}
+                              placeholder="Input Item Name for Invoice ..."
+                              onChange={handleChange('itemName')}
+                              fullWidth
+                              InputProps={{
+                                  classes:{notchedOutline:classes.noBorder}
+                              }}
+                          />
+                      </Item>
+                  </Grid>
+                  <Grid item xs={12} md={6} >
+                      <Item className={custom.multipleInput}>
+                          <span className={custom.titleInput}>Total</span>
+                          <TextField
+                              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                              className={classes.root}
+                              placeholder="Input Total ..."
+                              onChange={handleChange('total')}
+                              fullWidth
+                              InputProps={{
+                                  classes:{notchedOutline:classes.noBorder}
+                              }}
+                          />
+                      </Item>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} md={3} >
-                    <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
-                        <Box 
-                            sx={{
-                                bgcolor: '#FFC700', 
-                                borderRadius:2, 
-                                color:'black', 
-                                py:1, 
-                                fontSize:'1.2rem'
-                        }}>
-                            <Link href="#" underline="none" className={custom.addNewItem}>
-                                {'CREATE INVOICE'}
-                            </Link>
-                        </Box>
-                    </Item>
+              </Box>
+            </Item>
+            {/* <Item sx={{textAlign: 'center',}}>
+                <Box 
+                  sx={{
+                      bgcolor: '#FFC700', 
+                      borderRadius:2, 
+                      color:'black', 
+                      py:1, 
+                      fontSize:'1.2rem'
+                }}>
+                  <Link href="#" underline="none" className={custom.addNewItem}>
+                      {'ADD NEW ITEM'}
+                  </Link>
+                </Box>
+            </Item> */}
+            <Item>
+            <Box sx={{ flexGrow: 1, mt:5}}>
+                <Grid container justifyContent="space-between" spacing={2}>
+                  <Grid item xs={12} md={3} >
+                      <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
+                          <Box 
+                              sx={{
+                                  bgcolor: '#D84343', 
+                                  borderRadius:2, 
+                                  color:'black', 
+                                  py:1, 
+                                  fontSize:'1.2rem'
+                          }}>
+                              <Link component="button" underline="none" className={custom.addNewItem} onClick={linkDiscard}>
+                                  {'DISCARD'}
+                              </Link>
+                          </Box>
+                      </Item>
+                  </Grid>
+                  <Grid item xs={12} md={3} >
+                      <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
+                          <Box 
+                              sx={{
+                                  bgcolor: '#FFC700', 
+                                  borderRadius:2, 
+                                  color:'black', 
+                                  py:1, 
+                                  fontSize:'1.2rem'
+                          }}>
+                              <Link component="button" underline="none" className={custom.addNewItem} type="submit">
+                                  {'CREATE INVOICE'}
+                              </Link>
+                          </Box>
+                      </Item>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          </Item>
+              </Box>
+            </Item>
+          </form>
         </Grid>
       </Grid>
     </Box>

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Custom from './dashboardBillIssuer.module.css';
 import Dashboardbipage from '../../components/Detail/DashboardBiPage';
-import StatusPaid from '../../components/Status/StatusPaid';
 import jwt_decode from "jwt-decode";
 
 const Dashboardbillissuer = () => {
@@ -29,7 +28,11 @@ const Dashboardbillissuer = () => {
     // console.log(decoded);
     return (
         <Box className={Custom.background}>
-            <Dashboardbipage data={data} client={clientInfo} component={StatusPaid} status={'Paid'} auth={authData} />
+            <Dashboardbipage 
+                data={data} 
+                client={clientInfo} 
+                auth={authData} 
+            />
         </Box>
     );
 }

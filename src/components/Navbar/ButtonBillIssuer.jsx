@@ -5,6 +5,7 @@ import Link from '@mui/material/Link';
 import custom from './buttonBillIssuer.module.css';
 import Grid from '@mui/material/Grid';
 import LoginIcon from '@mui/icons-material/Login';
+import { useHistory } from 'react-router-dom';
 
 function Item(props) {
     const { sx, ...other } = props;
@@ -31,6 +32,12 @@ Item.propTypes = {
 };
 
 const NavbarArrowBack = () => {
+    const history = useHistory();
+    const goLogin = () => {
+        history.push({
+            pathname: '/login'
+        });
+    }
     return (
         <Box sx={{
             display: 'grid',
@@ -63,7 +70,7 @@ const NavbarArrowBack = () => {
                     fontSize:'1.2rem'
               }}>
                   <LoginIcon/>
-                <Link href="#" underline="none" className={custom.addNewItem}>
+                <Link component="button" underline="none" className={custom.addNewItem} onClick={goLogin}>
                     {'LOGIN BILL ISSUER'}
                 </Link>
               </Box>

@@ -12,6 +12,8 @@ import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PaidIcon from '@mui/icons-material/Paid';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -21,6 +23,61 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Sidenavicon = (props) => {
+    const history = useHistory();
+    const linkClient = () => {
+        history.push({
+            pathname: "/client",
+        });
+    }
+    const linkDraft = () => {
+        history.push({
+            pathname: "/dashboard/draft",
+        });
+    }
+    const linkProcessed = () => {
+        history.push({
+            pathname: "/dashboard/processed",
+        });
+    }
+    const linkPaid = () => {
+        history.push({
+            pathname: "/dashboard/paid",
+        });
+    }
+    const linkUnpaid = () => {
+        history.push({
+            pathname: "/dashboard/unpaid",
+        });
+    }
+
+    const navMenuList = [
+        {
+            name: "Client",
+            icon: PersonIcon,
+            path: linkClient
+        },
+        {
+            name: "Paid",
+            icon: PaidIcon,
+            path: linkPaid
+        },
+        {
+            name: "Unpaid",
+            icon: AccountBalanceWalletIcon,
+            path: linkUnpaid
+        },
+        {
+            name: "Processed",
+            icon: ReceiptIcon,
+            path: linkProcessed
+        },
+        {
+            name: "Draft",
+            icon: NoteAltIcon,
+            path: linkDraft
+        },
+    ]
+    const location = useLocation();
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
@@ -41,31 +98,20 @@ const Sidenavicon = (props) => {
                                 <CircleIcon className={custom.iconCircle}/><CircleIcon className={custom.iconCircle}/><CircleIcon className={custom.iconCircle}/>
                             </Button>
                         </Box>
-                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
-                            <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <PersonIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                            </Link>
-                        </Box>
-                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
-                            <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <PaidIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                            </Link>
-                        </Box>
-                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
-                            <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <AccountBalanceWalletIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                            </Link>
-                        </Box>
-                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
-                            <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <ReceiptIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                            </Link>
-                        </Box>
-                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
-                            <Link href="#" underline="hover" className={custom.linkSideNav}>
-                                <NoteAltIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                            </Link>
-                        </Box>
+                        {navMenuList.map((menu) => {
+                            return (
+                                <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
+                                    <Link 
+                                        component="button" 
+                                        underline="hover" 
+                                        className={`${location.pathname.endsWith(menu.path) ? custom.active : ""} ${custom.linkSideNav}`} 
+                                        onClick={menu.path}
+                                    >
+                                        <menu.icon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                                    </Link>
+                                </Box>
+                            );
+                        })}
                     </Item>
                 </Grid>
             </Grid>

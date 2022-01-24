@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
-
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
 import Home from './views/HomeDashboard/HomeDashboard';
@@ -30,26 +29,55 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route exact path='/' component={Home} history={history}/>
-          <Route exact path='/login' component={Login} history={history}/>
-          <Route exact path='/register' component={Register} history={history}/>
-          <Route exact path='/registerDetail' component={Registerdetail} history={history}/>
-          <Route exact path='/dashboard' component={Dashboardbillissuer}/>
-          <Route exact path='/dashboard/draft' component={Dashboarddraft}/>
-          <Route exact path='/dashboard/paid' component={Dashboardpaid}/>
-          <Route exact path='/dashboard/unpaid' component={Dashboardunpaid}/>
-          <Route exact path='/dashboard/processed' component={Dashboardprocessed}/>
-          <Route exact path='/editInvoice' component={Editinvoice}/>
-          <Route exact path='/detail' component={Detailinvoice} history={history}/>
-          <Route exact path='/addInvoice' component={Newinvoice}/>
-          <Route exact path='/addClient' component={Newclient}/>
-          <Route exact path='/newPass' component={NewPass}/>
-          <Route exact path='/forgetpass' component={ForgetPass}/>
-          <Route exact path='/billIssuerUpdated' component={BillIssuerUpdated}/>
-          <Route exact path='/clientupdated' component={ProfileUpdated}/>
-          <Route exact path='/passUpdated' component={PassUpdated}/>
-          <Route exact path='/client' component={DashboardClient}/>
-          <Route exact path='/billissuer' component={BillIssuerInfo}/>
+          <Route 
+            exact path='/' 
+            component={Home} 
+          />
+          <Route 
+            exact path='/login' 
+            component={Login} 
+          />
+          <Route 
+            exact path='/register' 
+            component={Register} 
+          />
+          <Route 
+            exact path='/registerDetail' 
+            component={Registerdetail} 
+          />
+          <Route 
+            exact path='/dashboard' 
+            component={Dashboardbillissuer} 
+          />
+          <Route exact path='/dashboard/draft' component={Dashboarddraft} 
+            history={history}/>
+          <Route exact path='/dashboard/paid' component={Dashboardpaid} 
+            history={history}/>
+          <Route exact path='/dashboard/unpaid' component={Dashboardunpaid} 
+            history={history}/>
+          <Route exact path='/dashboard/processed' component={Dashboardprocessed} 
+            history={history}/>
+          <Route exact path='/editInvoice' component={Editinvoice} 
+            history={history}/>
+          <Route exact path='/detail' component={Detailinvoice} 
+            history={history}/>
+          <Route exact path='/addInvoice' component={Newinvoice} 
+            history={history}/>
+          <Route exact path='/addClient' component={Newclient} 
+            history={history}/>
+          <Route exact path='/newPass' component={NewPass} 
+            history={history}/>
+          <Route exact path='/forgetpass' component={ForgetPass} 
+            history={history}/>
+          <Route exact path='/billIssuerUpdated' component={BillIssuerUpdated} 
+            history={history}/>
+          <Route exact path='/clientupdated' component={ProfileUpdated} 
+            history={history}/>
+          <Route exact path='/passUpdated' component={PassUpdated} 
+            history={history}/>
+          <Route exact path='/client' component={DashboardClient} 
+            history={history}/>
+          <Route exact path='/billissuer' component={BillIssuerInfo} history={history}/>
         </Switch>
       </Router>
     </>

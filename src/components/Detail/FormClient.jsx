@@ -57,35 +57,36 @@ const useStyles = makeStyles({
     },
 });
 
-const Formclient = () => {
-    const [valueNIK, setValueNIK] = React.useState('');
-    const [valueName, setValueName] = React.useState('');
-    const [valueEmail, setValueEmail] = React.useState('');
-    const [valueAddress, setValueAddress] = React.useState('');
-    const [valuePhone, setValuePhone] = React.useState('');
-    const [, setMsg] = useState('');
-
-    const handleChangeNIK = (event) => {
-        setValueNIK(event.target.value);
-    };
-    const handleChangeName = (event) => {
-        setValueName(event.target.value);
-    };
-    const handleChangeEmail = (event) => {
-        setValueEmail(event.target.value);
-    };
-    const handleChangeAddress = (event) => {
-        setValueAddress(event.target.value);
-    };
-    const handleChangePhone = (event) => {
-        setValuePhone(event.target.value);
-    };
+const Formclient = ({history}) => {
     const classes = useStyles();
+    // const authToken = localStorage.getItem('token');
 
-    const authToken = localStorage.getItem('token');
+    const [values, setValues] = useState({
+        nik:'',
+        name:'',
+        phone:'',
+        address:'',
+        email:'',
+    });
+    const [, setMsg] = useState('');
+    
+    const handleChange = (prop) => (event) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
+    
+    const passDashboard= () => {
+      history.push({
+          pathname: "/dashboard"
+      });
+    };
 
-    // Axios
-    // useEffect(() => {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(values.nik);
+      console.log(values.name);
+      console.log(values.phone);
+      console.log(values.address);
+      console.log(values.email);
       axios
           .post(
             'http://localhost:8000/client/add',
@@ -95,37 +96,21 @@ const Formclient = () => {
                 // phone: '08128080977',
                 // address: 'Bogor',
                 // email: 'dyah@gmail.com'
-                nik: valueNIK,
-                name: valueName,
-                phone: valuePhone,
-                address: valueAddress,
-                email: valueEmail
+                nik: values.nik,
+                name: values.name,
+                phone: values.phone,
+                address: values.address,
+                email: values.email
             },
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authToken}`,// iki atek login gak? atek
+                    // 'Authorization': `Bearer ${authToken}`,
                 },
             }
           )
           .then(function (response) {
             // handle success
-            // wes ngunu tok kah ? terus aku get decode e bener a gae user token
-            // haruse se uwes
-            // masalah e sijine tak share ga kenek server e disahre sisan
-            // gelem running nang kunu ta tak weh i link repo e 
-            // wait
-            // https://github.com/xxrunexx/Invoice.id-BE 
-            // branch development
-            // db ne iso mysql / mariadb bebas 
-            // dbname e invoicein wes ono auto migrate e 
-            // langsung run ae > go run main.go
-            // coba en se iki versi 1.17
-            // wokeh, tapi tak tinggal nang apotek sek yo
-            // oke 
-            // iki golang e versi piro ae gamasalah kan? nngonku versi 1.5 lek gasalah
-            // iyo bay gaopo, 
-            // aku nek nyoba yaopo?
             setMsg(response.data.message);
             console.log('axios', response);
           })
@@ -133,32 +118,21 @@ const Formclient = () => {
             // handle error
             console.log(error);
           });
-    // }, []);
-    
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(valueNIK);
-      setValueNIK("");
-      setValueName("");
-      setValuePhone("");
-      setValueAddress("");
-      setValueEmail("");
     }
 
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
         <Grid item xs={8} >
-          <form onSubmit={handleSubmit}>
             <Item><h1>New Client</h1></Item>
+            <form onSubmit={handleSubmit} method="POST">
             <Item>
               <span className={custom.titleInput}>Client's NIK</span>
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client NIK ..."
-                value={valueNIK}
-                onChange={handleChangeNIK}
+                onChange={handleChange('nik')}
                 fullWidth
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -171,8 +145,7 @@ const Formclient = () => {
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Name ..."
-                value={valueName}
-                onChange={handleChangeName}
+                onChange={handleChange('name')}
                 fullWidth
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -184,9 +157,9 @@ const Formclient = () => {
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
-                placeholder="Input Client Email ..."
-                value={valuePhone}
-                onChange={handleChangePhone}
+                placeholder="Input Client Phone Number ..."
+                // value={valuePhone}
+                onChange={handleChange('phone')}
                 fullWidth
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -199,8 +172,8 @@ const Formclient = () => {
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Address ..."
-                value={valueAddress}
-                onChange={handleChangeAddress}
+                // value={valueAddress}
+                onChange={handleChange('address')}
                 fullWidth
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -212,9 +185,10 @@ const Formclient = () => {
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
-                placeholder="Input Client Address ..."
-                value={valueEmail}
-                onChange={handleChangeEmail}
+                placeholder="Input Client Email ..."
+                // value={valueEmail}
+                type="email"
+                onChange={handleChange('email')}
                 fullWidth
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -234,7 +208,7 @@ const Formclient = () => {
                                   py:1, 
                                   fontSize:'1.2rem'
                           }}>
-                              <Link href="#" underline="none" className={custom.addNewItem}>
+                              <Link component="button" onClick={passDashboard} underline="none" className={custom.addNewItem}>
                                   {'DISCARD'}
                               </Link>
                           </Box>
@@ -250,7 +224,7 @@ const Formclient = () => {
                                   py:1, 
                                   fontSize:'1.2rem'
                           }}>
-                              <Link href="#" underline="none" className={custom.addNewItem} type="submit">
+                              <Link component="button" underline="none" className={custom.addNewItem} type="submit">
                                   {'CREATE CLIENT'}
                               </Link>
                           </Box>

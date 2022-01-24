@@ -103,9 +103,12 @@ const Dashboardbipage = (props) => {
     });
     // const [, setMsg] = useState('');
     
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
+    const file = React.useRef(null);
+    const handleUpload = () => {
+        //file.current.files
+        console.log("test Button");
+        console.log(file.current.files);
+    }
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
@@ -217,16 +220,16 @@ const Dashboardbipage = (props) => {
                         </Grid>
                         <Grid container sx={{color:'white', pt:2, justifyContent: 'center'}}>
                             <Grid item xs={10} container>
-                                <input
-                                    accept=".csv"
-                                    className={classes.input}
-                                    style={{ display: 'none' }}
-                                    id="raised-button-file"
-                                    multiple
-                                    type="file"
-                                    onChange={handleChange('file')}
-                                />
-                                <label htmlFor="raised-button-file" style={{ width: "100%" }}>
+                                <form onSubmit={handleUpload} method="POST">
+                                    <input
+                                        accept=".csv"
+                                        className={classes.input}
+                                        style={{ display: 'none' }}
+                                        id="raised-button-file"
+                                        multiple
+                                        type="file"
+                                        ref={file}
+                                    />
                                     <Button 
                                         variant="raised" component="span" className={custom.btn} 
                                         sx={{
@@ -234,10 +237,16 @@ const Dashboardbipage = (props) => {
                                             py:1, 
                                             fontSize:'1.5rem', 
                                             borderRadius:2.5
-                                        }}>
+                                        }}
+                                        type="submit"
+                                        onClick={handleUpload}
+                                        >
                                         Upload CSV
                                     </Button>
-                                </label>
+                                    <label htmlFor="raised-button-file" style={{ width: "100%" }}>
+                                        ChooseFile
+                                    </label>
+                                </form>
                             </Grid>
                         </Grid>
                     </Box>

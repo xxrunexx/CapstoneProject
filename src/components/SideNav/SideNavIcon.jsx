@@ -10,6 +10,8 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PaidIcon from '@mui/icons-material/Paid';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PaymentIcon from '@mui/icons-material/Payment';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
@@ -49,12 +51,22 @@ const Sidenavicon = (props) => {
             pathname: "/dashboard/unpaid",
         });
     }
-
+    const linkPayment = () => {
+        history.push({
+            pathname: "/paymentMethod",
+        });
+    }
+    
     const navMenuList = [
         {
             name: "Client",
             icon: PersonIcon,
             path: linkClient
+        },
+        {
+            name: "Payment Method",
+            icon: PaymentIcon,
+            path: linkPayment
         },
         {
             name: "Paid",
@@ -98,9 +110,9 @@ const Sidenavicon = (props) => {
                                 <CircleIcon className={custom.iconCircle}/><CircleIcon className={custom.iconCircle}/><CircleIcon className={custom.iconCircle}/>
                             </Button>
                         </Box>
-                        {navMenuList.map((menu) => {
+                        {navMenuList.map((menu, key) => {
                             return (
-                                <Box sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
+                                <Box key={key} sx={{textAlign:'center', fontSize:'1.5rem', mb:1}}>
                                     <Link 
                                         component="button" 
                                         underline="hover" 
@@ -112,6 +124,11 @@ const Sidenavicon = (props) => {
                                 </Box>
                             );
                         })}
+                        <Box sx={{textAlign:'center', fontSize:'1.5rem', mt:5}}>
+                            <Link component="button" underline="hover" className={custom.linkSideNav} onClick={props.logout}>
+                                <LogoutIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                            </Link>
+                        </Box>
                     </Item>
                 </Grid>
             </Grid>

@@ -31,7 +31,7 @@ Item.propTypes = {
     ]),
 };
 
-const NavbarArrowBack = () => {
+const Buttonbillissuer = () => {
     const history = useHistory();
     const goLogin = () => {
         history.push({
@@ -81,4 +81,4 @@ const NavbarArrowBack = () => {
     );
 }
 
-export default NavbarArrowBack;
+export default Buttonbillissuer;

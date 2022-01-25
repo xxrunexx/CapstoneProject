@@ -16,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none',
 }));
 
-const Updateinvoice = (props) => {
+const Updateinvoice = ({data, status}) => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -33,7 +33,7 @@ const Updateinvoice = (props) => {
                                                 </Grid>
                                                 <Grid item xs={12} md={5} sx={{mt:0.2}} >
                                                     <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py:0.8, borderRadius:6}}>
-                                                        <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{props.status}
+                                                        <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{status}
                                                     </Item>
                                                 </Grid>
                                             </Grid>
@@ -46,21 +46,21 @@ const Updateinvoice = (props) => {
                                             <Grid container spacing={2} justifyContent="flex-end">
                                                 <Grid item xs={12} md={2}>
                                                     <Item sx={{textAlign: 'center', bgcolor: '#6C6C73', py:1, borderRadius:2}}>
-                                                        <Link href="#" underline="none" className={custom.link}>
+                                                        <Link component="button" underline="none" className={custom.link}>
                                                             {'Edit'}
                                                         </Link>
                                                     </Item>
                                                 </Grid>
                                                 <Grid item xs={12} md={2}>
                                                     <Item sx={{textAlign: 'center', bgcolor: 'rgba(231,70,70,0.90)', py:1, borderRadius:2}}>
-                                                        <Link href="#" underline="none" className={custom.link}>
+                                                        <Link component="button" underline="none" className={custom.link}>
                                                             {'Delete'}
                                                         </Link>
                                                     </Item> 
                                                 </Grid>
                                                 <Grid item xs={12} md={4}>
                                                     <Item sx={{textAlign: 'center', bgcolor: '#FFC700', py:1, borderRadius:2}}>
-                                                        <Link href="#" underline="none" className={custom.link}>
+                                                        <Link component="button" underline="none" className={custom.link}>
                                                             {'Mark as Paid'}
                                                         </Link>
                                                     </Item> 
@@ -82,7 +82,7 @@ const Updateinvoice = (props) => {
                                         <Box sx={{ flexGrow: 1,}}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
-                                                    <h3>#5F892S3</h3> 
+                                                    <h3>{data.id}</h3> 
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -94,15 +94,15 @@ const Updateinvoice = (props) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Invoice Date</h5> 
-                                                    <span>Dec 24, 2021</span>
+                                                    <span>{data.invoice_date}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Bill To</h5> 
-                                                    <span>Harun Rasyid</span> 
+                                                    <span>{data.bill_to}</span> 
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Send To</h5> 
-                                                    <span>rasyid.id3@gmail.com</span> 
+                                                    <span>{data.send_to}</span> 
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -114,15 +114,15 @@ const Updateinvoice = (props) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Payment Date</h5> 
-                                                    <span>Dec 31, 2021</span>
+                                                    <span>{data.payment_date}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Address</h5> 
-                                                    <span>Tiban Lama RT 02 RW 15 Sekupang 45311 Batam</span> 
+                                                    <span>{data.address}</span> 
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>From</h5> 
-                                                    <span>Biznet Branch Batam Gedung Graha Pena, Jl. Ahmad Yani, Tlk. Tering, Kec. Batam Kota, Kota Batam, Kepulauan Riau 29444 (0778) 4093781</span> 
+                                                    <span>{data.from}</span> 
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -137,23 +137,15 @@ const Updateinvoice = (props) => {
                                                         <span>Item Name</span>
                                                     </div>
                                                     <div className={custom.detailInfo}>
-                                                        <span>2P Internet + TV</span>
+                                                        <span>{data.item_name}</span>
                                                     </div>
                                                 </Grid>
-                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}} className={custom.responsive}>
-                                                    <div className={`mb-3 ${custom.headInfo}`}>
-                                                        <span>Price</span>
-                                                    </div>
-                                                    <div className={custom.detailInfo}>
-                                                        <span>Rp. 240.000</span>
-                                                    </div> 
-                                                </Grid>
-                                                <Grid item xs={12} md={3} sx={{textAlign:'right'}} className={custom.responsive}>
+                                                <Grid item xs={12} md={6} sx={{textAlign:'right'}} className={custom.responsive}>
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Total</span>
                                                     </div>
                                                     <div className={custom.detailInfo}>
-                                                        <span>Rp. 240.000</span>
+                                                        <span>Rp. {data.total}</span>
                                                     </div> 
                                                 </Grid>
                                             </Grid>

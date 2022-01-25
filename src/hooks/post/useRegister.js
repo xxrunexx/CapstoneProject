@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Link } from '@mui/material';
 import { InputAdornment } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import EmailIcon from '@mui/icons-material/Email';
@@ -83,10 +83,18 @@ const Useregister = () => {
             });
         }
     };
+
+    const linkHome = () => {
+        history.push({
+            pathname:'/'
+        });
+    };
     return (
         <form onSubmit={handleSubmit} method="POST">
-            <p id={styles.title}> 
-            <img src={logo} alt="logo" className = {styles.logo}/> invoice.in 
+            <p id={styles.title}>
+            <Link component="button" underline='none' sx={{color:"white"}} onClick={linkHome}>
+                <img src={logo} alt="logo" className = {styles.logo}/> invoice.in 
+            </Link> 
             </p>
             <TextField
                 required

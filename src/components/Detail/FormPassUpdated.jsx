@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import custom from './formPassUpdated.module.css';
 import Link from '@mui/material/Link';
 import passUpdated from '../../assets/img/passUpdated.png'
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -17,6 +18,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const FormPassUpdated = () => {
+    const history = useHistory();
+
+    const linkLogin = () => {
+      history.push({
+        pathname: '/login'
+      });
+    }
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center" padding="76px">
@@ -62,7 +70,7 @@ const FormPassUpdated = () => {
                     py:1, 
                     fontSize:'1.2rem'
               }}>
-                <Link href="#" underline="none" className={custom.login}>
+                <Link component="button" underline="none" className={custom.login} onClick={linkLogin}>
                     {'LOGIN'}
                 </Link>
               </Box>

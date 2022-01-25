@@ -125,6 +125,8 @@ const Forminvoice = () => {
                 placeholder="Input Client Name ..."
                 onChange={handleChange('name')}
                 fullWidth
+                value="test"
+                disabled
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
                 }}
@@ -138,6 +140,8 @@ const Forminvoice = () => {
                 placeholder="Input Client Email ..."
                 onChange={handleChange('email')}
                 fullWidth
+                value="test"
+                disabled
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
                 }}
@@ -151,6 +155,8 @@ const Forminvoice = () => {
                 placeholder="Input Client Address ..."
                 onChange={handleChange('address')}
                 fullWidth
+                value="test"
+                disabled
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
                 }}
@@ -159,7 +165,7 @@ const Forminvoice = () => {
             <Item>
               <Box sx={{ flexGrow: 1}}>
                 <Grid container justifyContent="center" spacing={2}>
-                  <Grid item xs={12} md={4} >
+                  <Grid item xs={12} md={6} >
                       <Item className={custom.multipleInput}>
                           <span className={custom.titleInput}>Invoice Date</span>
                           <TextField
@@ -176,7 +182,7 @@ const Forminvoice = () => {
                           />
                       </Item>
                   </Grid>
-                  <Grid item xs={12} md={4} >
+                  <Grid item xs={12} md={6} >
                       <Item className={custom.multipleInput}>
                           <span className={custom.titleInput}>Payment Terms</span>
                           <TextField
@@ -197,24 +203,6 @@ const Forminvoice = () => {
                                   </MenuItem>
                               ))}
                           </TextField>
-                      </Item>
-                  </Grid>
-                  <Grid item xs={12} md={4} >
-                      <Item className={custom.multipleInput}>
-                          <span className={custom.titleInput}>Payment Date</span>
-                          <TextField
-                              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                              className={classes.root}
-                              placeholder="Input Client Address ..."
-                              type="date"
-                              defaultValue="2022-11-24"
-                              onChange={handleChange('paymentDate')}
-                              fullWidth
-                              InputProps={{
-                                  classes:{notchedOutline:classes.noBorder},
-                              }}
-                              InputLabelProps={{ shrink: true }}
-                          />
                       </Item>
                   </Grid>
                 </Grid>

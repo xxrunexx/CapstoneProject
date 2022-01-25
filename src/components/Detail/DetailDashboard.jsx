@@ -10,6 +10,7 @@ import StatusPaid from '../../components/Status/StatusPaid';
 import StatusDraft from '../../components/Status/StatusDraft';
 import Statusprocessed from '../../components/Status/StatusProcessed';
 import Statusunpaid from '../../components/Status/StatusUnpaid';
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -18,6 +19,12 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 const Detaildashboard = (props) => {
+    const history = useHistory();
+    const linkInvoice = () => {
+        history.push({
+            pathname: '/editInvoice'
+        });
+    }
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -52,10 +59,10 @@ const Detaildashboard = (props) => {
                                     </Item>
                                 </Grid>
                                 {/* <props.component status={props.status}/> */}
-                                {props.status === 'Paid' ? <StatusPaid status={props.status}/> : props.status === 'Unpaid' ? <Statusunpaid/> : props.status === 'Draft' ? <StatusDraft/> : props.status === 'Processed' ? <Statusprocessed/> : null }
+                                {props.status === 'Paid' ? <StatusPaid status={props.status}/> : props.status === 'Unpaid' ? <Statusunpaid status={props.status}/> : props.status === 'Draft' ? <StatusDraft status={props.status}/> : props.status === 'Processed' ? <Statusprocessed status={props.status}/> : null }
                                 <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'right', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        <Link href="#" underline="none">
+                                        <Link component="button" underline="none" onClick={linkInvoice}>
                                             <ChevronRightIcon sx={{color:'#FFC700'}} className={custom.rightIcon}/>
                                         </Link>
                                     </Item>

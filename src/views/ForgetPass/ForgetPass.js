@@ -4,12 +4,13 @@ import FormEmail from '../../components/Detail/FormEmail';
 import Custom from './forgetPass.module.css';
 import Box from '@mui/material/Box';
 
-const ForgetPass = ({ history }) => {
+const ForgetPass = () => {
+    const link = '/login';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack history={history}/> 
-                <FormEmail history={history}/>
+                <NavbarArrowBack link={link}/> 
+                <FormEmail/>
             </Box>
         </Box>
     );

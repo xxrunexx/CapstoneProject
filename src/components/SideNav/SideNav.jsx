@@ -14,6 +14,8 @@ import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
+import PaymentIcon from '@mui/icons-material/Payment';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -49,12 +51,27 @@ const Sidenav = (props) => {
             pathname: "/dashboard/unpaid",
         });
     }
+    const linkInfo = () => {
+        history.push({
+            pathname: "/billissuer",
+        });
+    }
+    const linkPayment = () => {
+        history.push({
+            pathname: "/paymentMethod",
+        });
+    }
 
     const navMenuList = [
         {
             name: "Client",
             icon: PersonIcon,
             path: linkClient
+        },
+        {
+            name: "Payment Method",
+            icon: PaymentIcon,
+            path: linkPayment
         },
         {
             name: "Paid",
@@ -80,11 +97,20 @@ const Sidenav = (props) => {
     const location = useLocation();
     return (
         <Item className={custom.leftSidebar} sx={{width:'80%'}}>
-            <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/></Box>
+            <Grid container sx={{color:'#131522'}}>
+                <Grid item container justifyContent="end">
+                    <Button variant="text" sx={{color:'#131522', minWidth:'10px', padding:0}} onClick={props.show}><CloseIcon/></Button>
+                </Grid>
+            </Grid>
+            <Box sx={{textAlign:'center', mb:2}}>
+                <Link component="button" className={custom.linkSideNav} onClick={linkInfo}>
+                    <AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/>
+                </Link>
+            </Box>
             <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>{props.auth.name}</Box>
-            {navMenuList.map((menu) => {
+            {navMenuList.map((menu, key) => {
                 return (
-                    <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
+                    <Box key={key} sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
                         <Link 
                             component="button" 
                             underline="hover" 
@@ -105,9 +131,9 @@ const Sidenav = (props) => {
                                 variant="contained" 
                                 className={custom.btnClose} 
                                 sx={{px:3, bgcolor:'#131522'}}
-                                onClick={props.show}
+                                onClick={props.logout}
                             >
-                                CLOSE
+                                LOGOUT
                             </Button>
                         </Item>
                     </Grid>

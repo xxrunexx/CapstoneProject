@@ -121,7 +121,7 @@ const Dashboardhome = (props) => {
                                             </InputAdornment>
                                         ),
                                         endAdornment: (
-                                            <InputAdornment>
+                                            <InputAdornment position="end">
                                                 <Button 
                                                     variant="contained" 
                                                     className={custom.btn} 

@@ -3,10 +3,9 @@ import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
 import FormBillIssuerInfo from '../../components/Detail/FormBillIssuerInfo';
 import Custom from './billIssuerInfo.module.css';
 import Box from '@mui/material/Box';
-import jwt_decode from "jwt-decode";
-import axios from 'axios';
 
-const BillIssuerInfo = ({history}) => {
+const BillIssuerInfo = () => {
+    const link = '/dashboard';
     const data = [
         { 
             name : 'Raviy Bayu',
@@ -18,33 +17,14 @@ const BillIssuerInfo = ({history}) => {
             company_site : 'biznethome.net',
         },
     ];
-    const authToken = localStorage.getItem('token');
-    let authData = jwt_decode(authToken);
-    console.log(authData.userId);
-    
-    const [resultUser, setResultUser] = React.useState(null);
-    const [resultUserDetail, setResultUserDetail] = React.useState(null);
-
-    React.useEffect(() => {
-      axios.get(`http://localhost:8000/billissuer/${authData.userId}`)
-      .then((response)=>{
-        setResultUser(response.data)
-      });
-
-      axios.get(`http://localhost:8000/billissuerdetail/${authData.userId}`)
-      .then((response)=>{
-        setResultUserDetail(response.data)
-      });
-    }, []);
 
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack history={history}/>
-                <FormBillIssuerInfo  data={data} component={FormBillIssuerInfo} userData={resultUser} userDetailData={resultUserDetail}/>
+                <NavbarArrowBack link={link}/>
+                <FormBillIssuerInfo  data={data} component={FormBillIssuerInfo}/>
             </Box>
         </Box>
     );
 }
 export default BillIssuerInfo;
-

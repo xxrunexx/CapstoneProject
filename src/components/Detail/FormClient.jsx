@@ -9,6 +9,7 @@ import custom from './formInvoice.module.css';
 import Link from '@mui/material/Link';
 import { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 // import { Button } from 'bootstrap';
 
 
@@ -57,12 +58,12 @@ const useStyles = makeStyles({
     },
 });
 
-const Formclient = ({history}) => {
+const Formclient = () => {
     const classes = useStyles();
     // const authToken = localStorage.getItem('token');
-
+    const history = useHistory();
     const [values, setValues] = useState({
-        nik:'',
+        nik:0,
         name:'',
         phone:'',
         address:'',
@@ -82,21 +83,11 @@ const Formclient = ({history}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(values.nik);
-      console.log(values.name);
-      console.log(values.phone);
-      console.log(values.address);
-      console.log(values.email);
       axios
           .post(
             'http://localhost:8000/client/add',
             {
-                // nik: 317401518428151,
-                // name: 'Raviy',
-                // phone: '08128080977',
-                // address: 'Bogor',
-                // email: 'dyah@gmail.com'
-                nik: values.nik,
+                nik: parseInt(values.nik),
                 name: values.name,
                 phone: values.phone,
                 address: values.address,

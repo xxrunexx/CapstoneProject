@@ -11,6 +11,11 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { InputAdornment } from '@mui/material';
 import forgetPass from '../../assets/img/newPass.png';
 import LockResetIcon from '@mui/icons-material/LockReset';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -58,16 +63,83 @@ const useStyles = makeStyles({
 });
 
 const FormNewPass = () => {
-    const [valuePassword, setValuePassword] = React.useState('');
-    const [valueConfirmPassword, setValueConfirmPassword] = React.useState('');
-    const handleChangePassword = (event) => {
-      setValuePassword(event.target.value);
-    };
-    const handleChangeConfirmPassword = (event) => {
-      setValueConfirmPassword(event.target.value);
+    const API = "http://localhost:8000";
+    const history = useHistory();
+    const classes = useStyles();
+    const [values, setValues] = React.useState({
+        password: '',
+        confirmPassword:'',
+        comfirmedPassword: false,
+        showPassword: false,
+        showConfirmPassword: false,
+    });
+    const [, setMsg] = React.useState('');
+
+    const userID = localStorage.getItem('userID');
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
     };
 
-    const classes = useStyles();
+    const handleClickShowPassword = () => {
+      setValues({
+          ...values,
+          showPassword: !values.showPassword,
+      });
+    };
+
+    const handleClickShowConfirmPassword = () => {
+        setValues({
+            ...values,
+            showConfirmPassword: !values.showConfirmPassword,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      if(values.password === values.confirmPassword){
+          setValues({
+              ...values,
+              confirmedPassword: !values.confirmedPassword,
+          });
+      }
+
+      if(values.confirmedPassword){
+          await axios.put(
+              `${API}/billissuer`,
+              {   
+                  id: parseInt(userID),
+                  name: userName,
+                  password: values.password,
+                  email: userEmail,
+              },
+              {
+                  headers: {
+                      'Content-Type': 'application/json',
+                      // Authorization: 'Bearer token...',
+                  },
+              }
+          )
+          .then(function (response) {
+              // handle success
+              setMsg(response.data.message);
+              console.log('axios', response);
+              localStorage.removeItem("userID");
+              localStorage.removeItem("userName");
+              localStorage.removeItem("userEmail");
+              history.push({
+                  pathname: "/passUpdated",
+              });
+          })
+          .catch(function (error) {
+              // handle error
+              console.log(error);
+          });
+      }
+      console.log(userID, userName, userEmail, values.password);
+    }
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
@@ -105,54 +177,80 @@ const FormNewPass = () => {
           }}>
             <p>Your identity has been verified! Set your new password</p>
           </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="New Password"
-              value={valuePassword}
-              onChange={handleChangePassword}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <LockResetIcon />
+          <form method="POST">
+            <Item>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                type={values.showPassword ? 'text' : 'password'}
+                className={classes.root}
+                placeholder="New Password"
+                onChange={handleChange('password')}
+                autoComplete="current-password"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                        <LockResetIcon />
+                      </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                        >
+                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
                     </InputAdornment>
-                ),
+                  ),
                 }}
-            />
-          </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              placeholder="Confirm Password"
-              value={valueConfirmPassword}
-              onChange={handleChangeConfirmPassword}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <LockOpenIcon />
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                placeholder="Confirm Password"
+                onChange={handleChange('confirmPassword')}
+                type={values.showConfirmPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                        <LockOpenIcon />
+                      </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowConfirmPassword}
+                            edge="end"
+                        >
+                        {values.showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
                     </InputAdornment>
-                ),
+                  ),
                 }}
-            />
-          </Item>
-          <Item sx={{textAlign: 'center',}}>
-              <Box 
-                sx={{
-                    bgcolor: '#FFC700', 
-                    borderRadius:2, 
-                    color:'black', 
-                    py:1, 
-                    fontSize:'1.2rem'
-              }}>
-                <Link href="#" underline="none" className={custom.addNewItem}>
-                    {'UPDATE'}
-                </Link>
-              </Box>
-          </Item>
+              />
+            </Item>
+            <Item sx={{textAlign: 'center',}}>
+                <Box 
+                  sx={{
+                      bgcolor: '#FFC700', 
+                      borderRadius:2, 
+                      color:'black', 
+                      py:1, 
+                      fontSize:'1.2rem'
+                }}>
+                  <Link component="button" underline="none" className={custom.addNewItem} onClick={handleSubmit}>
+                      {'UPDATE'}
+                  </Link>
+                </Box>
+            </Item>
+          </form>
         </Grid>
       </Grid>
     </Box>

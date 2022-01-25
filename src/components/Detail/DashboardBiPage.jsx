@@ -76,7 +76,7 @@ const style = {
     boxShadow: 24,
     py:2,
     px:1
-  };
+};
 
 const Dashboardbipage = (props) => {
     const history = useHistory();
@@ -98,9 +98,6 @@ const Dashboardbipage = (props) => {
             pathname: "/addInvoice",
         });
     }
-    const [values, setValues] = useState({
-        file:'',
-    });
     // const [, setMsg] = useState('');
     
     const file = React.useRef(null);
@@ -108,6 +105,11 @@ const Dashboardbipage = (props) => {
         //file.current.files
         console.log("test Button");
         console.log(file.current.files);
+    }
+    const logout = () => {
+        localStorage.setItem("loggedIn", "guest");
+        localStorage.removeItem("token");
+        window.location.href = "/login";
     }
     return (
         <Box sx={{ flexGrow: 1}}>
@@ -124,7 +126,7 @@ const Dashboardbipage = (props) => {
                         py:2
                     }}
                 >
-                    {show ? <Sidenav show={handle} auth={props.auth}/> : <Sidenavicon show={handle}/>}
+                    {show ? <Sidenav show={handle} auth={props.auth} logout={logout}/> : <Sidenavicon show={handle} logout={logout}/>}
                 </Grid>
                 <Grid 
                     item 
@@ -220,7 +222,7 @@ const Dashboardbipage = (props) => {
                         </Grid>
                         <Grid container sx={{color:'white', pt:2, justifyContent: 'center'}}>
                             <Grid item xs={10} container>
-                                <form onSubmit={handleUpload} method="POST">
+                                <form onSubmit={handleUpload} method="POST" style={{ width: '100%' }}>
                                     <input
                                         accept=".csv"
                                         className={classes.input}
@@ -230,6 +232,19 @@ const Dashboardbipage = (props) => {
                                         type="file"
                                         ref={file}
                                     />
+                                    <label htmlFor="raised-button-file">
+                                        <Button 
+                                            variant="raised" component="span" className={custom.btn} 
+                                            sx={{
+                                                width:'100%',
+                                                py:1, 
+                                                fontSize:'1.5rem', 
+                                                borderRadius:2.5,
+                                                mb:5
+                                            }}>
+                                            Choose File
+                                        </Button>
+                                    </label>
                                     <Button 
                                         variant="raised" component="span" className={custom.btn} 
                                         sx={{
@@ -243,9 +258,6 @@ const Dashboardbipage = (props) => {
                                         >
                                         Upload CSV
                                     </Button>
-                                    <label htmlFor="raised-button-file" style={{ width: "100%" }}>
-                                        ChooseFile
-                                    </label>
                                 </form>
                             </Grid>
                         </Grid>

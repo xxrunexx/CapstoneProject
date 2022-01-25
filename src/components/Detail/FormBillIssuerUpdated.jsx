@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import custom from './formBillIssuerUpdated.module.css';
 import Link from '@mui/material/Link';
 import billIssuerUpdated from '../../assets/img/billIssuerUpdated.png'
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -17,6 +18,13 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const FormBillIssuerUpdated = () => {
+    const history = useHistory();
+
+    const linkProfile = () => {
+      history.push({
+        pathname:'/billissuer'
+      });
+    }
     return (
     <Box sx={{ flexGrow: 1}} marginTop="60px">
       <Grid container justifyContent="center" >
@@ -62,7 +70,7 @@ const FormBillIssuerUpdated = () => {
                     py:1, 
                     fontSize:'1.2rem'
               }}>
-                <Link href="#" underline="none" className={custom.login}>
+                <Link component="button" underline="none" className={custom.login} onClick={linkProfile}>
                     {'BACK TO PROFILE'}
                 </Link>
               </Box>

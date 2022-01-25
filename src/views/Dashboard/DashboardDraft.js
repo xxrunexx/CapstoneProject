@@ -2,7 +2,6 @@ import * as React from 'react';
 import Custom from './dashboard.module.css';
 import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
 import Box from '@mui/material/Box';
-import Statusdraft from '../../components/Status/StatusDraft';
 import Detaildashboard from '../../components/Detail/DetailDashboard';
 import TitleDashboard from '../../components/Detail/TitleDashboard';
 
@@ -15,12 +14,14 @@ const Dashboarddraft = () => {
             total: '250.000',
         },
     ];
+    const status = 'Draft';
+    const link = '/dashboard';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/>
+                <NavbarArrowBack link={link}/>
                 <TitleDashboard/>
-                <Detaildashboard status={'Draft'} data={data} component={Statusdraft}/> 
+                <Detaildashboard status={status} data={data}/> 
             </Box>
         </Box>
     );

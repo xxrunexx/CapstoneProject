@@ -9,12 +9,14 @@ import custom from './formBillIssuerInfo.module.css';
 import Link from '@mui/material/Link';
 import { InputAdornment } from '@mui/material';
 import billIssuerInfo from '../../assets/img/billIssuerInfo.png';
-import LockIcon from '@mui/icons-material/Lock';
+import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
+import jwt_decode from "jwt-decode";
+import axios from 'axios';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -62,23 +64,48 @@ const useStyles = makeStyles({
 });
 
 
-const FormBillIssuerInfo = ({userData, userDetailData}) => {
-    console.log(userData);
-    console.log(userDetailData);
+const FormBillIssuerInfo = () => {
+    const classes = useStyles();
+    const authToken = localStorage.getItem('token');
+    let authData = jwt_decode(authToken);
+    console.log(authData.userId);
+    
+    const [resultUser, setResultUser] = React.useState(null);
+    const [resultUserDetail, setResultUserDetail] = React.useState(null);
+
+    const getUserByID = async () => {
+      await axios.get(`http://localhost:8000/billissuer/${authData.userId}`)
+      .then((response)=>{
+        setResultUser(response.data)
+      });
+    };
+
+    const getUserDetailByID = async () => {
+      await axios.get(`http://localhost:8000/billissuerdetail/${authData.userId}`)
+      .then((response)=>{
+        setResultUserDetail(response.data)
+      });
+    };
+
+    React.useEffect(() => {
+      getUserByID();
+      getUserDetailByID();
+    },[]);
+
+    console.log(resultUser?.data.password);
+    // console.log(resultUserDetail);
     const [values, setValues] = React.useState({
-      name: userData?.data.name,
-      email: userData?.data.email,
-      password: userData?.data.password,
-      companyName: userDetailData?.data.company_name,
-      companyAddress: userDetailData?.data.company_address,
-      companyPhone: userDetailData?.data.company_phone,
-      companySite: userDetailData?.data.company_site,
+      name:  '',
+      email: '',
+      companyName: '',
+      companyAddress: '',
+      companyPhone: '',
+      companySite: '',
     });
     
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
-    const classes = useStyles();
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
@@ -107,7 +134,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
                     paddingTop: '0px',
                     paddingBottom: '0px' , 
           }}>
-            <p>{userData?.data.name}</p>
+            <p>{resultUser?.data.name}</p>
           </Item>
           <Item sx={{
                     textAlign: 'center',
@@ -117,22 +144,22 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
                     paddingTop: '0px',
                     paddingBottom: '10px' , 
           }}>
-            <p>{userDetailData?.data.company_name}</p>
+            <p>{resultUserDetail?.data.company_name}</p>
           </Item>
           <Item>
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 id="outlined-uncontrolled"
-                label="Email"
+                label="Name"
                 fullWidth
-                value={values.email}
-                onChange={handleChange('email')}
+                placeholder={resultUser?.data.name}
+                onChange={handleChange('name')}
                 variant="filled"
                 InputProps={{
                   startAdornment: (
                       <InputAdornment position="start">
-                      <EmailIcon />
+                      <PersonIcon />
                       </InputAdornment>
                   ),
                   }}
@@ -143,16 +170,16 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
               id="outlined-uncontrolled"
-              type='password'
-              label="Password"
-              value={values.password}
-              onChange={handleChange('password')}
+              type='email'
+              label="Email"
+              placeholder={resultUser?.data.email}
+              onChange={handleChange('email')}
               variant="filled"
               fullWidth
               InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <LockIcon />
+                    <EmailIcon />
                     </InputAdornment>
                 ),
                 }}
@@ -165,7 +192,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Name"
-              value={values.companyName}
+              placeholder={resultUserDetail?.data.company_name}
               onChange={handleChange('companyName')}
               variant="filled"
               fullWidth
@@ -184,7 +211,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
               className={classes.root}              
               id="outlined-uncontrolled"
               label="Company Address"
-              value={values.companyAddress}
+              placeholder={resultUserDetail?.data.company_address}
               onChange={handleChange('companyAddress')}
               variant="filled"
               fullWidth
@@ -203,7 +230,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Phone"
-              value={values.companyPhone}
+              placeholder={resultUserDetail?.data.company_phone}
               onChange={handleChange('companyPhone')}
               variant="filled"
               fullWidth
@@ -222,7 +249,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Site"
-              value={values.companySite}
+              placeholder={resultUserDetail?.data.company_site}
               onChange={handleChange('companySite')}
               variant="filled"
               fullWidth
@@ -244,7 +271,7 @@ const FormBillIssuerInfo = ({userData, userDetailData}) => {
                     py:1, 
                     fontSize:'1.2rem'
               }}>
-                <Link href="#" underline="none" className={custom.addNewItem}>
+                <Link component="button" underline="none" className={custom.addNewItem}>
                     {'UPDATE'}
                 </Link>
               </Box>

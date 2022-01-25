@@ -30,10 +30,12 @@ Item.propTypes = {
     ]),
 };
 
-const NavbarArrowBack = () => {
+const NavbarArrowBack = (props) => {
     const history = useHistory();
     const passHome= () => {
-        history.goBack();
+        history.push({
+            pathname: props.link
+        });
     };
     return (
         <Box sx={{

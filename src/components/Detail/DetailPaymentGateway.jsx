@@ -36,7 +36,7 @@ const DetailPaymentGateway = (props) => {
                 <h1>{props.data[0].company_name}</h1> 
                 <h3>{props.data[0].company_email}</h3> 
               </Grid>
-              <Grid item xs={12} md={5}>
+              <Grid item xs={12} md={6}>
                 <Grid>
                     <Box sx={{ flexGrow: 1}}>
                         <Grid container spacing={2} sx={{px:4}}>
@@ -45,10 +45,65 @@ const DetailPaymentGateway = (props) => {
                             </Grid>
                             <Grid item xs={6} container justifyContent="end">
                             <h3>{props.data[0].total}</h3> 
-                            </Grid> 
-                             <hr item width='89%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
-                        </Grid> 
-                        </Box>
+                            </Grid>  
+                        </Grid>
+                        <hr item width='89%' textAlign='left'  className = {custom.hr}></hr>
+                    </Box>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Grid>
+                    <Box sx={{ flexGrow: 1}}>
+                        <Grid container>
+                            <Grid item xs={12} container justifyContent="start">
+                                <Item sx={{pt:4, pb:3, px:3, bgcolor:'#FFC700', color:'#131522', width:"100%"}}>
+                                    <h3>Payment Methods</h3> 
+                                </Item> 
+                            </Grid>
+                            <Grid item xs={12} container justifyContent="start">
+                                <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
+                                    <Box sx={{ flexGrow: 1,}}>
+                                        <Grid container justifyContent="space-between" alignItems="center" spacing={2}>
+                                                <Grid item xs={12} md={4} >
+                                                    <h5>Transfer Bank</h5> 
+                                                </Grid>
+                                                <Grid item xs={12} md={4} >
+                                                    <Button>
+                                                        <img src={bni} alt="bni"  position="center"/>
+                                                    </Button>
+                                                </Grid>
+                                                <Grid item xs={12} md={4} >
+                                                    <Button>
+                                                        <img src={bri} alt="bri"  position="center" className = {custom.payment}/>
+                                                    </Button>
+                                                </Grid>
+                                                <hr item width='100%' textAlign='left'></hr>
+                                            <Grid item xs={12} md={4} >
+                                                <h5>Dana</h5> 
+                                            </Grid>
+                                            <Grid item xs={12} md={4} >
+                                            </Grid>
+                                            <Grid item xs={12} md={4} >
+                                                <Button>
+                                                <img src={dana} alt="dana"  position="center"/>
+                                                </Button>
+                                            </Grid> <hr item width='100%' textAlign='left'></hr>
+                                            <Grid item xs={12} md={4} >
+                                                <h5>Gopay</h5> 
+                                            </Grid>
+                                            <Grid item xs={12} md={4} >
+                                            </Grid>
+                                            <Grid item xs={12} md={4} >
+                                                <Button>
+                                                    <img src={gopay} alt="gopay"  position="center"/>
+                                                </Button>
+                                            </Grid>
+                                        </Grid>
+                                    </Box>
+                                </Item> 
+                            </Grid>  
+                        </Grid>
+                    </Box>
                 </Grid>
               </Grid>
               <Grid container justifyContent="right" color='#C4C4C4'>
@@ -56,57 +111,10 @@ const DetailPaymentGateway = (props) => {
                         <Box sx={{ flexGrow: 1}}>
                         <Grid justifyContent="space-between" alignItems="center" spacing={2}>
                                 <Grid item xs={12} md={12} lg={9}>
-                                    <Item sx={{pt:4, pb:3, px:5, bgcolor:'#FFC700', color:'#131522'}}>
-                                        <Box sx={{ flexGrow: 1,}}>
-                                            <Grid container spacing={2}>
-                                                <Grid item xs={12}  >
-                                                    <h3>Payment Methods</h3> 
-                                                </Grid>
-                                            </Grid>
-                                        </Box>
-                                    </Item>
+
                                 </Grid> 
                                 <Grid item xs={12} md={12} lg={9} >
-                                    <Item sx={{bgcolor:'#C4C4C4', color:'#131522', px:3, py:3}}>
-                                        <Box sx={{ flexGrow: 1,}}>
-                                            <Grid container justifyContent="space-between" alignItems="center" spacing={2}>
-                                                    <Grid item xs={12} md={4} >
-                                                        <h5>Transfer Bank</h5> 
-                                                    </Grid>
-                                                    <Grid item xs={12} md={4} >
-                                                        <Button>
-                                                            <img src={bni} alt="bni"  position="center"/>
-                                                        </Button>
-                                                    </Grid>
-                                                    <Grid item xs={12} md={4} >
-                                                        <Button>
-                                                            <img src={bri} alt="bri"  position="center" className = {custom.payment}/>
-                                                        </Button>
-                                                    </Grid>
-                                                 <hr item width='89%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
-                                                <Grid item xs={12} md={4} >
-                                                    <h5>Dana</h5> 
-                                                </Grid>
-                                                <Grid item xs={12} md={4} >
-                                                </Grid>
-                                                <Grid item xs={12} md={4} >
-                                                    <Button>
-                                                    <img src={dana} alt="dana"  position="center"/>
-                                                    </Button>
-                                                </Grid> <hr item width='89%' textAlign='left'  color='#FFC700'  className = {custom.hr}></hr>
-                                                <Grid item xs={12} md={4} >
-                                                    <h5>Gopay</h5> 
-                                                </Grid>
-                                                <Grid item xs={12} md={4} >
-                                                </Grid>
-                                                <Grid item xs={12} md={4} >
-                                                    <Button>
-                                                        <img src={gopay} alt="gopay"  position="center"/>
-                                                    </Button>
-                                                </Grid>
-                                           </Grid>
-                                        </Box>
-                                    </Item>
+                                    
                                 </Grid>
                             </Grid>
                         </Box>

@@ -87,9 +87,7 @@ const FormEmail = () => {
       
       await users?.data.forEach(function(value){
         if(value.email === valueEmail){
-          localStorage.setItem("userID",value.id);
-          localStorage.setItem("userName",value.name);
-          localStorage.setItem("userEmail",value.email);
+          localStorage.setItem("data", JSON.stringify(value));
           history.push({
             pathname: "/newPass",
           });
@@ -140,7 +138,7 @@ const FormEmail = () => {
             <p>{'Provide your account’s email for which you want to reset your password'}</p>
             {msg ? <p style={{color:'red', marginBottom: 0}}>{`* ${msg}`}</p> : ""}
           </Item>
-          <form onSubmit={handleSubmit} method="POST">
+          <form method="POST">
             <Item>
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}

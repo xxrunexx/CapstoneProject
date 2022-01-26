@@ -75,10 +75,11 @@ const FormNewPass = () => {
     });
     const [, setMsg] = React.useState('');
 
-    const userID = localStorage.getItem('userID');
-    const userName = localStorage.getItem('userName');
-    const userEmail = localStorage.getItem('userEmail');
+    let datas = localStorage.getItem('data');
+    let data = JSON.parse(datas);
+    console.log(data.id);
 
+    // console.log(dataID, dataName, dataEmail);
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -110,10 +111,10 @@ const FormNewPass = () => {
           await axios.put(
               `${API}/billissuer`,
               {   
-                  id: parseInt(userID),
-                  name: userName,
+                  id: data.id,
+                  name: data.name,
                   password: values.password,
-                  email: userEmail,
+                  email: data.email,
               },
               {
                   headers: {
@@ -126,9 +127,7 @@ const FormNewPass = () => {
               // handle success
               setMsg(response.data.message);
               console.log('axios', response);
-              localStorage.removeItem("userID");
-              localStorage.removeItem("userName");
-              localStorage.removeItem("userEmail");
+              localStorage.clear();
               history.push({
                   pathname: "/passUpdated",
               });
@@ -138,7 +137,6 @@ const FormNewPass = () => {
               console.log(error);
           });
       }
-      console.log(userID, userName, userEmail, values.password);
     }
     return (
     <Box sx={{ flexGrow: 1}}>

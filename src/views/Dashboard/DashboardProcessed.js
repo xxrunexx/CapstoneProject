@@ -16,11 +16,12 @@ const Dashboardprocessed = () => {
     ];
     const status = 'Processed';
     const link = '/dashboard';
+    const title = 'Processed';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/>
-                <TitleDashboard/>
+                <TitleDashboard title={title} count={`3`}/>
                 <Detaildashboard status={status} data={data}/> 
             </Box>
         </Box>

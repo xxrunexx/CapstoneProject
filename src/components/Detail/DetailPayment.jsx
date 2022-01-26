@@ -6,10 +6,8 @@ import Grid from '@mui/material/Grid';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Link from '@mui/material/Link';
 import custom from './detailDraft.module.css';
-import StatusPaid from '../../components/Status/StatusPaid';
-import StatusDraft from '../../components/Status/StatusDraft';
-import Statusprocessed from '../../components/Status/StatusProcessed';
-import Statusunpaid from '../../components/Status/StatusUnpaid';
+import Statusactive from '../Status/StatusActive';
+import Statusnonactive from '../Status/StatusNonactive';
 import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -18,7 +16,8 @@ const Item = styled(Paper)(({ theme }) => ({
     color: 'white',
     boxShadow: 'none'
 }));
-const Detaildashboard = (props) => {
+
+const Detailpayment = (props) => {
     const history = useHistory();
     const linkInvoice = () => {
         history.push({
@@ -60,10 +59,8 @@ const Detaildashboard = (props) => {
                                 </Grid>
                                 {/* <props.component status={props.status}/> */}
                                 {
-                                    props.status === 'Paid' ? <StatusPaid status={props.status}/> : 
-                                    props.status === 'Unpaid' ? <Statusunpaid status={props.status}/> : 
-                                    props.status === 'Draft' ? <StatusDraft status={props.status}/> : 
-                                    props.status === 'Processed' ? <Statusprocessed status={props.status}/> : 
+                                    props.status === 'Active' ? <Statusactive status={props.status}/> :
+                                    props.status === 'Nonactive' ? <Statusnonactive status={props.status}/> :
                                     null 
                                 }
                                 <Grid item xs={12} md={1} >
@@ -82,4 +79,4 @@ const Detaildashboard = (props) => {
     );
 }
 
-export default Detaildashboard;
+export default Detailpayment;

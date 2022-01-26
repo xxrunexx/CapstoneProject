@@ -98,6 +98,11 @@ const Dashboardbipage = (props) => {
             pathname: "/addInvoice",
         });
     }
+    const newPayment = () => {
+        history.push({
+            pathname: "/addPaymentMethod",
+        });
+    }
     // const [, setMsg] = useState('');
     
     const file = React.useRef(null);
@@ -160,6 +165,15 @@ const Dashboardbipage = (props) => {
                                 sx={{marginLeft:'-0.5%'}}
                             >
                                 <Item>
+                                    <Button 
+                                        variant="contained" 
+                                        className={`${custom.btn} ${custom.btnWidth}`}
+                                        onClick={newPayment}
+                                    >
+                                        <AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Payment Method
+                                    </Button>
+                                </Item>
+                                <Item sx={{marginLeft:'8%'}}>
                                     <Button 
                                         variant="contained" 
                                         className={`${custom.btn} ${custom.btnWidth}`}

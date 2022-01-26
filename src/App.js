@@ -23,6 +23,7 @@ import DashboardClient from './views/Dashboard/DashboardClient';
 import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
 import Paymentmethod from './views/PaymentMethod/PaymentMethod';
+import Newpayment from './views/NewPaymentMethod/newPayment';
 
 function PrivateRoute({ children, ...rest }) {
   return (
@@ -118,6 +119,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute exact path='/paymentMethod'>
             <Paymentmethod/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/addPaymentMethod'>
+            <Newpayment/>
           </PrivateRoute>
           <PrivateRoute 
             exact path='/clientupdated' 

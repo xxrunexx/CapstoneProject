@@ -16,11 +16,12 @@ const Dashboardunpaid = () => {
     ];
     const status = 'Unpaid';
     const link = '/dashboard';
+    const title = 'Unpaid';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
-                <TitleDashboard/>
+                <TitleDashboard title={title} count={`3`}/>
                 <Detaildashboard status={status} data={data}/> 
             </Box>
         </Box>

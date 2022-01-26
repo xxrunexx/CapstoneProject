@@ -16,11 +16,12 @@ const DashboardClient = () => {
     ];
     const status = 'Paid';
     const link = '/dashboard';
+    const title = 'Clients';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
-                <TitleDashboard/>
+                <TitleDashboard title={title} count={`3`}/>
                 <Detaildashboard status={status} data={data}/> 
                 <Detaildashboard status={status} data={data}/>
                 <Detaildashboard status={status} data={data}/>

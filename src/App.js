@@ -45,6 +45,26 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
+function GuestRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        localStorage.getItem("loggedIn") !== "bill_issuer" ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/dashboard",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
 function App() {
   const history = useHistory();
   return (
@@ -55,18 +75,18 @@ function App() {
             exact path='/' 
             component={Home} 
           />
-          <Route 
-            exact path='/login' 
-            component={Login} 
-          />
-          <Route 
-            exact path='/register' 
-            component={Register} 
-          />
-          <Route 
-            exact path='/registerDetail' 
-            component={Registerdetail} 
-          />
+          <GuestRoute 
+            exact path='/login' >
+              <Login />
+          </GuestRoute>
+          <GuestRoute 
+            exact path='/register'>
+              <Register />
+          </GuestRoute>
+          <GuestRoute 
+            exact path='/registerDetail'>
+              <Registerdetail />
+          </GuestRoute>
           <Route 
             exact path='/client' 
             component={DashboardClient} 

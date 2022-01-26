@@ -39,10 +39,10 @@ function Login() {
 
     const [, setMsg] = React.useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // console.log(values.email, values.password);
-        axios
+        await axios
           .post(
             'http://localhost:8000/billissuer/login',
             {

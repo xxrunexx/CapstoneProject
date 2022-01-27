@@ -22,7 +22,7 @@ import Editinvoice from './views/EditInvoice/EditInvoice';
 import DashboardClient from './views/Dashboard/DashboardClient';
 import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
-import Paymentmethod from './views/PaymentMethod/PaymentMethod';
+import Paymentmethod from './views/Dashboard/PaymentMethod';
 import Newpayment from './views/NewPaymentMethod/newPayment';
 
 function PrivateRoute({ children, ...rest }) {

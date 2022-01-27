@@ -2,29 +2,47 @@ import * as React from 'react';
 import Custom from './dashboardClient.module.css';
 import TitleDashboard from '../../components/Detail/TitleDashboard';
 import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
-import Detaildashboard from '../../components/Detail/DetailDashboard';
+import Detailclient from '../../components/Detail/DetailClient';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 const DashboardClient = () => {
-    const data = [
-        { 
-            id: '#5F892S3', 
-            payment_due: 'Due Jan 1, 2022', 
-            bill_to: 'Harun Rasyid', 
-            total: '250.000',
-        },
-    ];
-    const status = 'Paid';
     const link = '/dashboard';
     const title = 'Clients';
+    const token = React.useRef('');
+    token.current = localStorage.getItem('token');
+    const [datas, setDatas] = React.useState(null);
+    const [count, setCount] = React.useState(0);
+    React.useEffect(() => {
+        const getClient = async () => {
+            await axios.get(
+                'http://localhost:8000/client',
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token.current}`,
+                    },
+                }
+            )
+            .then((response)=>{
+            // setResultUser(response.data);
+                setCount(response.data.data.length);
+                setDatas(response.data);
+            });
+        };
+        getClient();
+    },[]);
+    console.log(datas);
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
-                <TitleDashboard title={title} count={`3`}/>
-                <Detaildashboard status={status} data={data}/> 
-                <Detaildashboard status={status} data={data}/>
-                <Detaildashboard status={status} data={data}/>
+                <TitleDashboard title={title} count={count}/>
+                {datas?.data.map((value, key) => {
+                    return (
+                        <Detailclient key={key} data={value}/> 
+                    );
+                })}
             </Box>
         </Box>
     );

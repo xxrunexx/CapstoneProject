@@ -12,6 +12,7 @@ const Paymentmethod = () => {
     const token = React.useRef('');
     token.current = localStorage.getItem('token');
     const [datas, setDatas] = React.useState(null);
+    const [count, setCount] = React.useState(0);
     React.useEffect(() => {
         const getClient = async () => {
             await axios.get(
@@ -25,6 +26,7 @@ const Paymentmethod = () => {
             )
             .then((response)=>{
             // setResultUser(response.data);
+                setCount(response.data.data.length);
                 setDatas(response.data);
             });
         };
@@ -35,9 +37,11 @@ const Paymentmethod = () => {
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
-                <TitleDashboard title={title} count={`3`}/>
-                {datas?.data.forEach(function(value, i){
-                    <Detailpayment key={i} /> 
+                <TitleDashboard title={title} count={count}/>
+                {datas?.data.map((value, key) => {
+                    return (
+                        <Detailpayment key={key} data={value}/> 
+                    );
                 })}
             </Box>
         </Box>

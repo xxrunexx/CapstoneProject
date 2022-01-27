@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Detailpayment = () => {
+const Detailpayment = ({data}) => {
     const history = useHistory();
     const linkInvoice = () => {
         history.push({
@@ -27,20 +27,21 @@ const Detailpayment = () => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
-                <Grid item xs={10} >
+                <Grid item xs={7} >
                     <Item sx={{bgcolor: '#E5E5E5', color: '#131522', p:3,mb:3,borderRadius:4}}>
                         <Box sx={{ flexGrow: 1}}>
                             <Grid container justifyContent="space-between" spacing={2}>
-                                <Grid item xs={12} md={4} >
-                                    <Item sx={{textAlign: 'left', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {/* {value?.name} */} asdasdas
+                                <Grid item xs={12} md={3} >
+                                    <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
+                                        {data.name}
                                     </Item>
                                 </Grid>
-                                <Statusactive status='Active'/> : <Statusnonactive status='Nonactive'/>
-                                <Grid item xs={12} md={1} >
-                                    <Item sx={{textAlign: 'right', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        <Link component="button" underline="none" onClick={linkInvoice}>
-                                            <ChevronRightIcon sx={{color:'#FFC700'}} className={custom.rightIcon}/>
+                                {data.status ? <Statusactive status='Active'/> : <Statusnonactive status='Nonactive'/>}
+                                <Grid item xs={12} md={3} >
+                                    <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
+                                        <Link component="button" underline="none">
+                                            {/* <ChevronRightIcon sx={{color:'#FFC700'}} className={custom.rightIcon}/> */}
+                                            {`UPDATE STATUS`}
                                         </Link>
                                     </Item>
                                 </Grid>

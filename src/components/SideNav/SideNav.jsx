@@ -110,7 +110,7 @@ const Sidenav = (props) => {
             <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>{props.auth.name}</Box>
             {navMenuList.map((menu, key) => {
                 return (
-                    <Box key={key} sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
+                    <Box key={key} sx={{textAlign:'left', fontSize:'1rem', mb:1}} className={custom.linkBox}>
                         <Link 
                             component="button" 
                             underline="hover" 

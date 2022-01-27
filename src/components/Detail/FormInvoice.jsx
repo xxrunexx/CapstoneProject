@@ -11,6 +11,7 @@ import Link from '@mui/material/Link';
 import { useHistory } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -59,8 +60,8 @@ const useStyles = makeStyles({
 
 const Forminvoice = () => {
     const classes = useStyles();
-    const token = React.useRef('');
     const id = React.useRef('');
+    const token = React.useRef('');
     token.current = localStorage.getItem('token');
     const [datas, setDatas] = React.useState(null);
     const [dataDetail, setDataDetail] = React.useState(null);
@@ -69,133 +70,103 @@ const Forminvoice = () => {
         email:'',
         address:'',
         invoiceDate:'',
-        terms:'7-Days',
-        paymentDate:'',
+        terms:7,
         itemName:'',
-        total:''
+        total:0
     });
 
     React.useEffect(() => {
-      id.current = values.clientID
-      const getDetail = () => {
-        axios.get(
-            `http://localhost:8000/client/${id.current}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token.current}`,
-                },
-            }
-        )
-        .then((response)=>{
-        // setResultUser(response.data);
-          setDataDetail(response.data);
-          setValues((oldState) => {
-            return {
-              ...oldState,
-              id: id.current,
-              name: response.data.data.name,
-              address: response.data.data.address,
-            }
-          })
-        });
-      }
-      getDetail();
-    }, []);
+      const getClient = async () => {
+          await axios.get(
+              'http://localhost:8000/client',
+              {
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token.current}`,
+                  },
+              }
+          )
+          .then((response)=>{
+          // setResultUser(response.data);
+              setDatas(response.data);
+          });
+      };
+      getClient();
+    },[]);
+    
+    const handlerUserData = (event) => {
+      id.current = event.target.value;
+      axios.get(
+          `http://localhost:8000/client/${id.current}`,
+          {
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token.current}`,
+              },
+          }
+      )
+      .then((response)=>{
+        setDataDetail(response.data);
+        setValues({
+          ...values,
+          clientID: id.current,
+          email: response.data.data.email,
+          address: response.data.data.address,
+        })
+      });
+    }
+
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
-      // axios.get(
-      //     `http://localhost:8000/client/${values.clientID}`,
-      //     {
-      //         headers: {
-      //             'Content-Type': 'application/json',
-      //             'Authorization': `Bearer ${token.current}`,
-      //         },
-      //     }
-      // )
-      // .then((response)=>{
-      // // setResultUser(response.data);
-      //   setDataDetail(response.data);
-      //   setValues({
-      //     ...values, 
-      //     email:response.data.data.email,
-      //     address:response.data.data.address,
-      //   });
-      // });
-      // await axios.get(
-      //   `http://localhost:8000/client/${id}`, {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       'Authorization': `Bearer ${token.current}`,
-      //     },
-      //   }).then((response) => {
-      //     setValues({
-      //       clientID:id,
-      //       email:response.data.data.email,
-      //       address:response.data.data.address,
-      //       invoiceDate:'',
-      //       terms:'7-Days',
-      //       paymentDate:'',
-      //       itemName:'',
-      //       total:''
-      //     });
-      //   });
     };
+
     const days = [
         {
-          value: '7-Days',
+          value: 7,
           label: '7 Day',
         },
         {
-          value: '10-Days',
+          value: 10,
           label: '10 Day',
         },
         {
-          value: '30-Days',
+          value: 30,
           label: '30 Day',
         },
     ];
-    React.useEffect(() => {
-        const getClient = async () => {
-            await axios.get(
-                'http://localhost:8000/client',
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.current}`,
-                    },
-                }
-            )
-            .then((response)=>{
-            // setResultUser(response.data);
-                setDatas(response.data);
-            });
-        };
-        getClient();
-    },[]);
-    // const handleClientDataChange = async (id) => {
-    //   await axios.get(
-    //     `http://localhost:8000/client/${id}`, {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Authorization': `Bearer ${token.current}`,
-    //       },
-    //     }).then((response) => {
-    //       setValues({
-    //         clientID:id,
-    //         email:response.data.data.email,
-    //         address:response.data.data.address,
-    //         invoiceDate:'',
-    //         terms:'7-Days',
-    //         paymentDate:'',
-    //         itemName:'',
-    //         total:''
-    //       });
-    //     });
-    // };
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
       e.preventDefault();
       // console.log(values);
+      const credential = jwt_decode(token.current);
+      await axios.post(
+          `http://localhost:8000/invoice/add`,
+          {   
+              client_id: values.clientID,
+              item: values.itemName,
+              total: values.total,
+              bill_issuer_id: credential.userId,
+              payment_method_id: 0,
+              payment_terms: values.terms
+          },
+          {
+              headers: {
+                  'Content-Type': 'application/json',
+                  // Authorization: 'Bearer token...',
+              },
+          }
+      )
+      .then(function (response) {
+          // handle success
+          console.log('axios', response);
+          history.push({
+              pathname: "/dashboard",
+          });
+      })
+      .catch(function (error) {
+          // handle error
+          console.log(error);
+      });
     }
     const history = useHistory();
     const linkDiscard = () => {
@@ -217,7 +188,7 @@ const Forminvoice = () => {
                   className={classes.root}
                   select 
                   value={values.clientID} 
-                  onChange={handleChange('clientID')}
+                  onChange={handlerUserData}
                   fullWidth
                   InputProps={{
                       classes:{notchedOutline:classes.noBorder}
@@ -272,7 +243,7 @@ const Forminvoice = () => {
                               className={classes.root}
                               placeholder="Input Date for Invoice ..."
                               type="date"
-                              defaultValue="2022-11-24"
+                              defaultValue="2022-01-27"
                               onChange={handleChange('invoiceDate')}
                               fullWidth
                               InputProps={{
@@ -342,20 +313,6 @@ const Forminvoice = () => {
                 </Grid>
               </Box>
             </Item>
-            {/* <Item sx={{textAlign: 'center',}}>
-                <Box 
-                  sx={{
-                      bgcolor: '#FFC700', 
-                      borderRadius:2, 
-                      color:'black', 
-                      py:1, 
-                      fontSize:'1.2rem'
-                }}>
-                  <Link href="#" underline="none" className={custom.addNewItem}>
-                      {'ADD NEW ITEM'}
-                  </Link>
-                </Box>
-            </Item> */}
             <Item>
             <Box sx={{ flexGrow: 1, mt:5}}>
                 <Grid container justifyContent="space-between" spacing={2}>

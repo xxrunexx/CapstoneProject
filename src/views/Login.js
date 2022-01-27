@@ -67,7 +67,7 @@ function Login() {
             localStorage.setItem("token", response.data.data.token);
             localStorage.setItem("loggedIn", "bill_issuer");
             console.log(response.data.data.token);
-            history.push('/dashboard');
+            history.push('/');
             // window.location.href = "/dashboard";
           })
           .catch(function (error) {

@@ -55,13 +55,13 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Dashboardhome = (props) => {
+const Dashboardhome = () => {
     const history = useHistory();
     const classes = useStyles();
     const auth = localStorage.getItem('loggedIn');
-    const [show, setShow] = React.useState(auth);
-    if(auth === 'bill_issuer'){
-        setShow(!show);
+    const [authed, setAuthed] = React.useState(false);
+    if(auth !== 'bill_issuer'){
+        setAuthed(true);
     }
     const passLogin= () => {
         history.push({
@@ -71,6 +71,11 @@ const Dashboardhome = (props) => {
     const passSearch= () => {
         history.push({
           pathname: "/detail",
+        });
+    };
+    const passDashboard= () => {
+        history.push({
+          pathname: "/dashboard",
         });
     };
     return (
@@ -102,14 +107,21 @@ const Dashboardhome = (props) => {
                                 sx={{marginLeft:'-1.2%'}}
                             >
                                 <Item>
-                                    {show?
+                                    {authed ? 
                                         <Button 
                                             variant="contained" 
                                             className={`${custom.btn} ${custom.btnWidth}`}
                                             onClick={passLogin}
                                         >
-                                            <LoginOutlinedIcon sx={{marginRight:'8%'}}>Login Bill Issuer</LoginOutlinedIcon>
-                                        </Button> : null
+                                            <LoginOutlinedIcon sx={{marginRight:'8%'}}/>Login Bill Issuer
+                                        </Button> : 
+                                        <Button 
+                                            variant="contained" 
+                                            className={`${custom.btn} ${custom.btnWidth}`}
+                                            onClick={passDashboard}
+                                        >
+                                            Go To Dashboard
+                                        </Button>
                                     }
                                 </Item>
                             </Grid>

@@ -66,45 +66,64 @@ const useStyles = makeStyles({
 
 const FormBillIssuerInfo = () => {
     const classes = useStyles();
-    const authToken = localStorage.getItem('token');
-    let authData = jwt_decode(authToken);
-    console.log(authData.userId);
+    const token = React.useRef('');
+    token.current = localStorage.getItem('token');
+
     
-    const [resultUser, setResultUser] = React.useState(null);
-    const [resultUserDetail, setResultUserDetail] = React.useState(null);
-
-    const getUserByID = async () => {
-      await axios.get(`http://localhost:8000/billissuer/${authData.userId}`)
-      .then((response)=>{
-        setResultUser(response.data)
-      });
-    };
-
-    const getUserDetailByID = async () => {
-      await axios.get(`http://localhost:8000/billissuerdetail/${authData.userId}`)
-      .then((response)=>{
-        setResultUserDetail(response.data)
-      });
-    };
-
-    React.useEffect(() => {
-      getUserByID();
-      getUserDetailByID();
-    },[]);
-
-    console.log(resultUser?.data.password);
-    // console.log(resultUserDetail);
-    const [values, setValues] = React.useState({
+    // const [resultUser, setResultUser] = React.useState(null);
+    // const [resultUserDetail, setResultUserDetail] = React.useState(null);
+    const [valuesUser, setValuesUser] = React.useState({
       name:  '',
       email: '',
+    });
+
+    const [valuesUserDetail, setValuesUserDetail] = React.useState({
       companyName: '',
       companyAddress: '',
       companyPhone: '',
       companySite: '',
     });
+
     
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+    React.useEffect(() => {
+      const credential = jwt_decode(token.current);
+
+      const getUserByID = async () => {
+        await axios.get(`http://localhost:8000/billissuer/${credential.userId}`)
+        .then((response)=>{
+          // setResultUser(response.data);
+          setValuesUser({
+            name: response.data.data.name,
+            email: response.data.data.email,
+          });
+        });
+      };
+  
+      const getUserDetailByID = async () => {
+        await axios.get(`http://localhost:8000/billissuerdetail/${credential.userId}`)
+        .then((response)=>{
+          // setResultUserDetail(response.data);
+          setValuesUserDetail({
+            companyName: response.data.data.company_name,
+            companyAddress: response.data.data.company_address,
+            companyPhone: response.data.data.company_phone,
+            companySite: response.data.data.company_site,
+          });
+        });
+      };
+      getUserByID();
+      getUserDetailByID();
+    },[]);
+
+    // console.log(valuesUser);
+    // console.log(valuesUserDetail);
+    
+    const handleChangeUser = (prop) => (event) => {
+      setValuesUser({ ...valuesUser, [prop]: event.target.value });
+    };
+
+    const handleChangeUserDetail = (prop) => (event) => {
+      setValuesUserDetail({ ...valuesUserDetail, [prop]: event.target.value });
     };
     return (
     <Box sx={{ flexGrow: 1}}>
@@ -134,7 +153,7 @@ const FormBillIssuerInfo = () => {
                     paddingTop: '0px',
                     paddingBottom: '0px' , 
           }}>
-            <p>{resultUser?.data.name}</p>
+            <p>{valuesUser.name}</p>
           </Item>
           <Item sx={{
                     textAlign: 'center',
@@ -144,7 +163,7 @@ const FormBillIssuerInfo = () => {
                     paddingTop: '0px',
                     paddingBottom: '10px' , 
           }}>
-            <p>{resultUserDetail?.data.company_name}</p>
+            <p>{valuesUserDetail.companyName}</p>
           </Item>
           <Item>
               <TextField
@@ -153,8 +172,8 @@ const FormBillIssuerInfo = () => {
                 id="outlined-uncontrolled"
                 label="Name"
                 fullWidth
-                placeholder={resultUser?.data.name}
-                onChange={handleChange('name')}
+                value={valuesUser.name}
+                onChange={handleChangeUser('name')}
                 variant="filled"
                 InputProps={{
                   startAdornment: (
@@ -172,8 +191,8 @@ const FormBillIssuerInfo = () => {
               id="outlined-uncontrolled"
               type='email'
               label="Email"
-              placeholder={resultUser?.data.email}
-              onChange={handleChange('email')}
+              value={valuesUser.email}
+              onChange={handleChangeUser('email')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -192,8 +211,8 @@ const FormBillIssuerInfo = () => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Name"
-              placeholder={resultUserDetail?.data.company_name}
-              onChange={handleChange('companyName')}
+              value={valuesUserDetail.companyName}
+              onChange={handleChangeUserDetail('companyName')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -211,8 +230,8 @@ const FormBillIssuerInfo = () => {
               className={classes.root}              
               id="outlined-uncontrolled"
               label="Company Address"
-              placeholder={resultUserDetail?.data.company_address}
-              onChange={handleChange('companyAddress')}
+              value={valuesUserDetail.companyAddress}
+              onChange={handleChangeUserDetail('companyAddress')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -230,8 +249,8 @@ const FormBillIssuerInfo = () => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Phone"
-              placeholder={resultUserDetail?.data.company_phone}
-              onChange={handleChange('companyPhone')}
+              value={valuesUserDetail.companyPhone}
+              onChange={handleChangeUserDetail('companyPhone')}
               variant="filled"
               fullWidth
               InputProps={{
@@ -249,8 +268,8 @@ const FormBillIssuerInfo = () => {
               className={classes.root}
               id="outlined-uncontrolled"
               label="Company Site"
-              placeholder={resultUserDetail?.data.company_site}
-              onChange={handleChange('companySite')}
+              value={valuesUserDetail.companySite}
+              onChange={handleChangeUserDetail('companySite')}
               variant="filled"
               fullWidth
               InputProps={{

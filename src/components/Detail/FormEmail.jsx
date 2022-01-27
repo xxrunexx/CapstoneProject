@@ -77,7 +77,7 @@ const FormEmail = () => {
     }
 
     React.useEffect(() => {
-      getData([]);
+      getData();
     },[]);
 
     const classes = useStyles();
@@ -136,7 +136,7 @@ const FormEmail = () => {
                     fontSize:'1.2rem'
           }}>
             <p>{'Provide your account’s email for which you want to reset your password'}</p>
-            {msg ? <p style={{color:'red', marginBottom: 0}}>{`* ${msg}`}</p> : ""}
+            {msg ? <p style={{color:'red', marginBottom: 0}}>{`* ${msg}`}</p> : null}
           </Item>
           <form method="POST">
             <Item>

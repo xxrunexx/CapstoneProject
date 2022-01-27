@@ -40,7 +40,7 @@ const Paymentmethod = () => {
                 <TitleDashboard title={title} count={count}/>
                 {datas?.data.map((value, key) => {
                     return (
-                        <Detailpayment key={key} data={value}/> 
+                        <Detailpayment key={key} data={value} authToken={token.current}/> 
                     );
                 })}
             </Box>

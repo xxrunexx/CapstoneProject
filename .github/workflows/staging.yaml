@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "main"
+      - "development"
 jobs:
   build-push-docker:
     name: "build image and push registry dockerhub"

@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Detailpayment = (props) => {
+const Detailpayment = () => {
     const history = useHistory();
     const linkInvoice = () => {
         history.push({
@@ -28,41 +28,15 @@ const Detailpayment = (props) => {
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
                 <Grid item xs={10} >
-                    <Item sx={{
-                        bgcolor: '#E5E5E5', 
-                        color: '#131522', 
-                        p:3,
-                        mb:3,
-                        borderRadius:4
-                    }}>
+                    <Item sx={{bgcolor: '#E5E5E5', color: '#131522', p:3,mb:3,borderRadius:4}}>
                         <Box sx={{ flexGrow: 1}}>
                             <Grid container justifyContent="space-between" spacing={2}>
-                                <Grid item xs={12} md={1} >
+                                <Grid item xs={12} md={4} >
                                     <Item sx={{textAlign: 'left', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {props.data[0].id}
+                                        {/* {value?.name} */} asdasdas
                                     </Item>
                                 </Grid>
-                                <Grid item xs={12} md={3} >
-                                    <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {`${props.data[0].payment_due}`}
-                                    </Item>
-                                </Grid>
-                                <Grid item xs={12} md={3} >
-                                    <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        <Link component="button" underline="none" sx={{textTransform:'none', color: '#131522'}} onClick={props.modal}>{props.data[0].bill_to}</Link>
-                                    </Item>
-                                </Grid>
-                                <Grid item xs={12} md={2} >
-                                    <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {props.data[0].total}
-                                    </Item>
-                                </Grid>
-                                {/* <props.component status={props.status}/> */}
-                                {
-                                    props.status === 'Active' ? <Statusactive status={props.status}/> :
-                                    props.status === 'Nonactive' ? <Statusnonactive status={props.status}/> :
-                                    null 
-                                }
+                                <Statusactive status='Active'/> : <Statusnonactive status='Nonactive'/>
                                 <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'right', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
                                         <Link component="button" underline="none" onClick={linkInvoice}>

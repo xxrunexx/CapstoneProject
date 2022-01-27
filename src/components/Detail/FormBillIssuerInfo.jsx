@@ -125,6 +125,11 @@ const FormBillIssuerInfo = () => {
     const handleChangeUserDetail = (prop) => (event) => {
       setValuesUserDetail({ ...valuesUserDetail, [prop]: event.target.value });
     };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // console.log('test');
+    }
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
@@ -165,136 +170,138 @@ const FormBillIssuerInfo = () => {
           }}>
             <p>{valuesUserDetail.companyName}</p>
           </Item>
-          <Item>
+          <form onSubmit={handleSubmit} method="post">
+            <Item>
+                <TextField
+                  sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                  className={classes.root}
+                  id="outlined-uncontrolled"
+                  label="Name"
+                  fullWidth
+                  value={valuesUser.name}
+                  onChange={handleChangeUser('name')}
+                  variant="filled"
+                  InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                        <PersonIcon />
+                        </InputAdornment>
+                    ),
+                    }}
+                />
+            </Item>
+            <Item>
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 id="outlined-uncontrolled"
-                label="Name"
-                fullWidth
-                value={valuesUser.name}
-                onChange={handleChangeUser('name')}
+                type='email'
+                label="Email"
+                value={valuesUser.email}
+                onChange={handleChangeUser('email')}
                 variant="filled"
+                fullWidth
                 InputProps={{
                   startAdornment: (
                       <InputAdornment position="start">
-                      <PersonIcon />
+                      <EmailIcon />
                       </InputAdornment>
                   ),
                   }}
               />
-          </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              id="outlined-uncontrolled"
-              type='email'
-              label="Email"
-              value={valuesUser.email}
-              onChange={handleChangeUser('email')}
-              variant="filled"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <EmailIcon />
-                    </InputAdornment>
-                ),
-                }}
-            />
-            
-          </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              id="outlined-uncontrolled"
-              label="Company Name"
-              value={valuesUserDetail.companyName}
-              onChange={handleChangeUserDetail('companyName')}
-              variant="filled"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <ApartmentIcon />
-                    </InputAdornment>
-                ),
-                }}
-            />
-          </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}              
-              id="outlined-uncontrolled"
-              label="Company Address"
-              value={valuesUserDetail.companyAddress}
-              onChange={handleChangeUserDetail('companyAddress')}
-              variant="filled"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <LocationOnIcon />
-                    </InputAdornment>
-                ),
-                }}
-            />
-          </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              id="outlined-uncontrolled"
-              label="Company Phone"
-              value={valuesUserDetail.companyPhone}
-              onChange={handleChangeUserDetail('companyPhone')}
-              variant="filled"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <PhoneIcon />
-                    </InputAdornment>
-                ),
-                }}
-            />
-          </Item>
-          <Item>
-            <TextField
-              sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-              className={classes.root}
-              id="outlined-uncontrolled"
-              label="Company Site"
-              value={valuesUserDetail.companySite}
-              onChange={handleChangeUserDetail('companySite')}
-              variant="filled"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start">
-                    <LanguageIcon />
-                    </InputAdornment>
-                ),
-                }}
-            />
-          </Item>
-          <Item sx={{textAlign: 'center',}}>
-              <Box 
-                sx={{
-                    bgcolor: '#FFC700', 
-                    borderRadius:2, 
-                    color:'black', 
-                    py:1, 
-                    fontSize:'1.2rem'
-              }}>
-                <Link component="button" underline="none" className={custom.addNewItem}>
-                    {'UPDATE'}
-                </Link>
-              </Box>
-          </Item>
+              
+            </Item>
+            <Item>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Name"
+                value={valuesUserDetail.companyName}
+                onChange={handleChangeUserDetail('companyName')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                      <ApartmentIcon />
+                      </InputAdornment>
+                  ),
+                  }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}              
+                id="outlined-uncontrolled"
+                label="Company Address"
+                value={valuesUserDetail.companyAddress}
+                onChange={handleChangeUserDetail('companyAddress')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                      <LocationOnIcon />
+                      </InputAdornment>
+                  ),
+                  }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Phone"
+                value={valuesUserDetail.companyPhone}
+                onChange={handleChangeUserDetail('companyPhone')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                      <PhoneIcon />
+                      </InputAdornment>
+                  ),
+                  }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Site"
+                value={valuesUserDetail.companySite}
+                onChange={handleChangeUserDetail('companySite')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                      <InputAdornment position="start">
+                      <LanguageIcon />
+                      </InputAdornment>
+                  ),
+                  }}
+              />
+            </Item>
+            <Item sx={{textAlign: 'center',}}>
+                <Box 
+                  sx={{
+                      bgcolor: '#FFC700', 
+                      borderRadius:2, 
+                      color:'black', 
+                      py:1, 
+                      fontSize:'1.2rem'
+                }}>
+                  <Link component="button" underline="none" type='submit' className={custom.addNewItem}>
+                      {'UPDATE'}
+                  </Link>
+                </Box>
+            </Item>
+          </form>
         </Grid>
       </Grid>
     </Box>

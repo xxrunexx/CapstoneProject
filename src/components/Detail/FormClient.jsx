@@ -60,7 +60,7 @@ const useStyles = makeStyles({
 
 const Formclient = () => {
     const classes = useStyles();
-    // const authToken = localStorage.getItem('token');
+    const authToken = localStorage.getItem('token');
     const history = useHistory();
     const [values, setValues] = useState({
         nik:0,
@@ -96,13 +96,16 @@ const Formclient = () => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${authToken}`,
+                    'Authorization': `Bearer ${authToken}`,
                 },
             }
           )
           .then(function (response) {
             // handle success
             setMsg(response.data.message);
+            history.push({
+              pathname: "/dashboard"
+            });
             console.log('axios', response);
           })
           .catch(function (error) {

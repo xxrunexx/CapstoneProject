@@ -60,7 +60,7 @@ const useStyles = makeStyles({
 
 const Formpaymentmethod = () => {
     const classes = useStyles();
-    // const authToken = localStorage.getItem('token');
+    const authToken = localStorage.getItem('token');
     const history = useHistory();
     const [values, setValues] = useState({
         name:'',
@@ -90,7 +90,7 @@ const Formpaymentmethod = () => {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${authToken}`,
+                    'Authorization': `Bearer ${authToken}`,
                 },
             }
           )

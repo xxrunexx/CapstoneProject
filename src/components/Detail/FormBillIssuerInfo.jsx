@@ -69,11 +69,9 @@ const FormBillIssuerInfo = () => {
     const token = React.useRef('');
     token.current = localStorage.getItem('token');
 
-    
-    // const [resultUser, setResultUser] = React.useState(null);
-    // const [resultUserDetail, setResultUserDetail] = React.useState(null);
     const [valuesUser, setValuesUser] = React.useState({
       name:  '',
+      password: '',
       email: '',
     });
 
@@ -83,7 +81,6 @@ const FormBillIssuerInfo = () => {
       companyPhone: '',
       companySite: '',
     });
-
     
     React.useEffect(() => {
       const credential = jwt_decode(token.current);
@@ -94,6 +91,7 @@ const FormBillIssuerInfo = () => {
           // setResultUser(response.data);
           setValuesUser({
             name: response.data.data.name,
+            password: response.data.data.password,
             email: response.data.data.email,
           });
         });

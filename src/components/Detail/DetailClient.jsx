@@ -12,7 +12,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Detailclient = ({data}) => {
-    console.log(data);
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">

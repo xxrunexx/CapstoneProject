@@ -9,6 +9,8 @@ import custom from './formInvoice.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
 import { useHistory } from 'react-router-dom';
+import Select from '@mui/material/Select';
+import axios from 'axios';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -57,40 +59,143 @@ const useStyles = makeStyles({
 
 const Forminvoice = () => {
     const classes = useStyles();
+    const token = React.useRef('');
+    const id = React.useRef('');
+    token.current = localStorage.getItem('token');
+    const [datas, setDatas] = React.useState(null);
+    const [dataDetail, setDataDetail] = React.useState(null);
     const [values, setValues] = React.useState({
         clientID:0,
-        name:'',
         email:'',
         address:'',
         invoiceDate:'',
-        terms:'3-Days',
+        terms:'7-Days',
         paymentDate:'',
         itemName:'',
         total:''
     });
+
+    React.useEffect(() => {
+      id.current = values.clientID
+      const getDetail = () => {
+        axios.get(
+            `http://localhost:8000/client/${id.current}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token.current}`,
+                },
+            }
+        )
+        .then((response)=>{
+        // setResultUser(response.data);
+          setDataDetail(response.data);
+          setValues((oldState) => {
+            return {
+              ...oldState,
+              id: id.current,
+              name: response.data.data.name,
+              address: response.data.data.address,
+            }
+          })
+        });
+      }
+      getDetail();
+    }, []);
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
+      // axios.get(
+      //     `http://localhost:8000/client/${values.clientID}`,
+      //     {
+      //         headers: {
+      //             'Content-Type': 'application/json',
+      //             'Authorization': `Bearer ${token.current}`,
+      //         },
+      //     }
+      // )
+      // .then((response)=>{
+      // // setResultUser(response.data);
+      //   setDataDetail(response.data);
+      //   setValues({
+      //     ...values, 
+      //     email:response.data.data.email,
+      //     address:response.data.data.address,
+      //   });
+      // });
+      // await axios.get(
+      //   `http://localhost:8000/client/${id}`, {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'Authorization': `Bearer ${token.current}`,
+      //     },
+      //   }).then((response) => {
+      //     setValues({
+      //       clientID:id,
+      //       email:response.data.data.email,
+      //       address:response.data.data.address,
+      //       invoiceDate:'',
+      //       terms:'7-Days',
+      //       paymentDate:'',
+      //       itemName:'',
+      //       total:''
+      //     });
+      //   });
     };
     const days = [
-        {
-          value: '3-Days',
-          label: '3 Day',
-        },
         {
           value: '7-Days',
           label: '7 Day',
         },
         {
-          value: '14-Days',
-          label: '14 Day',
+          value: '10-Days',
+          label: '10 Day',
         },
         {
           value: '30-Days',
           label: '30 Day',
         },
     ];
+    React.useEffect(() => {
+        const getClient = async () => {
+            await axios.get(
+                'http://localhost:8000/client',
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token.current}`,
+                    },
+                }
+            )
+            .then((response)=>{
+            // setResultUser(response.data);
+                setDatas(response.data);
+            });
+        };
+        getClient();
+    },[]);
+    // const handleClientDataChange = async (id) => {
+    //   await axios.get(
+    //     `http://localhost:8000/client/${id}`, {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': `Bearer ${token.current}`,
+    //       },
+    //     }).then((response) => {
+    //       setValues({
+    //         clientID:id,
+    //         email:response.data.data.email,
+    //         address:response.data.data.address,
+    //         invoiceDate:'',
+    //         terms:'7-Days',
+    //         paymentDate:'',
+    //         itemName:'',
+    //         total:''
+    //       });
+    //     });
+    // };
     const handleSubmit = (e) => {
       e.preventDefault();
+      // console.log(values);
     }
     const history = useHistory();
     const linkDiscard = () => {
@@ -98,6 +203,7 @@ const Forminvoice = () => {
           pathname: '/dashboard'
         })
     }
+    console.log(dataDetail);
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
@@ -105,32 +211,25 @@ const Forminvoice = () => {
           <Item><h1>New Invoice</h1></Item>
           <form onSubmit={handleSubmit} method="post">
             <Item>
-              <span className={custom.titleInput}>Client's ID</span>
-              <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                placeholder="Input Client ID ..."
-                onChange={handleChange('clientID')}
-                fullWidth
-                InputProps={{
-                  classes:{notchedOutline:classes.noBorder}
-                }}
-              />
-            </Item>
-            <Item>
               <span className={custom.titleInput}>Client's Name</span>
-              <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                placeholder="Input Client Name ..."
-                onChange={handleChange('name')}
-                fullWidth
-                value="test"
-                disabled
-                InputProps={{
-                  classes:{notchedOutline:classes.noBorder}
-                }}
-              />
+              <Select
+                  sx={{bgcolor: '#FFFFFF', borderRadius:2}}
+                  className={classes.root}
+                  select 
+                  value={values.clientID} 
+                  onChange={handleChange('clientID')}
+                  fullWidth
+                  InputProps={{
+                      classes:{notchedOutline:classes.noBorder}
+                  }}
+              >   
+                  <MenuItem disabled value={0}><em>Select Client</em></MenuItem>
+                  {datas?.data.map((value, key) => {
+                    return (
+                      <MenuItem key={key} value={value.id} data={value}>{value.name}</MenuItem>
+                    );
+                  })}
+              </Select>
             </Item>
             <Item>
               <span className={custom.titleInput}>Client's Email</span>
@@ -140,7 +239,7 @@ const Forminvoice = () => {
                 placeholder="Input Client Email ..."
                 onChange={handleChange('email')}
                 fullWidth
-                value="test"
+                value={values.email}
                 disabled
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -155,7 +254,7 @@ const Forminvoice = () => {
                 placeholder="Input Client Address ..."
                 onChange={handleChange('address')}
                 fullWidth
-                value="test"
+                value={values.address}
                 disabled
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -187,7 +286,6 @@ const Forminvoice = () => {
                           <span className={custom.titleInput}>Payment Terms</span>
                           <TextField
                               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                              id="outlined-select-currency"
                               className={classes.root}
                               select
                               value={values.terms}

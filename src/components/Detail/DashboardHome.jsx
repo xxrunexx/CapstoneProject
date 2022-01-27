@@ -58,6 +58,11 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboardhome = (props) => {
     const history = useHistory();
     const classes = useStyles();
+    const auth = localStorage.getItem('loggedIn');
+    const [show, setShow] = React.useState(auth);
+    if(auth === 'bill_issuer'){
+        setShow(!show);
+    }
     const passLogin= () => {
         history.push({
           pathname: "/login",
@@ -97,13 +102,15 @@ const Dashboardhome = (props) => {
                                 sx={{marginLeft:'-1.2%'}}
                             >
                                 <Item>
-                                    <Button 
-                                        variant="contained" 
-                                        className={`${custom.btn} ${custom.btnWidth}`}
-                                        onClick={passLogin}
-                                    >
-                                        <LoginOutlinedIcon sx={{marginRight:'8%'}}/>Login Bill Issuer
-                                    </Button>
+                                    {show?
+                                        <Button 
+                                            variant="contained" 
+                                            className={`${custom.btn} ${custom.btnWidth}`}
+                                            onClick={passLogin}
+                                        >
+                                            <LoginOutlinedIcon sx={{marginRight:'8%'}}>Login Bill Issuer</LoginOutlinedIcon>
+                                        </Button> : null
+                                    }
                                 </Item>
                             </Grid>
                         </Grid>
@@ -150,10 +157,10 @@ const Dashboardhome = (props) => {
                                 <span>{'> Example : 5FD921'}</span>
                             </Grid>
                             <Grid item xs={12} container justifyContent="start" sx={{fontSize:'2rem'}}>
-                                <span>{'To input by name, you can input part of the name of client’s name'}</span>
+                                <span>{'To input by name, you have to input the entire name of client’s name'}</span>
                             </Grid>
                             <Grid item xs={12} container justifyContent="start" sx={{ml:8,fontSize:'1.5rem'}}>
-                                <span>{'> Example : Dyah or Raviy'}</span>
+                                <span>{'> Example : Dyah Ayu Sekar Kinasih Purwaningrun or Raviy Bayu Setiaji'}</span>
                             </Grid>
                         </Grid>
                     </Box>

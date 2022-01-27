@@ -32,7 +32,7 @@ const DashboardClient = () => {
         };
         getClient();
     },[]);
-    console.log(datas);
+    // console.log(datas);
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>

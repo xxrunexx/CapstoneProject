@@ -1,12 +1,13 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 import Login from './views/Login';
 import ForgetPass from './views/ForgetPass/ForgetPass';
 import Home from './views/HomeDashboard/HomeDashboard';
 import Detailinvoice from './views/DetailInvoice/DetailInvoice';
 import Newinvoice from './views/NewInvoice/NewInvoice';
 import Register from './views/Register';
+import Registerdetail from './views/RegisterDetail';
 // import Register from './views/Register/Register';
 import NewPass from './views/NewPass/NewPass';
 import Newclient from './views/NewClient/NewClient';
@@ -21,32 +22,131 @@ import Editinvoice from './views/EditInvoice/EditInvoice';
 import DashboardClient from './views/Dashboard/DashboardClient';
 import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
+import Paymentmethod from './views/Dashboard/PaymentMethod';
+import Newpayment from './views/NewPaymentMethod/newPayment';
+
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        localStorage.getItem("loggedIn") === "bill_issuer" ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+function GuestRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        localStorage.getItem("loggedIn") !== "bill_issuer" ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/dashboard",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 function App() {
+  const history = useHistory();
   return (
     <>
       <Router>
         <Switch>
-        <Route exact path='/register' component={Register}/>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/dashboard' component={Dashboardbillissuer}/>
-          <Route exact path='/dashboard/draft' component={Dashboarddraft}/>
-          <Route exact path='/dashboard/paid' component={Dashboardpaid}/>
-          <Route exact path='/dashboard/unpaid' component={Dashboardunpaid}/>
-          <Route exact path='/dashboard/processed' component={Dashboardprocessed}/>
-          <Route exact path='/editInvoice' component={Editinvoice}/>
-          <Route exact path='/detail' component={Detailinvoice}/>
-          <Route exact path='/addInvoice' component={Newinvoice}/>
-          <Route exact path='/addClient' component={Newclient}/>
-          <Route exact path='/login' component={Login}/>
-          <Route exact path='/register' component={Register}/>
-          <Route exact path='/newPass' component={NewPass}/>
-          <Route exact path='/forgetpass' component={ForgetPass}/>
-          <Route exact path='/billIssuerUpdated' component={BillIssuerUpdated}/>
-          <Route exact path='/clientupdated' component={ProfileUpdated}/>
-          <Route exact path='/passUpdated' component={PassUpdated}/>
-          <Route exact path='/client' component={DashboardClient}/>
-          <Route exact path='/billissuer' component={BillIssuerInfo}/>
+          <Route 
+            exact path='/' 
+            component={Home} 
+          />
+          <GuestRoute 
+            exact path='/login' >
+              <Login />
+          </GuestRoute>
+          <GuestRoute 
+            exact path='/register'>
+              <Register />
+          </GuestRoute>
+          <GuestRoute 
+            exact path='/registerDetail'>
+              <Registerdetail />
+          </GuestRoute>
+          <Route 
+            exact path='/client' 
+            component={DashboardClient} 
+          />
+          <Route 
+            exact path='/detail' 
+            component={Detailinvoice} 
+          />
+          <Route 
+            exact path='/forgetpass'
+            component={ForgetPass}
+          />
+          <Route 
+            exact path='/newPass'
+            component={NewPass}
+          />
+          <Route 
+            exact path='/passUpdated' 
+            render={PassUpdated} 
+          />
+          <PrivateRoute exact path='/dashboard' >
+            <Dashboardbillissuer/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/dashboard/draft'>
+            <Dashboarddraft/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/dashboard/paid'>
+            <Dashboardpaid/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/dashboard/unpaid'>
+            <Dashboardunpaid/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/dashboard/processed'>
+            <Dashboardprocessed/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/editInvoice'>
+            <Editinvoice/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/addInvoice'>
+            <Newinvoice/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/addClient'>
+            <Newclient/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/billissuer'>
+            <BillIssuerInfo/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/billIssuerUpdated'>
+            <BillIssuerUpdated/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/paymentMethod'>
+            <Paymentmethod/>
+          </PrivateRoute>
+          <PrivateRoute exact path='/addPaymentMethod'>
+            <Newpayment/>
+          </PrivateRoute>
+          <PrivateRoute 
+            exact path='/clientupdated' 
+            render={ProfileUpdated} 
+            history={history}/>
         </Switch>
       </Router>
     </>

@@ -12,6 +12,10 @@ import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PaidIcon from '@mui/icons-material/Paid';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
+import PaymentIcon from '@mui/icons-material/Payment';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -21,40 +25,104 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Sidenav = (props) => {
+    const history = useHistory();
+    const linkClient = () => {
+        history.push({
+            pathname: "/client",
+        });
+    }
+    const linkDraft = () => {
+        history.push({
+            pathname: "/dashboard/draft",
+        });
+    }
+    const linkProcessed = () => {
+        history.push({
+            pathname: "/dashboard/processed",
+        });
+    }
+    const linkPaid = () => {
+        history.push({
+            pathname: "/dashboard/paid",
+        });
+    }
+    const linkUnpaid = () => {
+        history.push({
+            pathname: "/dashboard/unpaid",
+        });
+    }
+    const linkInfo = () => {
+        history.push({
+            pathname: "/billissuer",
+        });
+    }
+    const linkPayment = () => {
+        history.push({
+            pathname: "/paymentMethod",
+        });
+    }
+
+    const navMenuList = [
+        {
+            name: "Client",
+            icon: PersonIcon,
+            path: linkClient
+        },
+        {
+            name: "Payment Method",
+            icon: PaymentIcon,
+            path: linkPayment
+        },
+        {
+            name: "Paid",
+            icon: PaidIcon,
+            path: linkPaid
+        },
+        {
+            name: "Unpaid",
+            icon: AccountBalanceWalletIcon,
+            path: linkUnpaid
+        },
+        {
+            name: "Processed",
+            icon: ReceiptIcon,
+            path: linkProcessed
+        },
+        {
+            name: "Draft",
+            icon: NoteAltIcon,
+            path: linkDraft
+        },
+    ]
+    const location = useLocation();
     return (
         <Item className={custom.leftSidebar} sx={{width:'80%'}}>
-            <Box sx={{textAlign:'center', mb:2}}><AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/></Box>
-            <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>Raviy Bayu</Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
-                <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <PersonIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                    <span className={custom.sideNavTitle}>Client</span>
+            <Grid container sx={{color:'#131522'}}>
+                <Grid item container justifyContent="end">
+                    <Button variant="text" sx={{color:'#131522', minWidth:'10px', padding:0}} onClick={props.show}><CloseIcon/></Button>
+                </Grid>
+            </Grid>
+            <Box sx={{textAlign:'center', mb:2}}>
+                <Link component="button" className={custom.linkSideNav} onClick={linkInfo}>
+                    <AccountCircleOutlinedIcon sx={{fontSize:'7rem'}} className={custom.iconUser}/>
                 </Link>
             </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
-                <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <PaidIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                    <span className={custom.sideNavTitle}>Paid</span>
-                </Link>
-            </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
-                <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <AccountBalanceWalletIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                    <span className={custom.sideNavTitle}>Unpaid</span>
-                </Link>
-            </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
-                <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <ReceiptIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                    <span className={custom.sideNavTitle}>Processed</span>
-                </Link>
-            </Box>
-            <Box sx={{textAlign:'left', fontSize:'1.5rem', mb:1}} className={custom.linkBox}>
-                <Link href="#" underline="hover" className={custom.linkSideNav}>
-                    <NoteAltIcon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
-                    <span className={custom.sideNavTitle}>Draft</span>
-                </Link>
-            </Box>
+            <Box sx={{textAlign:'center', fontSize:'2rem', mb:5}} className={custom.userName}>{props.auth.name}</Box>
+            {navMenuList.map((menu, key) => {
+                return (
+                    <Box key={key} sx={{textAlign:'left', fontSize:'1rem', mb:1}} className={custom.linkBox}>
+                        <Link 
+                            component="button" 
+                            underline="hover" 
+                            className={`${location.pathname.endsWith(menu.path) ? custom.active : ""} ${custom.linkSideNav}`} 
+                            onClick={menu.path}
+                        >
+                            <menu.icon sx={{fontSize:'3rem', mr:1}} className={custom.sideNavIcon}/>
+                            <span className={custom.sideNavTitle}>{menu.name}</span>
+                        </Link>
+                    </Box>
+                );
+            })}
             <Box sx={{ flexGrow: 1, mt:5}}>
                 <Grid container justifyContent="center">
                     <Grid item xs={10}>
@@ -63,9 +131,9 @@ const Sidenav = (props) => {
                                 variant="contained" 
                                 className={custom.btnClose} 
                                 sx={{px:3, bgcolor:'#131522'}}
-                                onClick={props.show}
+                                onClick={props.logout}
                             >
-                                CLOSE
+                                LOGOUT
                             </Button>
                         </Item>
                     </Grid>

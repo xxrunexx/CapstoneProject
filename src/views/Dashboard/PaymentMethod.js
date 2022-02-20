@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Custom from './dashboardClient.module.css';
-import TitleDashboard from '../../components/Detail/TitleDashboard';
+import React from 'react';
+import Custom from './payment.module.css';
 import NavbarArrowBack from '../../components/Navbar/NavbarArrowBack';
-import Detailclient from '../../components/Detail/DetailClient';
 import Box from '@mui/material/Box';
+import Detailpayment from '../../components/Detail/DetailPayment';
+import TitleDashboard from '../../components/Detail/TitleDashboard';
 import axios from 'axios';
 
-const DashboardClient = () => {
+const Paymentmethod = () => {
     const link = '/dashboard';
-    const title = 'Clients';
+    const title = 'Payment Methods';
     const token = React.useRef('');
     token.current = localStorage.getItem('token');
     const [datas, setDatas] = React.useState(null);
@@ -16,7 +16,7 @@ const DashboardClient = () => {
     React.useEffect(() => {
         const getClient = async () => {
             await axios.get(
-                'http://localhost:8000/client',
+                'http://localhost:8000/paymentmethod',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -33,14 +33,14 @@ const DashboardClient = () => {
         getClient();
     },[]);
     // console.log(datas);
-    return (
+    return (  
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
                 <TitleDashboard title={title} count={count}/>
                 {datas?.data.map((value, key) => {
                     return (
-                        <Detailclient key={key} data={value}/> 
+                        <Detailpayment key={key} data={value} authToken={token.current}/> 
                     );
                 })}
             </Box>
@@ -48,4 +48,4 @@ const DashboardClient = () => {
     );
 }
 
-export default DashboardClient;
+export default Paymentmethod;

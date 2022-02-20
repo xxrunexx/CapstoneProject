@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Custom from './dashboardBillIssuer.module.css';
-// import Sidenav from '../../components/SideNav/SideNav';
-// import Sidenavicon from '../../components/SideNav/SideNavIcon';
 import Dashboardbipage from '../../components/Detail/DashboardBiPage';
-import StatusPaid from '../../components/Status/StatusPaid';
+import jwt_decode from "jwt-decode";
 
 const Dashboardbillissuer = () => {
     const data = [
@@ -25,9 +23,16 @@ const Dashboardbillissuer = () => {
             address: 'Batam Indonesia'
         },
     ];
+    const token = localStorage.getItem("token");
+    let authData = jwt_decode(token);
+    // console.log(decoded);
     return (
         <Box className={Custom.background}>
-            <Dashboardbipage data={data} client={clientInfo} component={StatusPaid} status={'Paid'} />
+            <Dashboardbipage 
+                data={data} 
+                client={clientInfo} 
+                auth={authData} 
+            />
         </Box>
     );
 }

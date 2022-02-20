@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import { makeStyles } from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
@@ -58,16 +58,13 @@ const useStyles = makeStyles({
     },
 });
 
-const Formclient = () => {
+const Formpaymentmethod = () => {
     const classes = useStyles();
     const authToken = localStorage.getItem('token');
     const history = useHistory();
     const [values, setValues] = useState({
-        nik:0,
         name:'',
-        phone:'',
-        address:'',
-        email:'',
+        is_active:false,
     });
     const [, setMsg] = useState('');
     
@@ -81,17 +78,14 @@ const Formclient = () => {
       });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      axios
+      await axios
           .post(
-            'http://localhost:8000/client/add',
+            'http://localhost:8000/paymentmethod/add',
             {
-                nik: parseInt(values.nik),
                 name: values.name,
-                phone: values.phone,
-                address: values.address,
-                email: values.email
+                is_active: values.is_active
             },
             {
                 headers: {
@@ -104,7 +98,7 @@ const Formclient = () => {
             // handle success
             setMsg(response.data.message);
             history.push({
-              pathname: "/dashboard"
+                pathname: "/dashboard"
             });
             console.log('axios', response);
           })
@@ -118,71 +112,15 @@ const Formclient = () => {
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">
         <Grid item xs={8} >
-            <Item><h1>New Client</h1></Item>
+            <Item><h1>New Payment Methods</h1></Item>
             <form onSubmit={handleSubmit} method="POST">
             <Item>
-              <span className={custom.titleInput}>Client's NIK</span>
-              <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                placeholder="Input Client NIK ..."
-                onChange={handleChange('nik')}
-                fullWidth
-                InputProps={{
-                  classes:{notchedOutline:classes.noBorder}
-                }}
-              />
-            </Item>
-            <Item>
-              <span className={custom.titleInput}>Client's Name</span>
+              <span className={custom.titleInput}>Payment Method Name</span>
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Name ..."
                 onChange={handleChange('name')}
-                fullWidth
-                InputProps={{
-                  classes:{notchedOutline:classes.noBorder}
-                }}
-              />
-            </Item>
-            <Item>
-              <span className={custom.titleInput}>Client's Phone Number</span>
-              <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                placeholder="Input Client Phone Number ..."
-                // value={valuePhone}
-                onChange={handleChange('phone')}
-                fullWidth
-                InputProps={{
-                  classes:{notchedOutline:classes.noBorder}
-                }}
-              />
-            </Item>
-            <Item>
-              <span className={custom.titleInput}>Client's Address</span>
-              <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                placeholder="Input Client Address ..."
-                // value={valueAddress}
-                onChange={handleChange('address')}
-                fullWidth
-                InputProps={{
-                  classes:{notchedOutline:classes.noBorder}
-                }}
-              />
-            </Item>
-            <Item>
-              <span className={custom.titleInput}>Client's Email</span>
-              <TextField
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                placeholder="Input Client Email ..."
-                // value={valueEmail}
-                type="email"
-                onChange={handleChange('email')}
                 fullWidth
                 InputProps={{
                   classes:{notchedOutline:classes.noBorder}
@@ -208,7 +146,7 @@ const Formclient = () => {
                           </Box>
                       </Item>
                   </Grid>
-                  <Grid item xs={12} md={3} >
+                  <Grid item xs={12} md={5} >
                       <Item sx={{textAlign: 'center',}} className={`${custom.multipleInput}`}>
                           <Box 
                               sx={{
@@ -219,7 +157,7 @@ const Formclient = () => {
                                   fontSize:'1.2rem'
                           }}>
                               <Link component="button" underline="none" className={custom.addNewItem} type="submit">
-                                  {'CREATE CLIENT'}
+                                  {'CREATE PAYMENT METHOD'}
                               </Link>
                           </Box>
                       </Item>
@@ -234,4 +172,4 @@ const Formclient = () => {
     );
 }
 
-export default Formclient;
+export default Formpaymentmethod;

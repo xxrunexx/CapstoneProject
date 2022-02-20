@@ -13,13 +13,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import custom from './dashboardBi.module.css';
 import { InputAdornment } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Link from '@mui/material/Link';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import { useHistory } from 'react-router-dom';
+import Detaildashboard from './DetailDashboard';
 
 const useStyles = makeStyles({
     root: {
@@ -76,9 +76,10 @@ const style = {
     boxShadow: 24,
     py:2,
     px:1
-  };
+};
 
 const Dashboardbipage = (props) => {
+    const history = useHistory();
     const [show, setShow] = useState(true);
     const handle = () => {
         setShow(!show);
@@ -87,6 +88,34 @@ const Dashboardbipage = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const newClient = () => {
+        history.push({
+            pathname: "/addClient",
+        });
+    }
+    const newInvoice = () => {
+        history.push({
+            pathname: "/addInvoice",
+        });
+    }
+    const newPayment = () => {
+        history.push({
+            pathname: "/addPaymentMethod",
+        });
+    }
+    // const [, setMsg] = useState('');
+    
+    const file = React.useRef(null);
+    const handleUpload = () => {
+        //file.current.files
+        console.log("test Button");
+        console.log(file.current.files);
+    }
+    const logout = () => {
+        localStorage.setItem("loggedIn", "guest");
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    }
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
@@ -102,7 +131,7 @@ const Dashboardbipage = (props) => {
                         py:2
                     }}
                 >
-                    {show ? <Sidenav show={handle} /> : <Sidenavicon show={handle} />}
+                    {show ? <Sidenav show={handle} auth={props.auth} logout={logout}/> : <Sidenavicon show={handle} logout={logout}/>}
                 </Grid>
                 <Grid 
                     item 
@@ -139,6 +168,16 @@ const Dashboardbipage = (props) => {
                                     <Button 
                                         variant="contained" 
                                         className={`${custom.btn} ${custom.btnWidth}`}
+                                        onClick={newPayment}
+                                    >
+                                        <AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Payment Method
+                                    </Button>
+                                </Item>
+                                <Item sx={{marginLeft:'8%'}}>
+                                    <Button 
+                                        variant="contained" 
+                                        className={`${custom.btn} ${custom.btnWidth}`}
+                                        onClick={newClient}
                                     >
                                         <AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Client
                                     </Button>
@@ -147,6 +186,7 @@ const Dashboardbipage = (props) => {
                                     <Button 
                                         variant="contained" 
                                         className={`${custom.btn} ${custom.btnWidth}`}
+                                        onClick={newInvoice}
                                     >
                                         <AddCircleOutlinedIcon sx={{marginRight:'4%'}}/>New Invoice
                                     </Button>
@@ -154,10 +194,10 @@ const Dashboardbipage = (props) => {
                             </Grid>
                         </Grid>
                         <Grid container sx={{color:'white', pt:2}}>
-                            <Grid item xs={12} md={6} container justifyContent="start">
+                            <Grid item xs={10} md={6} container justifyContent="start">
                                 <TextField
                                     sx={{bgcolor: '#FFFFFF', borderRadius:2.5}}
-                                    className={`${classes.root}`}
+                                    className={classes.root}
                                     placeholder="Search"
                                     fullWidth
                                     InputProps={{
@@ -167,7 +207,7 @@ const Dashboardbipage = (props) => {
                                             </InputAdornment>
                                         ),
                                         endAdornment: (
-                                            <InputAdornment>
+                                            <InputAdornment position="end">
                                                 <Button variant="contained" className={custom.btn} sx={{py:1.2, bgcolor:'#FFC700', color: '#131522', borderRadius:2}}>Go</Button>
                                             </InputAdornment>
                                         ),
@@ -180,143 +220,59 @@ const Dashboardbipage = (props) => {
                             </Grid>
                         </Grid>
                         <Grid container sx={{color:'white', pt:8}}>
-                            <Grid item xs={12} container justifyContent="center">
-                                <Item sx={{
-                                    bgcolor: '#E5E5E5', 
-                                    color: '#131522', 
-                                    p:3,
-                                    mb:3,
-                                    borderRadius:4,
-                                    width:'100%'
-                                }}>
-                                    <Box sx={{ flexGrow: 1}}>
-                                        <Grid container justifyContent="space-between" alignItems="center" spacing={2}>
-                                            <Grid item xs={12} md={1} >
-                                                <Item sx={{textAlign: 'left', color: '#131522'}}>
-                                                    {props.data[0].id}
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={3} >
-                                                <Item sx={{textAlign: 'center', color: '#131522'}}>
-                                                    {`${props.data[0].payment_due}`}
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={3} >
-                                                <Item sx={{textAlign: 'center', }}>
-                                                    <Button variant="text" sx={{textTransform:'none', color: '#131522'}} onClick={handleOpen}>{props.data[0].bill_to}</Button>
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={2} >
-                                                <Item sx={{textAlign: 'center', color: '#131522'}}>
-                                                    {props.data[0].total}
-                                                </Item>
-                                            </Grid>
-                                            <props.component status={props.status}/>
-                                            <Grid item xs={12} md={1} >
-                                                <Item sx={{textAlign: 'right', color: '#131522'}}>
-                                                    <Link href="#" underline="none">
-                                                        <ChevronRightIcon sx={{color:'#FFC700'}} className={custom.rightIcon}/>
-                                                    </Link>
-                                                </Item>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Item>
+                            <Grid item xs={12} container>
+                                <Detaildashboard status={"Paid"} data={props.data} modal={handleOpen}/>
                             </Grid>
                         </Grid>
                         <Grid container sx={{color:'white'}}>
-                            <Grid item xs={12} container justifyContent="center">
-                                <Item sx={{
-                                    bgcolor: '#E5E5E5', 
-                                    color: '#131522', 
-                                    p:3,
-                                    mb:3,
-                                    borderRadius:4,
-                                    width:'100%'
-                                }}>
-                                    <Box sx={{ flexGrow: 1}}>
-                                        <Grid container justifyContent="space-between" alignItems="center" spacing={2}>
-                                            <Grid item xs={12} md={1} >
-                                                <Item sx={{textAlign: 'left', color: '#131522'}}>
-                                                    {props.data[0].id}
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={3} >
-                                                <Item sx={{textAlign: 'center', color: '#131522'}}>
-                                                    {`${props.data[0].payment_due}`}
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={3} >
-                                                <Item sx={{textAlign: 'center', }}>
-                                                    <Button variant="text" sx={{textTransform:'none', color: '#131522'}} onClick={handleOpen}>{props.data[0].bill_to}</Button>
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={2} >
-                                                <Item sx={{textAlign: 'center', color: '#131522'}}>
-                                                    {props.data[0].total}
-                                                </Item>
-                                            </Grid>
-                                            <props.component status={props.status}/>
-                                            <Grid item xs={12} md={1} >
-                                                <Item sx={{textAlign: 'right', color: '#131522'}}>
-                                                    <Link href="#" underline="none">
-                                                        <ChevronRightIcon sx={{color:'#FFC700'}} className={custom.rightIcon}/>
-                                                    </Link>
-                                                </Item>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Item>
+                            <Grid item xs={12} container>
+                                <Detaildashboard status={"Paid"} data={props.data} modal={handleOpen}/>
                             </Grid>
                         </Grid>
                         <Grid container sx={{color:'white'}}>
-                            <Grid item xs={12} container justifyContent="center">
-                                <Item sx={{
-                                    bgcolor: '#E5E5E5', 
-                                    color: '#131522', 
-                                    p:3,
-                                    mb:3,
-                                    borderRadius:4,
-                                    width:'100%'
-                                }}>
-                                    <Box sx={{ flexGrow: 1}}>
-                                        <Grid container justifyContent="space-between" alignItems="center" spacing={2}>
-                                            <Grid item xs={12} md={1} >
-                                                <Item sx={{textAlign: 'left', color: '#131522'}}>
-                                                    {props.data[0].id}
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={3} >
-                                                <Item sx={{textAlign: 'center', color: '#131522'}}>
-                                                    {`${props.data[0].payment_due}`}
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={3} >
-                                                <Item sx={{textAlign: 'center', }}>
-                                                    <Button variant="text" sx={{textTransform:'none', color: '#131522'}} onClick={handleOpen}>{props.data[0].bill_to}</Button>
-                                                </Item>
-                                            </Grid>
-                                            <Grid item xs={12} md={2} >
-                                                <Item sx={{textAlign: 'center', color: '#131522'}}>
-                                                    {props.data[0].total}
-                                                </Item>
-                                            </Grid>
-                                            <props.component status={props.status}/>
-                                            <Grid item xs={12} md={1} >
-                                                <Item sx={{textAlign: 'right', color: '#131522'}}>
-                                                    <Link href="#" underline="none">
-                                                        <ChevronRightIcon sx={{color:'#FFC700'}} className={custom.rightIcon}/>
-                                                    </Link>
-                                                </Item>
-                                            </Grid>
-                                        </Grid>
-                                    </Box>
-                                </Item>
+                            <Grid item xs={12} container>
+                                <Detaildashboard status={"Paid"} data={props.data} modal={handleOpen}/>
                             </Grid>
                         </Grid>
-                        <Grid container sx={{color:'white', pt:2}}>
-                            <Grid item xs={12} container justifyContent="start">
-                                <Button variant="contained" className={custom.btn} sx={{width:'100%', py:1, fontSize:'1.5rem', borderRadius:2.5}}>Upload CSV</Button>
+                        <Grid container sx={{color:'white', pt:2, justifyContent: 'center'}}>
+                            <Grid item xs={10} container>
+                                <form onSubmit={handleUpload} method="POST" style={{ width: '100%' }}>
+                                    <input
+                                        accept=".csv"
+                                        className={classes.input}
+                                        style={{ display: 'none' }}
+                                        id="raised-button-file"
+                                        multiple
+                                        type="file"
+                                        ref={file}
+                                    />
+                                    <label htmlFor="raised-button-file">
+                                        <Button 
+                                            variant="raised" component="span" className={custom.btn} 
+                                            sx={{
+                                                width:'100%',
+                                                py:1, 
+                                                fontSize:'1.5rem', 
+                                                borderRadius:2.5,
+                                                mb:5
+                                            }}>
+                                            Choose File
+                                        </Button>
+                                    </label>
+                                    <Button 
+                                        variant="raised" component="span" className={custom.btn} 
+                                        sx={{
+                                            width:'100%',
+                                            py:1, 
+                                            fontSize:'1.5rem', 
+                                            borderRadius:2.5
+                                        }}
+                                        type="submit"
+                                        onClick={handleUpload}
+                                        >
+                                        Upload CSV
+                                    </Button>
+                                </form>
                             </Grid>
                         </Grid>
                     </Box>
@@ -402,7 +358,17 @@ const Dashboardbipage = (props) => {
                                 />
                             </Grid>
                             <Grid container justifyContent="center" alignItems="center" sx={{mt:4, mb:2}}>
-                                <Button variant="contained" fullWidth sx={{borderRadius:2, color:'#FFC700', bgcolor:'#131522'}} className={custom.modalUpdate}>Update</Button>
+                                <Button 
+                                    variant="contained" 
+                                    fullWidth 
+                                    sx={{
+                                        borderRadius:2, 
+                                        color:'#FFC700', 
+                                        bgcolor:'#131522'
+                                    }} 
+                                    className={custom.modalUpdate}>
+                                        Update
+                                </Button>
                             </Grid>
                         </Grid>
                     </Grid>

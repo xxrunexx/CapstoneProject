@@ -21,6 +21,10 @@
     color: #131522 !important;
 }
 
+.active{
+    color:white !important;
+}
+
 @media (max-width: 1290px) {
     .linkSideNav{
         font-size: 1rem;

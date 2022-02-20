@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import custom from './navbarArrowBack.module.css';
+import { useHistory } from 'react-router-dom';
 
 function Item(props) {
     const { sx, ...other } = props;
@@ -29,7 +30,13 @@ Item.propTypes = {
     ]),
 };
 
-const NavbarArrowBack = () => {
+const NavbarArrowBack = (props) => {
+    const history = useHistory();
+    const passHome= () => {
+        history.push({
+            pathname: props.link
+        });
+    };
     return (
         <Box sx={{
             display: 'grid',
@@ -47,7 +54,7 @@ const NavbarArrowBack = () => {
                 p: 1,
                 height: 80,
             }}>
-                <Link href="#" underline="none">
+                <Link component="button" underline="none" onClick={passHome}>
                     <ArrowCircleLeftIcon className={custom.arrowIcon} sx={{
                         mx:1,
                         color: '#FFC700'

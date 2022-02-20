@@ -5,10 +5,11 @@ import Custom from './newInvoice.module.css';
 import Box from '@mui/material/Box';
 
 const Newinvoice = () => {
+    const link = '/dashboard';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/> 
+                <NavbarArrowBack link={link}/> 
                 <Forminvoice/>
             </Box>
         </Box>

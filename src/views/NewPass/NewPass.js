@@ -5,10 +5,11 @@ import Custom from './newPass.module.css';
 import Box from '@mui/material/Box';
 
 const NewPass = () => {
+    const link = '/forgetpass';
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
-                <NavbarArrowBack/> 
+                <NavbarArrowBack link={link}/> 
                 <FormEmail/>
             </Box>
         </Box>

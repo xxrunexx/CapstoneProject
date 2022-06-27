@@ -11,11 +11,11 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Statusprocessed = (props) => {
+const Statusprocessed = ({data}) => {
     return (
         <Grid item xs={12} md={2} >
             <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py:0.8, borderRadius:6}}>
-                <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{props.status}
+                <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>Processed
             </Item>
         </Grid>
     );

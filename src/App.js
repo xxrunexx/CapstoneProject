@@ -71,82 +71,82 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route 
-            exact path='/' 
-            component={Home} 
+          <Route
+            exact path='/'
+            component={Home}
           />
-          <GuestRoute 
+          <GuestRoute
             exact path='/login' >
-              <Login />
+            <Login />
           </GuestRoute>
-          <GuestRoute 
+          <GuestRoute
             exact path='/register'>
-              <Register />
+            <Register />
           </GuestRoute>
-          <GuestRoute 
+          <GuestRoute
             exact path='/registerDetail'>
-              <Registerdetail />
+            <Registerdetail />
           </GuestRoute>
-          <Route 
-            exact path='/client' 
-            component={DashboardClient} 
+          <Route
+            exact path='/client'
+            component={DashboardClient}
           />
-          <Route 
-            exact path='/detail' 
-            component={Detailinvoice} 
+          <Route
+            exact path='/detail'
+            component={Detailinvoice}
           />
-          <Route 
+          <Route
             exact path='/forgetpass'
             component={ForgetPass}
           />
-          <Route 
+          <Route
             exact path='/newPass'
             component={NewPass}
           />
-          <Route 
-            exact path='/passUpdated' 
-            render={PassUpdated} 
+          <Route
+            exact path='/passUpdated'
+            render={PassUpdated}
           />
           <PrivateRoute exact path='/dashboard' >
-            <Dashboardbillissuer/>
+            <Dashboardbillissuer />
           </PrivateRoute>
           <PrivateRoute exact path='/dashboard/draft'>
-            <Dashboarddraft/>
+            <Dashboarddraft />
           </PrivateRoute>
           <PrivateRoute exact path='/dashboard/paid'>
-            <Dashboardpaid/>
+            <Dashboardpaid />
           </PrivateRoute>
           <PrivateRoute exact path='/dashboard/unpaid'>
-            <Dashboardunpaid/>
+            <Dashboardunpaid />
           </PrivateRoute>
           <PrivateRoute exact path='/dashboard/processed'>
-            <Dashboardprocessed/>
+            <Dashboardprocessed />
           </PrivateRoute>
           <PrivateRoute exact path='/editInvoice'>
-            <Editinvoice/>
+            <Editinvoice />
           </PrivateRoute>
           <PrivateRoute exact path='/addInvoice'>
-            <Newinvoice/>
+            <Newinvoice />
           </PrivateRoute>
           <PrivateRoute exact path='/addClient'>
-            <Newclient/>
+            <Newclient />
           </PrivateRoute>
           <PrivateRoute exact path='/billissuer'>
-            <BillIssuerInfo/>
+            <BillIssuerInfo />
           </PrivateRoute>
           <PrivateRoute exact path='/billIssuerUpdated'>
-            <BillIssuerUpdated/>
+            <BillIssuerUpdated />
           </PrivateRoute>
           <PrivateRoute exact path='/paymentMethod'>
-            <Paymentmethod/>
+            <Paymentmethod />
           </PrivateRoute>
           <PrivateRoute exact path='/addPaymentMethod'>
-            <Newpayment/>
+            <Newpayment />
           </PrivateRoute>
-          <PrivateRoute 
-            exact path='/clientupdated' 
-            render={ProfileUpdated} 
-            history={history}/>
+          <PrivateRoute
+            exact path='/clientupdated'
+            render={ProfileUpdated}
+            history={history} />
         </Switch>
       </Router>
     </>

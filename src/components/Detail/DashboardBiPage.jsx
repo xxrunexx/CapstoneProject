@@ -20,6 +20,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import { useHistory } from 'react-router-dom';
 import Detaildashboard from './DetailDashboard';
+import axios from 'axios';
 
 const useStyles = makeStyles({
     root: {
@@ -78,7 +79,9 @@ const style = {
     px:1
 };
 
-const Dashboardbipage = (props) => {
+const Dashboardbipage = ({data, auth}) => {
+    const clientID = React.useRef(false);
+    // clientID.current = data.client_id;
     const history = useHistory();
     const [show, setShow] = useState(true);
     const handle = () => {
@@ -88,6 +91,84 @@ const Dashboardbipage = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    // const [dataClient, setDataClient] = React.useState(null);
+    
+const [valueUpdate, setValueUpdate] = React.useState({
+  client_nik: '',
+  client_phone: '',
+  client_address: '',
+})
+
+    React.useEffect(() => {
+        const getSpecificClient = async () => {
+            await axios.get(
+                `http://localhost:8000/client/${data.client_id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+            .then((response)=>{
+              setValueUpdate({
+                client_nik: response.data.data.nik,
+                client_phone: response.data.data.phone,
+                client_address: response.data.data.address
+              })
+                // setDataClient(response.data);
+                // console.log("Isi dataclient : ", dataClient);
+            });
+        };
+      //   const getClientInfo = async () => {
+      //     await axios.get(
+      //         'http://localhost:8000/client',
+      //         {
+      //             headers: {
+      //                 'Content-Type': 'application/json',
+      //             },
+      //         }
+      //     )
+      //     .then((response)=>{
+      //         setDataApiClient(response.data.data);
+      //         // console.log("Isi response.data : ", dataApi);
+      //     });
+      // }
+        getSpecificClient();
+    },[]);
+
+    const handleChange = (prop) => (event) => {
+      setValueUpdate({ ...valueUpdate, [prop]: event.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios
+          .put(
+            `http://localhost:8000/client/update/${data.client_id}`,
+            {
+                id: data.client_id,
+                nik: handleChange('client_nik'),
+                name: data.client_name,
+                phone: handleChange('client_phone'),
+                address: handleChange('client_address'),
+                email: data.client_email,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+          )
+          .then(function (response) {
+            // Reload the page after the update
+            // Note : Method only works if the page exist in the history list.
+            history.go(0);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
     const newClient = () => {
         history.push({
             pathname: "/addClient",
@@ -116,6 +197,12 @@ const Dashboardbipage = (props) => {
         localStorage.removeItem("token");
         window.location.href = "/login";
     }
+    // TODO: Kemarin berhasil dapat data dari DashboardBillissuer.js 
+    // TODO: ke dashboardbiPage.jsx. Saat ini tolong dicoba untuk
+    // TODO: Masuk ke dalam codingan 1 persatu. Dicek
+    // TODO: dengan memanggil data.<value>
+    // TODO: Semoga bisa. Bismillah ya Allah
+    // console.log("ISINYA APA INI : ", data.id)
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
@@ -131,7 +218,7 @@ const Dashboardbipage = (props) => {
                         py:2
                     }}
                 >
-                    {show ? <Sidenav show={handle} auth={props.auth} logout={logout}/> : <Sidenavicon show={handle} logout={logout}/>}
+                    {show ? <Sidenav show={handle} auth={auth} logout={logout}/> : <Sidenavicon show={handle} logout={logout}/>}
                 </Grid>
                 <Grid 
                     item 
@@ -193,7 +280,7 @@ const Dashboardbipage = (props) => {
                                 </Item>
                             </Grid>
                         </Grid>
-                        <Grid container sx={{color:'white', pt:2}}>
+                        <Grid container sx={{color:'white', pt:2, pb:8}}>
                             <Grid item xs={10} md={6} container justifyContent="start">
                                 <TextField
                                     sx={{bgcolor: '#FFFFFF', borderRadius:2.5}}
@@ -219,24 +306,15 @@ const Dashboardbipage = (props) => {
                                 />
                             </Grid>
                         </Grid>
-                        <Grid container sx={{color:'white', pt:8}}>
-                            <Grid item xs={12} container>
-                                <Detaildashboard status={"Paid"} data={props.data} modal={handleOpen}/>
-                            </Grid>
-                        </Grid>
+                        {/* FIXME: BUKA LAGI NANTI YA */}
                         <Grid container sx={{color:'white'}}>
                             <Grid item xs={12} container>
-                                <Detaildashboard status={"Paid"} data={props.data} modal={handleOpen}/>
-                            </Grid>
-                        </Grid>
-                        <Grid container sx={{color:'white'}}>
-                            <Grid item xs={12} container>
-                                <Detaildashboard status={"Paid"} data={props.data} modal={handleOpen}/>
+                                <Detaildashboard status={data.payment_status} data={data} modal={handleOpen}/>
                             </Grid>
                         </Grid>
                         <Grid container sx={{color:'white', pt:2, justifyContent: 'center'}}>
                             <Grid item xs={10} container>
-                                <form onSubmit={handleUpload} method="POST" style={{ width: '100%' }}>
+                                <form onSubmit={handleSubmit} method="POST" style={{ width: '100%' }}>
                                     <input
                                         accept=".csv"
                                         className={classes.input}
@@ -297,8 +375,8 @@ const Dashboardbipage = (props) => {
                                     <AccountCircleOutlinedIcon sx={{fontSize:'5rem'}}/>
                                 </Grid>
                                 <Grid item xs={12} md={9}>
-                                    <h2 className={custom.topModal}>{props.client[0].name}</h2>
-                                    <p className={custom.topModal}>{props.client[0].email}</p>
+                                    <h2 className={custom.topModal}>{data.client_name}</h2>
+                                    <p className={custom.topModal}>{data.client_email}</p>
                                 </Grid>
                             </Grid>
                             <Grid container justifyContent="center" alignItems="center" sx={{mt:4}}>
@@ -308,7 +386,8 @@ const Dashboardbipage = (props) => {
                                     id="outlined-uncontrolled"
                                     label="NIK"
                                     fullWidth
-                                    value={props.client[0].nik}
+                                    onChange={handleChange('client_nik')}
+                                    value={valueUpdate.client_nik}
                                     variant="filled"
                                     InputProps={{
                                         startAdornment: (
@@ -326,7 +405,8 @@ const Dashboardbipage = (props) => {
                                     id="outlined-uncontrolled"
                                     label="Phone Number"
                                     fullWidth
-                                    value={props.client[0].phone}
+                                    onChange={handleChange('client_phone')}
+                                    value={valueUpdate.phone}
                                     variant="filled"
                                     InputProps={{
                                         startAdornment: (
@@ -345,7 +425,8 @@ const Dashboardbipage = (props) => {
                                     id="outlined-uncontrolled"
                                     label="Address"
                                     fullWidth
-                                    value={props.client[0].address}
+                                    onChange={handleChange('client_address')}
+                                    value={valueUpdate.client_address}
                                     variant="filled"
                                     InputProps={{
                                         startAdornment: (
@@ -375,6 +456,7 @@ const Dashboardbipage = (props) => {
                 </Box>
             </Modal>
         </Box>
+        // <h2>COBA APA</h2>
     );
 }
 

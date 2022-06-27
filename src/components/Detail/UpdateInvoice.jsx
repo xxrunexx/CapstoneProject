@@ -6,6 +6,8 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import CircleIcon from '@mui/icons-material/Circle';
 import custom from './updateInvoice.module.css';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -17,6 +19,45 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Updateinvoice = ({data, status}) => {
+    const history = useHistory();
+    const handleDelete = (e) => {
+        e.preventDefault();
+        axios
+         .delete(
+            `http://localhost:8000/invoice/${data.id}`,
+            
+         )
+         .then(function (response) {
+            history.go(-1);
+         })
+    }
+
+    const handleUpdateStatus = (e) => {
+        e.preventDefault();
+        axios
+         .put(
+            'http://localhost:8000/invoice/update',
+            {
+                id: data.id,
+                client_id: data.client_id,
+                total: data.total,
+                item: data.item,
+                bill_issuer_id: data.bill_issuer_id,
+                payment_method_id: data.payment_method_id,
+                payment_due: data.payment_due,
+                payment_status: 'paid',
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+         )
+         .then(function(response) {
+            history.go(-1);
+         })
+    }
+
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -44,27 +85,44 @@ const Updateinvoice = ({data, status}) => {
                                     <Item>
                                         <Box sx={{ flexGrow: 1}}>
                                             <Grid container spacing={2} justifyContent="flex-end">
-                                                <Grid item xs={12} md={2}>
-                                                    <Item sx={{textAlign: 'center', bgcolor: '#6C6C73', py:1, borderRadius:2}}>
-                                                        <Link component="button" underline="none" className={custom.link}>
-                                                            {'Edit'}
-                                                        </Link>
-                                                    </Item>
-                                                </Grid>
+                                                {data.payment_status === 'draft' && <Grid item xs={12} md={2}>
+                                                        <Item sx={{textAlign: 'center', bgcolor: '#6C6C73', py:1, borderRadius:2}}>
+                                                            {console.log("Punyanya si update nih", data)}
+                                                            <Link component="button" underline="none" className={custom.link}>
+                                                                {'Edit'}
+                                                            </Link>
+                                                        </Item>
+                                                    </Grid>
+                                                }
                                                 <Grid item xs={12} md={2}>
                                                     <Item sx={{textAlign: 'center', bgcolor: 'rgba(231,70,70,0.90)', py:1, borderRadius:2}}>
-                                                        <Link component="button" underline="none" className={custom.link}>
-                                                            {'Delete'}
-                                                        </Link>
+                                                        <form onSubmit={handleDelete} method="post">
+                                                            <Link component="button" underline="none" className={custom.link}>
+                                                                {'Delete'}
+                                                            </Link>
+                                                        </form>
                                                     </Item> 
                                                 </Grid>
-                                                <Grid item xs={12} md={4}>
-                                                    <Item sx={{textAlign: 'center', bgcolor: '#FFC700', py:1, borderRadius:2}}>
-                                                        <Link component="button" underline="none" className={custom.link}>
-                                                            {'Mark as Paid'}
-                                                        </Link>
-                                                    </Item> 
-                                                </Grid>
+                                                {data.payment_status === 'unpaid' && <Grid item xs={12} md={4}>
+                                                        <Item sx={{textAlign: 'center', bgcolor: '#FFC700', py:1, borderRadius:2}}>
+                                                        <form onSubmit={handleUpdateStatus} method="post">
+                                                            <Link component="button" underline="none" className={custom.link}>
+                                                                {'Mark as Paid'}
+                                                            </Link>
+                                                        </form>
+                                                        </Item> 
+                                                    </Grid>
+                                                }
+                                                {data.payment_status === 'processed' && <Grid item xs={12} md={4}>
+                                                        <Item sx={{textAlign: 'center', bgcolor: '#FFC700', py:1, borderRadius:2}}>
+                                                        <form onSubmit={handleUpdateStatus} method="post">
+                                                            <Link component="button" underline="none" className={custom.link}>
+                                                                {'Mark as Paid'}
+                                                            </Link>
+                                                        </form>
+                                                        </Item> 
+                                                    </Grid>
+                                                }
                                             </Grid>
                                         </Box>
                                     </Item>
@@ -94,15 +152,15 @@ const Updateinvoice = ({data, status}) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Invoice Date</h5> 
-                                                    <span>{data.invoice_date}</span>
+                                                    <span>{data.created_at}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Bill To</h5> 
-                                                    <span>{data.bill_to}</span> 
+                                                    <span>{data.client_name}</span> 
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Send To</h5> 
-                                                    <span>{data.send_to}</span> 
+                                                    <span>{data.client_email}</span> 
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -114,15 +172,16 @@ const Updateinvoice = ({data, status}) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Payment Date</h5> 
-                                                    <span>{data.payment_date}</span>
+                                                    <span>{data.payment_due}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Address</h5> 
-                                                    <span>{data.address}</span> 
+                                                    <span>{data.client_address}</span> 
                                                 </Grid>
+                                                {/* FIXME: Dicoba lagi nanti */}
                                                 <Grid item xs={12} md={4} >
                                                     <h5>From</h5> 
-                                                    <span>{data.from}</span> 
+                                                    <span>{data.company_name}</span> 
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -137,7 +196,7 @@ const Updateinvoice = ({data, status}) => {
                                                         <span>Item Name</span>
                                                     </div>
                                                     <div className={custom.detailInfo}>
-                                                        <span>{data.item_name}</span>
+                                                        <span>{data.item}</span>
                                                     </div>
                                                 </Grid>
                                                 <Grid item xs={12} md={6} sx={{textAlign:'right'}} className={custom.responsive}>

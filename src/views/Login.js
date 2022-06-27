@@ -52,7 +52,7 @@ function Login() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    // Authorization: 'Bearer token...',iki wes iso nyimpen nang local ga?
+                    // FIXME: Authorization: 'Bearer token...',iki wes iso nyimpen nang local ga?
                     // wes onok nang local e
                     // berarti kari nambahi header nang saben axios e
                     // piyee

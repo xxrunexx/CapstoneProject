@@ -18,13 +18,15 @@ const Item = styled(Paper)(({ theme }) => ({
     color: 'white',
     boxShadow: 'none'
 }));
-const Detaildashboard = (props) => {
+const Detaildashboard = ({data}) => {
     const history = useHistory();
     const linkInvoice = () => {
         history.push({
-            pathname: '/editInvoice'
+            pathname: '/editInvoice',
+            state: {data: data},
         });
     }
+    console.log("Isi Data : ", data);
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -40,30 +42,31 @@ const Detaildashboard = (props) => {
                             <Grid container justifyContent="space-between" spacing={2}>
                                 <Grid item xs={12} md={1} >
                                     <Item sx={{textAlign: 'left', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {props.data[0].id}
+                                        {data.id}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {`${props.data[0].payment_due}`}
+                                        {data.payment_due}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        <Link component="button" underline="none" sx={{textTransform:'none', color: '#131522'}} onClick={props.modal}>{props.data[0].bill_to}</Link>
+                                        <Link component="button" underline="none" sx={{textTransform:'none', color: '#131522'}}>{data.client_name}</Link>
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={2} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {props.data[0].total}
+                                        {data.total}
                                     </Item>
                                 </Grid>
-                                {/* <props.component status={props.status}/> */}
+                                {/* <props.component status={data.payment_status}/> */}
+                                {/* {console.log("Isi payment status : ", data.payment_status)} */}
                                 {
-                                    props.status === 'Paid' ? <StatusPaid status={props.status}/> : 
-                                    props.status === 'Unpaid' ? <Statusunpaid status={props.status}/> : 
-                                    props.status === 'Draft' ? <StatusDraft status={props.status}/> : 
-                                    props.status === 'Processed' ? <Statusprocessed status={props.status}/> : 
+                                    data.payment_status === 'paid' ? <StatusPaid status={data.payment_status}/> : 
+                                    data.payment_status === 'unpaid' ? <Statusunpaid status={data.payment_status}/> : 
+                                    data.payment_status === 'draft' ? <StatusDraft status={data.payment_status}/> : 
+                                    data.payment_status === 'processed' ? <Statusprocessed status={data.payment_status}/> : 
                                     null 
                                 }
                                 <Grid item xs={12} md={1} >
@@ -79,6 +82,7 @@ const Detaildashboard = (props) => {
                 </Grid>
             </Grid>
         </Box>
+        // <h2>{data.client_name}</h2>
     );
 }
 

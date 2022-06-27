@@ -64,7 +64,6 @@ const Forminvoice = () => {
     const token = React.useRef('');
     token.current = localStorage.getItem('token');
     const [datas, setDatas] = React.useState(null);
-    const [dataDetail, setDataDetail] = React.useState(null);
     const [values, setValues] = React.useState({
         clientID:0,
         email:'',
@@ -72,9 +71,9 @@ const Forminvoice = () => {
         invoiceDate:'',
         terms:7,
         itemName:'',
-        total:0
+        total:0,
     });
-
+    const credential = jwt_decode(token.current);
     React.useEffect(() => {
       const getClient = async () => {
           await axios.get(
@@ -87,7 +86,6 @@ const Forminvoice = () => {
               }
           )
           .then((response)=>{
-          // setResultUser(response.data);
               setDatas(response.data);
           });
       };
@@ -106,7 +104,6 @@ const Forminvoice = () => {
           }
       )
       .then((response)=>{
-        setDataDetail(response.data);
         setValues({
           ...values,
           clientID: id.current,
@@ -137,14 +134,12 @@ const Forminvoice = () => {
     
     const handleSubmit = async (e) => {
       e.preventDefault();
-      // console.log(values);
-      const credential = jwt_decode(token.current);
       await axios.post(
-          `http://localhost:8000/invoice/add`,
+          'http://localhost:8000/invoice/add',
           {   
               client_id: values.clientID,
               item: values.itemName,
-              total: values.total,
+              total: parseInt(values.total),
               bill_issuer_id: credential.userId,
               payment_method_id: 0,
               payment_terms: values.terms
@@ -174,7 +169,7 @@ const Forminvoice = () => {
           pathname: '/dashboard'
         })
     }
-    console.log(dataDetail);
+    
     return (
     <Box sx={{ flexGrow: 1}}>
       <Grid container justifyContent="center">

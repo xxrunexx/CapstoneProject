@@ -63,6 +63,7 @@ const useStyles = makeStyles({
 });
 
 const FormNewPass = () => {
+    const [msgWrongPass, setMsgWrongPass] = React.useState('');
     const API = "http://localhost:8000";
     const history = useHistory();
     const classes = useStyles();
@@ -105,6 +106,9 @@ const FormNewPass = () => {
               ...values,
               confirmedPassword: !values.confirmedPassword,
           });
+      } else {
+        setMsgWrongPass('Password tidak cocok!');
+        // alert("Password tidak cocok!");
       }
 
       if(values.confirmedPassword){
@@ -234,6 +238,7 @@ const FormNewPass = () => {
                 }}
               />
             </Item>
+            {msgWrongPass ? <p style={{color:'red', marginBottom: 0}}>{`* ${msgWrongPass}`}</p> : null}
             <Item sx={{textAlign: 'center',}}>
                 <Box 
                   sx={{

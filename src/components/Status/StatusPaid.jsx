@@ -11,11 +11,11 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Statuspaid = (props) => {
+const Statuspaid = ({data}) => {
     return (
         <Grid item xs={12} md={2} >
             <Item sx={{textAlign: 'center', bgcolor: 'rgba(22,136,4,0.29)', color: '#168804', py:0.8, borderRadius:6}}>
-                <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{props.status}
+                <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>Paid
             </Item>
         </Grid>
     );

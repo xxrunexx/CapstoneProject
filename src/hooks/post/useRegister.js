@@ -16,10 +16,10 @@ const Useregister = () => {
     const API = "http://localhost:8000";
     const history = useHistory();
     const [values, setValues] = useState({
-        name:'',
-        email:'',
+        name: '',
+        email: '',
         password: '',
-        confirmPassword:'',
+        confirmPassword: '',
         comfirmedPassword: false,
         showPassword: false,
         showConfirmPassword: false,
@@ -46,14 +46,14 @@ const Useregister = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(values.password === values.confirmPassword){
+        if (values.password === values.confirmPassword) {
             setValues({
                 ...values,
                 confirmedPassword: !values.confirmedPassword,
             });
         }
 
-        if(values.confirmedPassword){
+        if (values.confirmedPassword) {
             await axios.post(
                 `${API}/billissuer/register`,
                 {
@@ -68,66 +68,66 @@ const Useregister = () => {
                     },
                 }
             )
-            .then(function (response) {
-                // handle success
-                setMsg(response.data.message);
-                console.log('axios', response);
-                localStorage.setItem("userID", response.data.data.id);
-                history.push({
-                    pathname: "/registerDetail",
+                .then(function (response) {
+                    // handle success
+                    setMsg(response.data.message);
+                    console.log('axios', response);
+                    localStorage.setItem("userID", response.data.data.id);
+                    history.push({
+                        pathname: "/registerDetail",
+                    });
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
                 });
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
         }
     };
 
     const linkHome = () => {
         history.push({
-            pathname:'/'
+            pathname: '/'
         });
     };
     return (
         <form onSubmit={handleSubmit} method="POST">
             <p id={styles.title}>
-            <Link component="button" underline='none' sx={{color:"white"}} onClick={linkHome}>
-                <img src={logo} alt="logo" className = {styles.logo}/> invoice.in 
-            </Link> 
+                <Link component="button" underline='none' sx={{ color: "white" }} onClick={linkHome}>
+                    <img src={logo} alt="logo" className={styles.logo} /> invoice.in
+                </Link>
             </p>
             <TextField
                 required
-                className= {styles.textfieldRegister}
+                className={styles.textfieldRegister}
                 // id="outlined-required"
                 onChange={handleChange('name')}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                        <PersonIcon />
+                            <PersonIcon />
                         </InputAdornment>
                     ),
-                    }}
-                placeholder= "Name"
+                }}
+                placeholder="Name"
             />
             <TextField
                 required
-                className= {styles.textfieldRegister}
+                className={styles.textfieldRegister}
                 // id="outlined-required"
-                type = "email"
+                type="email"
                 onChange={handleChange('email')}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                        <EmailIcon />
+                            <EmailIcon />
                         </InputAdornment>
                     ),
-                    }}
-                placeholder= "Email"
+                }}
+                placeholder="Email"
             />
             <TextField
                 required
-                className= {styles.textfieldRegister}
+                className={styles.textfieldRegister}
                 // id="outlined-required"
                 type={values.showPassword ? 'text' : 'password'}
                 autoComplete="current-password"
@@ -135,7 +135,7 @@ const Useregister = () => {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                        <LockIcon />
+                            <LockIcon />
                         </InputAdornment>
                     ),
                     endAdornment: (
@@ -145,17 +145,17 @@ const Useregister = () => {
                                 onClick={handleClickShowPassword}
                                 edge="end"
                             >
-                            {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                         </InputAdornment>
                     ),
                 }}
-                placeholder= "Password"
-                
+                placeholder="Password"
+
             />
             <TextField
                 required
-                className= {styles.textfieldRegister}
+                className={styles.textfieldRegister}
                 // id="outlined-password-input"
                 type={values.showConfirmPassword ? 'text' : 'password'}
                 autoComplete="current-password"
@@ -163,7 +163,7 @@ const Useregister = () => {
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
-                        <LockIcon />
+                            <LockIcon />
                         </InputAdornment>
                     ),
                     endAdornment: (
@@ -173,15 +173,15 @@ const Useregister = () => {
                                 onClick={handleClickShowConfirmPassword}
                                 edge="end"
                             >
-                            {values.showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                {values.showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                             </IconButton>
                         </InputAdornment>
                     ),
                 }}
-                placeholder= "Confirm Password"
+                placeholder="Confirm Password"
             />
-            <p id= {styles.aTerms} >By signing up, I agree to the Privacy Policy and Terms of Service</p>
-            <Button variant="contained" type="submit" id= {styles.btnRegister}>NEXT</Button>
+            <p id={styles.aTerms} >By signing up, I agree to the Privacy Policy and Terms of Service</p>
+            <Button variant="contained" type="submit" id={styles.btnRegister}>NEXT</Button>
         </form>
     );
 }

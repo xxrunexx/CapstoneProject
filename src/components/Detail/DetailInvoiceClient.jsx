@@ -16,24 +16,25 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none',
 }));
 
-const Detailinvoiceclient = ({status, data}) => {
+const Detailinvoiceclient = ({ status, data }) => {
+    console.log("Isi di dashboard client = " + data);
     return (
-        <Box sx={{ flexGrow: 1}}>
+        <Box sx={{ flexGrow: 1 }}>
             <Grid container justifyContent="center">
                 <Grid item xs={8} >
-                    <Item sx={{pt:4, pb:3, px:5, borderRadius:5}}>
-                        <Box sx={{ flexGrow: 1}}>
+                    <Item sx={{ pt: 4, pb: 3, px: 5, borderRadius: 5 }}>
+                        <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={12} lg={5} >
                                     <Item>
-                                        <Box sx={{ flexGrow: 1,}}>
+                                        <Box sx={{ flexGrow: 1, }}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
-                                                    <h3>Status</h3> 
+                                                    <h3>Status</h3>
                                                 </Grid>
-                                                <Grid item xs={12} md={5} sx={{mt:0.2}} >
-                                                    <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py:0.8, borderRadius:6}}>
-                                                        <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{status}
+                                                <Grid item xs={12} md={5} sx={{ mt: 0.2 }} >
+                                                    <Item sx={{ textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py: 0.8, borderRadius: 6 }}>
+                                                        <CircleIcon sx={{ mr: 1, fontSize: '0.875rem' }} />{status}
                                                     </Item>
                                                 </Grid>
                                             </Grid>
@@ -44,16 +45,16 @@ const Detailinvoiceclient = ({status, data}) => {
                         </Box>
                     </Item>
                 </Grid>
-                <Grid item xs={8} sx={{mt:2}} >
-                    <Item sx={{py:7, px:5, borderRadius:5}}>
-                        <Box sx={{ flexGrow: 1}}>
+                <Grid item xs={8} sx={{ mt: 2 }} >
+                    <Item sx={{ py: 7, px: 5, borderRadius: 5 }}>
+                        <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Item>
-                                        <Box sx={{ flexGrow: 1,}}>
+                                        <Box sx={{ flexGrow: 1, }}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
-                                                    <h3>{data.id}</h3> 
+                                                    <h3>{data.id}</h3>
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -61,19 +62,19 @@ const Detailinvoiceclient = ({status, data}) => {
                                 </Grid>
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Item>
-                                        <Box sx={{ flexGrow: 1,}}>
+                                        <Box sx={{ flexGrow: 1, }}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
-                                                    <h5>Invoice Date</h5> 
-                                                    <span>{data.invoice_date}</span>
+                                                    <h5>Invoice Date</h5>
+                                                    <span>{data.created_at}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
-                                                    <h5>Bill To</h5> 
-                                                    <span>{data.bill_to}</span> 
+                                                    <h5>Bill To</h5>
+                                                    <span>{data.client_name}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
-                                                    <h5>Send To</h5> 
-                                                    <span>{data.send_to}</span> 
+                                                    <h5>Send To</h5>
+                                                    <span>{data.client_email}</span>
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -81,43 +82,43 @@ const Detailinvoiceclient = ({status, data}) => {
                                 </Grid>
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Item>
-                                        <Box sx={{ flexGrow: 1,}}>
+                                        <Box sx={{ flexGrow: 1, }}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
-                                                    <h5>Payment Date</h5> 
-                                                    <span>{data.payment_date}</span>
+                                                    <h5>Payment Date</h5>
+                                                    <span>{data.payment_due}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
-                                                    <h5>Address</h5> 
-                                                    <span>{data.address}</span> 
+                                                    <h5>Address</h5>
+                                                    <span>{data.client_address}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
-                                                    <h5>From</h5> 
-                                                    <span>{data.from}</span> 
+                                                    <h5>From</h5>
+                                                    <span>{data.bill_issuer_name}</span>
                                                 </Grid>
                                             </Grid>
                                         </Box>
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={12} lg={12} >
-                                    <Item sx={{bgcolor:'#131522', color:'white', borderRadius:5, px:3, py:3}}>
-                                        <Box sx={{ flexGrow: 1,}}>
+                                    <Item sx={{ bgcolor: '#131522', color: 'white', borderRadius: 5, px: 3, py: 3 }}>
+                                        <Box sx={{ flexGrow: 1, }}>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={6} className={custom.responsive} >
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Item Name</span>
                                                     </div>
                                                     <div className={custom.detailInfo}>
-                                                        <span>{data.item_name}</span>
+                                                        <span>{data.item}</span>
                                                     </div>
                                                 </Grid>
-                                                <Grid item xs={12} md={6} sx={{textAlign:'right'}} className={custom.responsive}>
+                                                <Grid item xs={12} md={6} sx={{ textAlign: 'right' }} className={custom.responsive}>
                                                     <div className={`mb-3 ${custom.headInfo}`}>
                                                         <span>Total</span>
                                                     </div>
                                                     <div className={custom.detailInfo}>
                                                         <span>Rp. {data.total}</span>
-                                                    </div> 
+                                                    </div>
                                                 </Grid>
                                             </Grid>
                                         </Box>
@@ -125,15 +126,15 @@ const Detailinvoiceclient = ({status, data}) => {
                                 </Grid>
                                 <Grid item xs={12} md={12} lg={12} >
                                     <Box sx={{
-                                        display: 'flex', 
-                                        flexDirection: 'row-reverse', 
+                                        display: 'flex',
+                                        flexDirection: 'row-reverse',
                                         mt: 3,
                                     }}>
                                         <Link sx={{
                                             bgcolor: '#FFC700',
                                             color: '#131522',
-                                            px:3,
-                                            py:0.5,
+                                            px: 3,
+                                            py: 0.5,
                                             fontSize: '1.5rem',
                                             borderRadius: 3
                                         }} component="button" underline="none" className={`${custom.payNow}`}>
@@ -147,6 +148,8 @@ const Detailinvoiceclient = ({status, data}) => {
                 </Grid>
             </Grid>
         </Box>
+
+        // <h2>{data.client_name}</h2>
     );
 }
 

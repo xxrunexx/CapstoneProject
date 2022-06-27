@@ -18,14 +18,13 @@ const Paymentmethod = () => {
             await axios.get(
                 'http://localhost:8000/paymentmethod',
                 {
-                    headers: {
+                    headers: { //TODO: Untuk referensi put
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token.current}`,
                     },
                 }
             )
             .then((response)=>{
-            // setResultUser(response.data);
                 setCount(response.data.data.length);
                 setDatas(response.data);
             });

@@ -3,36 +3,45 @@ import Box from '@mui/material/Box';
 import Custom from './dashboardBillIssuer.module.css';
 import Dashboardbipage from '../../components/Detail/DashboardBiPage';
 import jwt_decode from "jwt-decode";
+import axios from 'axios';
 
 const Dashboardbillissuer = () => {
-    const data = [
-        { 
-            id: '#5F892S3', 
-            payment_due: 'Due Jan 1, 2022', 
-            bill_to: 'Harun Rasyid', 
-            total: '250.000',
-        },
-    ];
+    const [dataApi, setDataApi] = React.useState(null);
 
-    const clientInfo = [
-        { 
-            name: 'Harun Rasyid', 
-            email: 'rasyid.id3@gmail.com', 
-            nik: '35151545421454',
-            phone: '08979484545',
-            address: 'Batam Indonesia'
-        },
-    ];
+    React.useEffect(() => {
+        const getInvoices = async () => {
+            await axios.get(
+                'http://localhost:8000/invoice',
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+            .then((response)=>{
+                setDataApi(response.data.data);
+                // console.log("Isi response.data : ", dataApi);
+            });
+        };
+        getInvoices();
+    },[]);
+
+    
     const token = localStorage.getItem("token");
     let authData = jwt_decode(token);
-    // console.log(decoded);
     return (
         <Box className={Custom.background}>
-            <Dashboardbipage 
+            {/* {console.log("Isinya adalah : " + JSON.stringify(dataApi))} */}
+            {dataApi?.map((value,key) => {
+                return (
+                    <Dashboardbipage key={key} data={value} auth={authData}/>
+                    );
+            })}
+            {/* <Dashboardbipage 
                 data={data} 
                 client={clientInfo} 
                 auth={authData} 
-            />
+            /> */}
         </Box>
     );
 }

@@ -20,7 +20,6 @@ const Detailpayment = ({data, authToken}) => {
     const history = useHistory();
     const dataStatus = React.useRef(false);
     dataStatus.current = data.is_active;
-
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
@@ -39,8 +38,6 @@ const Detailpayment = ({data, authToken}) => {
             }
           )
           .then(function (response) {
-            // handle success
-            // console.log('axios', response);
             history.go(0);
           })
           .catch(function (error) {

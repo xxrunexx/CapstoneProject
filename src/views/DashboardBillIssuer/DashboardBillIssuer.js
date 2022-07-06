@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Custom from './dashboardBillIssuer.module.css';
 import Dashboardbipage from '../../components/Detail/DashboardBiPage';
+import Dashboardbipagecard from '../../components/Detail/DashboardBiPageCard';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
 
@@ -20,7 +21,6 @@ const Dashboardbillissuer = () => {
             )
             .then((response)=>{
                 setDataApi(response.data.data);
-                // console.log("Isi response.data : ", dataApi);
             });
         };
         getInvoices();
@@ -31,17 +31,12 @@ const Dashboardbillissuer = () => {
     let authData = jwt_decode(token);
     return (
         <Box className={Custom.background}>
-            {/* {console.log("Isinya adalah : " + JSON.stringify(dataApi))} */}
+            <Dashboardbipage auth={authData}/>
             {dataApi?.map((value,key) => {
                 return (
-                    <Dashboardbipage key={key} data={value} auth={authData}/>
+                    <Dashboardbipagecard key={key} data={value} auth={authData} />
                     );
             })}
-            {/* <Dashboardbipage 
-                data={data} 
-                client={clientInfo} 
-                auth={authData} 
-            /> */}
         </Box>
     );
 }

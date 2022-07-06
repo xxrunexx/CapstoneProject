@@ -8,6 +8,8 @@ import CircleIcon from '@mui/icons-material/Circle';
 import custom from './updateInvoice.module.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import dateFormat from 'dateformat';
+
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -18,8 +20,11 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none',
 }));
 
-const Updateinvoice = ({data, status}) => {
+const Updateinvoice = ({data,dataDetail, status}) => {
     const history = useHistory();
+    const convCreateAt = dateFormat(data.created_at, "yyyy-mm-dd");
+    const convPaymentDue = dateFormat(data.payment_due, "yyyy-mm-dd");
+
     const handleDelete = (e) => {
         e.preventDefault();
         axios
@@ -31,6 +36,13 @@ const Updateinvoice = ({data, status}) => {
             history.go(-1);
          })
     }
+
+    const handleGoEdit = () => {
+        history.push({
+            pathname: "/formeditinvoice",
+            state: {data: data},
+        });
+    };
 
     const handleUpdateStatus = (e) => {
         e.preventDefault();
@@ -87,8 +99,7 @@ const Updateinvoice = ({data, status}) => {
                                             <Grid container spacing={2} justifyContent="flex-end">
                                                 {data.payment_status === 'draft' && <Grid item xs={12} md={2}>
                                                         <Item sx={{textAlign: 'center', bgcolor: '#6C6C73', py:1, borderRadius:2}}>
-                                                            {console.log("Punyanya si update nih", data)}
-                                                            <Link component="button" underline="none" className={custom.link}>
+                                                            <Link onClick={handleGoEdit} component="button" underline="none" className={custom.link}>
                                                                 {'Edit'}
                                                             </Link>
                                                         </Item>
@@ -152,7 +163,8 @@ const Updateinvoice = ({data, status}) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Invoice Date</h5> 
-                                                    <span>{data.created_at}</span>
+                                                    {/* <span>{data.created_at}</span> */}
+                                                    <span>{convCreateAt}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Bill To</h5> 
@@ -172,16 +184,15 @@ const Updateinvoice = ({data, status}) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Payment Date</h5> 
-                                                    <span>{data.payment_due}</span>
+                                                    <span>{convPaymentDue}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Address</h5> 
                                                     <span>{data.client_address}</span> 
                                                 </Grid>
-                                                {/* FIXME: Dicoba lagi nanti */}
                                                 <Grid item xs={12} md={4} >
                                                     <h5>From</h5> 
-                                                    <span>{data.company_name}</span> 
+                                                    <span>{dataDetail.company_name}</span> 
                                                 </Grid>
                                             </Grid>
                                         </Box>

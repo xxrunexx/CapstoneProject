@@ -17,6 +17,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageIcon from '@mui/icons-material/Language';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -67,6 +68,7 @@ const useStyles = makeStyles({
 const FormBillIssuerInfo = () => {
   const classes = useStyles();
   const token = React.useRef('');
+  const history =  useHistory();
   token.current = localStorage.getItem('token');
 
   const [valuesUser, setValuesUser] = React.useState({
@@ -125,207 +127,233 @@ const FormBillIssuerInfo = () => {
     setValuesUserDetail({ ...valuesUserDetail, [prop]: event.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: JANGAN LUPA YA DICOBA LAGI
-    
+    console.log("Isi value : ", valuesUser)
     // Update user data
-    // const updateUserByID = async () => {
-    //   await axios.put(`http://localhost:8000/billissuer`, {
-    //     id: valuesUser.id,
-    //     name: handleChangeUser('name'),
-    //     password: handleChangeUser('password'),
-    //     email: handleChangeUser('email'),
-    //   });
-    // }
+    await axios.put(`http://localhost:8000/billissuer`, 
+    {
+      id: valuesUser.id,
+      name: valuesUser.name,
+      password: valuesUser.password,
+      email: valuesUser.email,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+  .then(function (response) {
+    // handle success
+    console.log('axios', response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
 
     // // Update user detail data
-    // const updateUserDetailByID = async () => {
-    //   await axios.put(`http://localhost:8000/billissuerdetail`, {
-    //     id: valuesUserDetail.id,
-    //     companyName: handleChangeUserDetail('companyName'),
-    //     companyAddress: handleChangeUserDetail('companyAddress'),
-    //     companyPhone: handleChangeUserDetail('companyPhone'),
-    //     companySite: handleChangeUserDetail('companySite'),
-    //   });
+    await axios.put(`http://localhost:8000/billissuerdetail`, {
+      id: valuesUserDetail.id,
+      company_name: valuesUserDetail.companyName,
+      company_address: valuesUserDetail.companyAddress,
+      company_phone: valuesUserDetail.companyPhone,
+      company_site: valuesUserDetail.companySite,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }
-    return (
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container justifyContent="center">
-          <Grid item xs={8} >
-            <Item sx={{
-              textAlign: 'center',
-              py: 1,
-              fontFamily: 'Michroma',
-              fontStyle: 'normal',
-              fontWeight: 'normal',
-              fontSize: '64px',
-              lineHeight: '91px',
-              color: '#E5E5E5',
-            }}>
-              <img src={billIssuerInfo} alt="billIssuerInfo" position="center" />
-            </Item>
-            <Item sx={{
-              textAlign: 'center',
-              py: 1,
-              fontFamily: 'Michroma',
-              fontStyle: 'normal',
-              fontWeight: 'normal',
-              fontSize: '64px',
-              lineHeight: '91px',
-              color: '#E5E5E5',
-              paddingTop: '0px',
-              paddingBottom: '0px',
-            }}>
-              <p>{valuesUser.name}</p>
-            </Item>
-            <Item sx={{
-              textAlign: 'center',
-              color: '#E5E5E5',
-              py: 1,
-              fontSize: '36px',
-              paddingTop: '0px',
-              paddingBottom: '10px',
-            }}>
-              <p>{valuesUserDetail.companyName}</p>
-            </Item>
-            <form onSubmit={handleSubmit} method="post">
-              <Item>
-                <TextField
-                  sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
-                  className={classes.root}
-                  id="outlined-uncontrolled"
-                  label="Name"
-                  fullWidth
-                  value={valuesUser.name}
-                  onChange={handleChangeUser('name')}
-                  variant="filled"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Item>
-              <Item>
-                <TextField
-                  sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
-                  className={classes.root}
-                  id="outlined-uncontrolled"
-                  type='email'
-                  label="Email"
-                  value={valuesUser.email}
-                  onChange={handleChangeUser('email')}
-                  variant="filled"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <EmailIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-              </Item>
-              <Item>
-                <TextField
-                  sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
-                  className={classes.root}
-                  id="outlined-uncontrolled"
-                  label="Company Name"
-                  value={valuesUserDetail.companyName}
-                  onChange={handleChangeUserDetail('companyName')}
-                  variant="filled"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <ApartmentIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Item>
-              <Item>
-                <TextField
-                  sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
-                  className={classes.root}
-                  id="outlined-uncontrolled"
-                  label="Company Address"
-                  value={valuesUserDetail.companyAddress}
-                  onChange={handleChangeUserDetail('companyAddress')}
-                  variant="filled"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LocationOnIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Item>
-              <Item>
-                <TextField
-                  sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
-                  className={classes.root}
-                  id="outlined-uncontrolled"
-                  label="Company Phone"
-                  value={valuesUserDetail.companyPhone}
-                  onChange={handleChangeUserDetail('companyPhone')}
-                  variant="filled"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PhoneIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Item>
-              <Item>
-                <TextField
-                  sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
-                  className={classes.root}
-                  id="outlined-uncontrolled"
-                  label="Company Site"
-                  value={valuesUserDetail.companySite}
-                  onChange={handleChangeUserDetail('companySite')}
-                  variant="filled"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LanguageIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Item>
-              <Item sx={{ textAlign: 'center', }}>
-                {/* JANGAN LUPA DIHAPUS */}
-                <Box
-                sx={{
-                  bgcolor: '#FFC700',
-                  borderRadius: 2,
-                  color: 'black',
-                  py: 1,
-                  fontSize: '1.2rem'
-                }}>
-                <Link component="button" underline="none" type='submit' className={custom.addNewItem}>
-                {'UPDATE'}
-                </Link>
-              </Box>
-              </Item>
-            </form>
-          </Grid>
-        </Grid>
-      </Box >
-    );
+  )
+  .then(function (response) {
+    // handle success
+    console.log('axios', response);
+    history.go(0);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
   }
-// }
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={8} >
+          <Item sx={{
+            textAlign: 'center',
+            py: 1,
+            fontFamily: 'Michroma',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            fontSize: '64px',
+            lineHeight: '91px',
+            color: '#E5E5E5',
+          }}>
+            <img src={billIssuerInfo} alt="billIssuerInfo" position="center" />
+          </Item>
+          <Item sx={{
+            textAlign: 'center',
+            py: 1,
+            fontFamily: 'Michroma',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            fontSize: '64px',
+            lineHeight: '91px',
+            color: '#E5E5E5',
+            paddingTop: '0px',
+            paddingBottom: '0px',
+          }}>
+            <p>{valuesUser.name}</p>
+          </Item>
+          <Item sx={{
+            textAlign: 'center',
+            color: '#E5E5E5',
+            py: 1,
+            fontSize: '36px',
+            paddingTop: '0px',
+            paddingBottom: '10px',
+          }}>
+            <p>{valuesUserDetail.companyName}</p>
+          </Item>
+          <form onSubmit={handleSubmit} method="post">
+            <Item>
+              <TextField
+                sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Name"
+                fullWidth
+                value={valuesUser.name}
+                disabled
+                variant="filled"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PersonIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                type='email'
+                label="Email"
+                value={valuesUser.email}
+                onChange={handleChangeUser('email')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+            </Item>
+            <Item>
+              <TextField
+                sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Name"
+                value={valuesUserDetail.companyName}
+                onChange={handleChangeUserDetail('companyName')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <ApartmentIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Address"
+                value={valuesUserDetail.companyAddress}
+                onChange={handleChangeUserDetail('companyAddress')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocationOnIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Phone"
+                value={valuesUserDetail.companyPhone}
+                onChange={handleChangeUserDetail('companyPhone')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PhoneIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item>
+              <TextField
+                sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
+                className={classes.root}
+                id="outlined-uncontrolled"
+                label="Company Site"
+                value={valuesUserDetail.companySite}
+                onChange={handleChangeUserDetail('companySite')}
+                variant="filled"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LanguageIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Item>
+            <Item sx={{ textAlign: 'center', }}>
+              {/* JANGAN LUPA DIHAPUS */}
+              <Box
+              sx={{
+                bgcolor: '#FFC700',
+                borderRadius: 2,
+                color: 'black',
+                py: 1,
+                fontSize: '1.2rem'
+              }}>
+              <Link component="button" underline="none" type='submit' className={custom.addNewItem}>
+              {'UPDATE'}
+              </Link>
+            </Box>
+            </Item>
+          </form>
+        </Grid>
+      </Grid>
+    </Box >
+  );
+}
+
 export default FormBillIssuerInfo;

@@ -7,6 +7,6 @@
 
 @media (min-width: 900px) {
     .background{
-        height: 100vh;
+        height: 100%;
     }
 }

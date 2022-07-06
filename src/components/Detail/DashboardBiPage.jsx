@@ -70,7 +70,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 650,
+    width: '100%',
+    // width: 650,
     bgcolor: '#FFC700',
     border: '1px solid #131522',
     borderRadius:3,
@@ -80,94 +81,13 @@ const style = {
 };
 
 const Dashboardbipage = ({data, auth}) => {
-    const clientID = React.useRef(false);
-    // clientID.current = data.client_id;
+    // const clientID = React.useRef(false);
     const history = useHistory();
     const [show, setShow] = useState(true);
     const handle = () => {
         setShow(!show);
     }
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    // const [dataClient, setDataClient] = React.useState(null);
-    
-const [valueUpdate, setValueUpdate] = React.useState({
-  client_nik: '',
-  client_phone: '',
-  client_address: '',
-})
-
-    React.useEffect(() => {
-        const getSpecificClient = async () => {
-            await axios.get(
-                `http://localhost:8000/client/${data.client_id}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            )
-            .then((response)=>{
-              setValueUpdate({
-                client_nik: response.data.data.nik,
-                client_phone: response.data.data.phone,
-                client_address: response.data.data.address
-              })
-                // setDataClient(response.data);
-                // console.log("Isi dataclient : ", dataClient);
-            });
-        };
-      //   const getClientInfo = async () => {
-      //     await axios.get(
-      //         'http://localhost:8000/client',
-      //         {
-      //             headers: {
-      //                 'Content-Type': 'application/json',
-      //             },
-      //         }
-      //     )
-      //     .then((response)=>{
-      //         setDataApiClient(response.data.data);
-      //         // console.log("Isi response.data : ", dataApi);
-      //     });
-      // }
-        getSpecificClient();
-    },[]);
-
-    const handleChange = (prop) => (event) => {
-      setValueUpdate({ ...valueUpdate, [prop]: event.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios
-          .put(
-            `http://localhost:8000/client/update/${data.client_id}`,
-            {
-                id: data.client_id,
-                nik: handleChange('client_nik'),
-                name: data.client_name,
-                phone: handleChange('client_phone'),
-                address: handleChange('client_address'),
-                email: data.client_email,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }
-          )
-          .then(function (response) {
-            // Reload the page after the update
-            // Note : Method only works if the page exist in the history list.
-            history.go(0);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-    }
 
     const newClient = () => {
         history.push({
@@ -184,25 +104,18 @@ const [valueUpdate, setValueUpdate] = React.useState({
             pathname: "/addPaymentMethod",
         });
     }
-    // const [, setMsg] = useState('');
     
-    const file = React.useRef(null);
-    const handleUpload = () => {
-        //file.current.files
-        console.log("test Button");
-        console.log(file.current.files);
-    }
+    // const file = React.useRef(null);
+    // const handleUpload = () => {
+    //     console.log("test Button");
+    //     console.log(file.current.files);
+    // }
     const logout = () => {
         localStorage.setItem("loggedIn", "guest");
         localStorage.removeItem("token");
         window.location.href = "/login";
     }
-    // TODO: Kemarin berhasil dapat data dari DashboardBillissuer.js 
-    // TODO: ke dashboardbiPage.jsx. Saat ini tolong dicoba untuk
-    // TODO: Masuk ke dalam codingan 1 persatu. Dicek
-    // TODO: dengan memanggil data.<value>
-    // TODO: Semoga bisa. Bismillah ya Allah
-    // console.log("ISINYA APA INI : ", data.id)
+
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid>
@@ -240,7 +153,6 @@ const [valueUpdate, setValueUpdate] = React.useState({
                             >
                                 <Item>
                                     <h1>Invoices</h1>
-                                    <h5>There are 3 total Invoices</h5>
                                 </Item>
                             </Grid>
                             <Grid 
@@ -306,13 +218,12 @@ const [valueUpdate, setValueUpdate] = React.useState({
                                 />
                             </Grid>
                         </Grid>
-                        {/* FIXME: BUKA LAGI NANTI YA */}
-                        <Grid container sx={{color:'white'}}>
+                        {/* <Grid container sx={{color:'white'}}>
                             <Grid item xs={12} container>
                                 <Detaildashboard status={data.payment_status} data={data} modal={handleOpen}/>
                             </Grid>
-                        </Grid>
-                        <Grid container sx={{color:'white', pt:2, justifyContent: 'center'}}>
+                        </Grid> */}
+                        {/* <Grid container sx={{color:'white', pt:2, justifyContent: 'center'}}>
                             <Grid item xs={10} container>
                                 <form onSubmit={handleSubmit} method="POST" style={{ width: '100%' }}>
                                     <input
@@ -352,111 +263,11 @@ const [valueUpdate, setValueUpdate] = React.useState({
                                     </Button>
                                 </form>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                     </Box>
                 </Grid>
             </Grid>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style} className={custom.modalBox}>
-                    <Grid container sx={{color:'#131522'}}>
-                        <Grid item container justifyContent="end">
-                            <Button variant="text" sx={{color:'#131522', minWidth:'40px', padding:0}} onClick={handleClose}><CloseIcon/></Button>
-                        </Grid>
-                    </Grid>
-                    <Grid container sx={{color:'#131522'}} justifyContent="center">
-                        <Grid item xs={9}>
-                            <Grid container justifyContent="center" alignItems="center">
-                                <Grid item xs={12} md={3}>
-                                    <AccountCircleOutlinedIcon sx={{fontSize:'5rem'}}/>
-                                </Grid>
-                                <Grid item xs={12} md={9}>
-                                    <h2 className={custom.topModal}>{data.client_name}</h2>
-                                    <p className={custom.topModal}>{data.client_email}</p>
-                                </Grid>
-                            </Grid>
-                            <Grid container justifyContent="center" alignItems="center" sx={{mt:4}}>
-                                <TextField
-                                    sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                                    className={classes.root}
-                                    id="outlined-uncontrolled"
-                                    label="NIK"
-                                    fullWidth
-                                    onChange={handleChange('client_nik')}
-                                    value={valueUpdate.client_nik}
-                                    variant="filled"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <EmailIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Grid>
-                            <Grid container justifyContent="center" alignItems="center" sx={{mt:2}}>
-                                <TextField
-                                    sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                                    className={classes.root}
-                                    id="outlined-uncontrolled"
-                                    label="Phone Number"
-                                    fullWidth
-                                    onChange={handleChange('client_phone')}
-                                    value={valueUpdate.phone}
-                                    variant="filled"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <LockIcon />
-                                            </InputAdornment>
-                                        ),
-                                        classes:{notchedOutline:classes.noBorder},
-                                    }}
-                                />
-                            </Grid>
-                            <Grid container justifyContent="center" alignItems="center" sx={{mt:2}}>
-                                <TextField
-                                    sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                                    className={classes.root}
-                                    id="outlined-uncontrolled"
-                                    label="Address"
-                                    fullWidth
-                                    onChange={handleChange('client_address')}
-                                    value={valueUpdate.client_address}
-                                    variant="filled"
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <LockIcon />
-                                            </InputAdornment>
-                                        ),
-                                        classes:{notchedOutline:classes.noBorder},
-                                    }}
-                                />
-                            </Grid>
-                            <Grid container justifyContent="center" alignItems="center" sx={{mt:4, mb:2}}>
-                                <Button 
-                                    variant="contained" 
-                                    fullWidth 
-                                    sx={{
-                                        borderRadius:2, 
-                                        color:'#FFC700', 
-                                        bgcolor:'#131522'
-                                    }} 
-                                    className={custom.modalUpdate}>
-                                        Update
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Modal>
         </Box>
-        // <h2>COBA APA</h2>
     );
 }
 

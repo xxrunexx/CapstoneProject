@@ -11,6 +11,7 @@ import StatusDraft from '../../components/Status/StatusDraft';
 import Statusprocessed from '../../components/Status/StatusProcessed';
 import Statusunpaid from '../../components/Status/StatusUnpaid';
 import { useHistory } from 'react-router-dom';
+import dateFormat from 'dateformat';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -18,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: 'white',
     boxShadow: 'none'
 }));
-const Detaildashboard = ({data}) => {
+const Detaildashboard = ({data, modal}) => {
     const history = useHistory();
     const linkInvoice = () => {
         history.push({
@@ -26,7 +27,16 @@ const Detaildashboard = ({data}) => {
             state: {data: data},
         });
     }
-    console.log("Isi Data : ", data);
+    const convCreatedAt = dateFormat(data.created_at, "yyyy-mm-dd")
+
+    // const handleEditClient = () => {
+    //     history.push({
+    //         pathname: '/formeditclient',
+    //         state: {data: data}
+    //     })
+    // }
+
+    console.log("Punya detaildash ", data)
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -47,12 +57,14 @@ const Detaildashboard = ({data}) => {
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {data.payment_due}
+                                        {convCreatedAt}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        <Link component="button" underline="none" sx={{textTransform:'none', color: '#131522'}}>{data.client_name}</Link>
+                                        {/* <Link onClick={handleEditClient} component="button" underline="none" sx={{textTransform:'none', color: '#131522'}}>{data.client_name}</Link> */}
+                                        <Link onClick={modal} component="button" underline="none" sx={{textTransform:'none', color: '#131522'}}>{data.client_name}</Link>
+                                        {/* {data.client_name} */}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={2} >
@@ -60,8 +72,6 @@ const Detaildashboard = ({data}) => {
                                         {data.total}
                                     </Item>
                                 </Grid>
-                                {/* <props.component status={data.payment_status}/> */}
-                                {/* {console.log("Isi payment status : ", data.payment_status)} */}
                                 {
                                     data.payment_status === 'paid' ? <StatusPaid status={data.payment_status}/> : 
                                     data.payment_status === 'unpaid' ? <Statusunpaid status={data.payment_status}/> : 
@@ -82,7 +92,6 @@ const Detaildashboard = ({data}) => {
                 </Grid>
             </Grid>
         </Box>
-        // <h2>{data.client_name}</h2>
     );
 }
 

@@ -24,6 +24,7 @@ import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
 import Paymentmethod from './views/Dashboard/PaymentMethod';
 import Newpayment from './views/NewPaymentMethod/newPayment';
+import FormEditInvoice from './components/Detail/FormEditInvoice';
 
 function PrivateRoute({ children, ...rest }) {
   return (
@@ -142,6 +143,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute exact path='/addPaymentMethod'>
             <Newpayment />
+          </PrivateRoute>
+          <PrivateRoute exact path='/formeditinvoice'>
+            <FormEditInvoice />
           </PrivateRoute>
           <PrivateRoute
             exact path='/clientupdated'

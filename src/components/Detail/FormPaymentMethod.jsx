@@ -119,7 +119,7 @@ const Formpaymentmethod = () => {
               <TextField
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
-                placeholder="Input Client Name ..."
+                placeholder="Input New Payment Method"
                 onChange={handleChange('name')}
                 fullWidth
                 InputProps={{

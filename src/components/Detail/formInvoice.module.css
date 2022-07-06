@@ -14,3 +14,8 @@
 .addNewItem:hover{
     color: white !important;
 }
+
+.background{
+    background-color: #131522;
+    height: 100vh;
+}

@@ -141,7 +141,6 @@ const Forminvoice = () => {
               item: values.itemName,
               total: parseInt(values.total),
               bill_issuer_id: credential.userId,
-              payment_method_id: 0,
               payment_terms: values.terms
           },
           {

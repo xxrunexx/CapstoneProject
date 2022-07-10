@@ -13,6 +13,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 
 const Useregister = () => {
+    const [msgExistingEmail, setMsgExistingEmail] = React.useState('');
+    const [msgDiffPass, setMsgDiffPass] = React.useState('');
     const API = "http://localhost:8000";
     const history = useHistory();
     const [values, setValues] = useState({
@@ -51,6 +53,8 @@ const Useregister = () => {
                 ...values,
                 confirmedPassword: !values.confirmedPassword,
             });
+        } else {
+            setMsgDiffPass('Password tidak cocok');
         }
 
         if (values.confirmedPassword) {
@@ -80,6 +84,7 @@ const Useregister = () => {
                 .catch(function (error) {
                     // handle error
                     console.log(error);
+                    setMsgExistingEmail('Email sudah terdaftar');
                 });
         }
     };
@@ -125,6 +130,7 @@ const Useregister = () => {
                 }}
                 placeholder="Email"
             />
+            {msgExistingEmail ? <p style={{color:'red', marginBottom: 0}}>{`* ${msgExistingEmail}`}</p> : null}
             <TextField
                 required
                 className={styles.textfieldRegister}
@@ -180,6 +186,7 @@ const Useregister = () => {
                 }}
                 placeholder="Confirm Password"
             />
+            {msgDiffPass ? <p style={{color:'red', marginBottom: 0}}>{`* ${msgDiffPass}`}</p> : null}
             <p id={styles.aTerms} >By signing up, I agree to the Privacy Policy and Terms of Service</p>
             <Button variant="contained" type="submit" id={styles.btnRegister}>NEXT</Button>
         </form>

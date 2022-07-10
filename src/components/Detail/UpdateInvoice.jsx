@@ -32,7 +32,7 @@ const Updateinvoice = ({data,dataDetail, status}) => {
             `http://localhost:8000/invoice/${data.id}`,
             
          )
-         .then(function (response) {
+         .then(function () {
             history.go(-1);
          })
     }
@@ -55,7 +55,6 @@ const Updateinvoice = ({data,dataDetail, status}) => {
                 total: data.total,
                 item: data.item,
                 bill_issuer_id: data.bill_issuer_id,
-                payment_method_id: data.payment_method_id,
                 payment_due: data.payment_due,
                 payment_status: 'paid',
             },
@@ -65,7 +64,32 @@ const Updateinvoice = ({data,dataDetail, status}) => {
                 },
             }
          )
-         .then(function(response) {
+         .then(function() {
+            history.go(-1);
+         })
+    }
+
+    const handleSubmitInvoice = (e) => {
+        e.preventDefault();
+        axios
+         .put(
+            'http://localhost:8000/invoice/update',
+            {
+                id: data.id,
+                client_id: data.client_id,
+                total: data.total,
+                item: data.item,
+                bill_issuer_id: data.bill_issuer_id,
+                payment_due: data.payment_due,
+                payment_status: 'unpaid',
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+         )
+         .then(function() {
             history.go(-1);
          })
     }
@@ -124,11 +148,11 @@ const Updateinvoice = ({data,dataDetail, status}) => {
                                                         </Item> 
                                                     </Grid>
                                                 }
-                                                {data.payment_status === 'processed' && <Grid item xs={12} md={4}>
+                                                {data.payment_status === 'draft' && <Grid item xs={12} md={4}>
                                                         <Item sx={{textAlign: 'center', bgcolor: '#FFC700', py:1, borderRadius:2}}>
-                                                        <form onSubmit={handleUpdateStatus} method="post">
+                                                        <form onSubmit={handleSubmitInvoice} method="post">
                                                             <Link component="button" underline="none" className={custom.link}>
-                                                                {'Mark as Paid'}
+                                                                {'Submit Invoice'}
                                                             </Link>
                                                         </form>
                                                         </Item> 

@@ -25,7 +25,6 @@ const DashboardClient = () => {
                 }
             )
             .then((response)=>{
-            // setResultUser(response.data);
                 setCount(response.data.data.length);
                 setDatas(response.data);
             });

@@ -51,22 +51,12 @@ const Sidenavicon = (props) => {
             pathname: "/dashboard/unpaid",
         });
     }
-    const linkPayment = () => {
-        history.push({
-            pathname: "/paymentMethod",
-        });
-    }
     
     const navMenuList = [
         {
             name: "Client",
             icon: PersonIcon,
             path: linkClient
-        },
-        {
-            name: "Payment Method",
-            icon: PaymentIcon,
-            path: linkPayment
         },
         {
             name: "Paid",

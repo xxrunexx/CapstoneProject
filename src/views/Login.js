@@ -19,6 +19,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
+    const [msgWrongPass, setMsgWrongPass] = React.useState('');
     const history = useHistory();
     const [values, setValues] = React.useState({
         email:'',
@@ -41,7 +42,6 @@ function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // console.log(values.email, values.password);
         await axios
           .post(
             'http://localhost:8000/billissuer/login',
@@ -52,11 +52,6 @@ function Login() {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    // FIXME: Authorization: 'Bearer token...',iki wes iso nyimpen nang local ga?
-                    // wes onok nang local e
-                    // berarti kari nambahi header nang saben axios e
-                    // piyee
-                    // 
                 },
             }
           )
@@ -68,21 +63,16 @@ function Login() {
             localStorage.setItem("loggedIn", "bill_issuer");
             console.log(response.data.data.token);
             history.push('/');
-            // window.location.href = "/dashboard";
           })
           .catch(function (error) {
             // handle error
             console.log('error');
+            setMsgWrongPass('Email atau Password salah!');
           });
     };
     const passHome= () => {
         history.push({
             pathname: "/",
-        });
-    };
-    const passForgetPass= () => {
-        history.push({
-            pathname: "/forgetpass",
         });
     };
     const passRegister= () => {
@@ -144,9 +134,7 @@ function Login() {
                             }}
                             placeholder= "Password"
                         />
-                        <Link sx={{ml:44}} component="button" underline="none" onClick={passForgetPass} id={styles.aForgetpass}>
-                            {'Forget Password ?'}
-                        </Link>
+                        {msgWrongPass ? <p style={{color:'red', marginBottom: 0}}>{`* ${msgWrongPass}`}</p> : null}
                         <Button variant="contained" type="submit" id={styles.btnLogin}>Login</Button>
                     </form>
                     <Link sx={{mx:20}} component="button" underline="none" onClick={passRegister} id={styles.aRegister}>

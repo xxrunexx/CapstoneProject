@@ -68,14 +68,12 @@ const Editinvoice = () => {
         getBillIssuerDetail();
     },[]);
 
-    // const status = 'Processed';
     const link = '/dashboard';
 
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
-                {/* TODO: Ini baru tempat buat update beneran */}
                 <Updateinvoice status={dataInvoice.payment_status} data={dataInvoice} dataDetail={dataDetail}/>
             </Box>
         </Box>

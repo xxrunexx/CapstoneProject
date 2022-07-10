@@ -7,7 +7,6 @@ import custom from './sideNav.module.css';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import ReceiptIcon from '@mui/icons-material/Receipt';
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import PaidIcon from '@mui/icons-material/Paid';
 import Link from '@mui/material/Link';
@@ -15,7 +14,6 @@ import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import CloseIcon from '@mui/icons-material/Close';
-import PaymentIcon from '@mui/icons-material/Payment';
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -36,11 +34,6 @@ const Sidenav = (props) => {
             pathname: "/dashboard/draft",
         });
     }
-    const linkProcessed = () => {
-        history.push({
-            pathname: "/dashboard/processed",
-        });
-    }
     const linkPaid = () => {
         history.push({
             pathname: "/dashboard/paid",
@@ -56,22 +49,12 @@ const Sidenav = (props) => {
             pathname: "/billissuer",
         });
     }
-    const linkPayment = () => {
-        history.push({
-            pathname: "/paymentMethod",
-        });
-    }
 
     const navMenuList = [
         {
             name: "Client",
             icon: PersonIcon,
             path: linkClient
-        },
-        {
-            name: "Payment Method",
-            icon: PaymentIcon,
-            path: linkPayment
         },
         {
             name: "Paid",
@@ -82,11 +65,6 @@ const Sidenav = (props) => {
             name: "Unpaid",
             icon: AccountBalanceWalletIcon,
             path: linkUnpaid
-        },
-        {
-            name: "Processed",
-            icon: ReceiptIcon,
-            path: linkProcessed
         },
         {
             name: "Draft",

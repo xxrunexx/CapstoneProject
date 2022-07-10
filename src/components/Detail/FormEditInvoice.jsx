@@ -9,7 +9,6 @@ import custom from './formInvoice.module.css';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
 import { useHistory } from 'react-router-dom';
-import Select from '@mui/material/Select';
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { useLocation } from 'react-router-dom';
@@ -66,7 +65,6 @@ const Forminvoice = () => {
   const id = React.useRef('');
   const token = React.useRef('');
   token.current = localStorage.getItem('token');
-  // const [datas, setDatas] = React.useState(null);
   const [values, setValues] = React.useState({
       clientID:0,
       email:'',
@@ -78,24 +76,7 @@ const Forminvoice = () => {
       paymentStatus: 'draft',
   });
   const credential = jwt_decode(token.current);
-  // React.useEffect(() => {
-  //   const getClient = async () => {
-  //       await axios.get(
-  //           'http://localhost:8000/client',
-  //           {
-  //               headers: {
-  //                   'Content-Type': 'application/json',
-  //                   'Authorization': `Bearer ${token.current}`,
-  //               },
-  //           }
-  //       )
-  //       .then((response)=>{
-  //           setDatas(response.data);
-  //       });
-  //   };
-  //   getClient();
-  // },[]);
-  
+
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -124,7 +105,6 @@ const Forminvoice = () => {
           total: parseInt(values.total),
           item: values.item,
           bill_issuer_id: credential.userId,
-          payment_method_id: 0,
           payment_terms: values.paymentTerms,
           payment_status: values.paymentStatus,
         },
@@ -165,29 +145,9 @@ const Forminvoice = () => {
         <form onSubmit={handleSubmit} method="post">
           <Item>
             <span className={custom.titleInput}>Client's Name</span>
-            {/* <Select
-                sx={{bgcolor: '#FFFFFF', borderRadius:2}}
-                className={classes.root}
-                select 
-                value={values.clientID} 
-                onChange={handlerUserData}
-                fullWidth
-                InputProps={{
-                    classes:{notchedOutline:classes.noBorder}
-                }}
-            >   
-                <MenuItem disabled value={0}><em>Select Client</em></MenuItem>
-                {datas?.data.map((value, key) => {
-                  return (
-                    <MenuItem key={key} value={value.id} data={value}>{value.name}</MenuItem>
-                  );
-                })}
-            </Select> */}
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              // placeholder="Input Client Email ..."
-              // onChange={handleChange('email')}
               fullWidth
               value={location.state.data.client_name}
               disabled
@@ -201,8 +161,6 @@ const Forminvoice = () => {
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              // placeholder="Input Client Email ..."
-              // onChange={handleChange('email')}
               fullWidth
               value={location.state.data.client_email}
               disabled
@@ -216,8 +174,6 @@ const Forminvoice = () => {
             <TextField
               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
               className={classes.root}
-              // placeholder="Input Client Address ..."
-              // onChange={handleChange('address')}
               fullWidth
               value={location.state.data.client_address}
               disabled
@@ -239,7 +195,6 @@ const Forminvoice = () => {
                             type="date"
                             defaultValue={convDate}
                             disabled
-                            // onChange={handleChange('invoiceDate')}
                             fullWidth
                             InputProps={{
                                 classes:{notchedOutline:classes.noBorder}
@@ -283,7 +238,6 @@ const Forminvoice = () => {
                             className={classes.root}
                             placeholder={location.state.data.item}
                             onChange={handleChange('item')}
-                            // value={location.state.data.item}
                             fullWidth
                             InputProps={{
                                 classes:{notchedOutline:classes.noBorder}
@@ -299,7 +253,6 @@ const Forminvoice = () => {
                             className={classes.root}
                             placeholder={location.state.data.total.toString()}
                             onChange={handleChange('total')}
-                            // value={location.state.data.total}
                             fullWidth
                             InputProps={{
                                 classes:{notchedOutline:classes.noBorder}

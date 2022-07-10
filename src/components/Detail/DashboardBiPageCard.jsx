@@ -108,18 +108,10 @@ const Dashboardbipagecard = ({data, auth}) => {
           phone: values.phone,
           address: values.address,
           email: data.client_email,
-          // client_id: location.state.data.client_id,
-          // total: parseInt(values.total),
-          // item: values.item,
-          // bill_issuer_id: credential.userId,
-          // payment_method_id: 0,
-          // payment_terms: values.paymentTerms,
-          // payment_status: values.paymentStatus,
         },
         {
             headers: {
                 'Content-Type': 'application/json',
-                // Authorization: 'Bearer token...',
             },
         }
     )

@@ -8,7 +8,6 @@ import Link from '@mui/material/Link';
 import custom from './detailDraft.module.css';
 import StatusPaid from '../../components/Status/StatusPaid';
 import StatusDraft from '../../components/Status/StatusDraft';
-import Statusprocessed from '../../components/Status/StatusProcessed';
 import Statusunpaid from '../../components/Status/StatusUnpaid';
 import { useHistory } from 'react-router-dom';
 import dateFormat from 'dateformat';
@@ -29,14 +28,6 @@ const Detaildashboard = ({data, modal}) => {
     }
     const convCreatedAt = dateFormat(data.created_at, "yyyy-mm-dd")
 
-    // const handleEditClient = () => {
-    //     history.push({
-    //         pathname: '/formeditclient',
-    //         state: {data: data}
-    //     })
-    // }
-
-    console.log("Punya detaildash ", data)
     return (
         <Box sx={{ flexGrow: 1}}>
             <Grid container justifyContent="center">
@@ -62,9 +53,7 @@ const Detaildashboard = ({data, modal}) => {
                                 </Grid>
                                 <Grid item xs={12} md={3} >
                                     <Item sx={{textAlign: 'center', bgcolor: '#E5E5E5', color: '#131522', py:0.8,}}>
-                                        {/* <Link onClick={handleEditClient} component="button" underline="none" sx={{textTransform:'none', color: '#131522'}}>{data.client_name}</Link> */}
                                         <Link onClick={modal} component="button" underline="none" sx={{textTransform:'none', color: '#131522'}}>{data.client_name}</Link>
-                                        {/* {data.client_name} */}
                                     </Item>
                                 </Grid>
                                 <Grid item xs={12} md={2} >
@@ -76,7 +65,6 @@ const Detaildashboard = ({data, modal}) => {
                                     data.payment_status === 'paid' ? <StatusPaid status={data.payment_status}/> : 
                                     data.payment_status === 'unpaid' ? <Statusunpaid status={data.payment_status}/> : 
                                     data.payment_status === 'draft' ? <StatusDraft status={data.payment_status}/> : 
-                                    data.payment_status === 'processed' ? <Statusprocessed status={data.payment_status}/> : 
                                     null 
                                 }
                                 <Grid item xs={12} md={1} >

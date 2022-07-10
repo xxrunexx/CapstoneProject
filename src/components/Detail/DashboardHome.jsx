@@ -58,9 +58,11 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboardhome = () => {
     const history = useHistory();
     const classes = useStyles();
-    const auth = localStorage.getItem('loggedIn');
-    const [authed, setAuthed] = React.useState(false);
+    // const auth = localStorage.getItem('loggedIn');
+    // const [authed, setAuthed] = React.useState(false);
     const [name, setName] = React.useState('');
+
+    // console.log(auth);
 
     const handleChange = (e) => {
         if (e.target) {
@@ -75,9 +77,9 @@ const Dashboardhome = () => {
         });
     };
 
-    if (auth !== 'bill_issuer') {
-        setAuthed(true);
-    }
+    // if (auth !== 'bill_issuer') {
+    //     setAuthed(true);
+    // }
 
     const passLogin = () => {
         history.push({
@@ -118,7 +120,7 @@ const Dashboardhome = () => {
                                 sx={{ marginLeft: '-1.2%' }}
                             >
                                 <Item>
-                                    {authed ?
+                                    {/* {authed ?
                                         <Button
                                             variant="contained"
                                             className={`${custom.btn} ${custom.btnWidth}`}
@@ -133,7 +135,14 @@ const Dashboardhome = () => {
                                         >
                                             Go To Dashboard
                                         </Button>
-                                    }
+                                    } */}
+                                    <Button
+                                        variant="contained"
+                                        className={`${custom.btn} ${custom.btnWidth}`}
+                                        onClick={passDashboard}
+                                    >
+                                        Go To Dashboard
+                                    </Button>
                                 </Item>
                             </Grid>
                         </Grid>

@@ -69,7 +69,6 @@ const Formclient = () => {
         address:'',
         email:'',
     });
-    const [, setMsg] = useState('');
     
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -102,7 +101,6 @@ const Formclient = () => {
           )
           .then(function (response) {
             // handle success
-            setMsg(response.data.message);
             history.push({
               pathname: "/dashboard"
             });
@@ -123,6 +121,7 @@ const Formclient = () => {
             <Item>
               <span className={custom.titleInput}>Client's NIK</span>
               <TextField
+                required
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client NIK ..."
@@ -136,6 +135,7 @@ const Formclient = () => {
             <Item>
               <span className={custom.titleInput}>Client's Name</span>
               <TextField
+                required
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Name ..."
@@ -149,6 +149,7 @@ const Formclient = () => {
             <Item>
               <span className={custom.titleInput}>Client's Phone Number</span>
               <TextField
+                required
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Phone Number ..."
@@ -163,6 +164,7 @@ const Formclient = () => {
             <Item>
               <span className={custom.titleInput}>Client's Address</span>
               <TextField
+                required
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Address ..."
@@ -177,6 +179,7 @@ const Formclient = () => {
             <Item>
               <span className={custom.titleInput}>Client's Email</span>
               <TextField
+                required
                 sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                 className={classes.root}
                 placeholder="Input Client Email ..."

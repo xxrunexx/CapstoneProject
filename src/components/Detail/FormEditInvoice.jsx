@@ -234,6 +234,7 @@ const Forminvoice = () => {
                     <Item className={custom.multipleInput}>
                         <span className={custom.titleInput}>Item Name</span>
                         <TextField
+                            required
                             sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                             className={classes.root}
                             placeholder={location.state.data.item}
@@ -249,6 +250,7 @@ const Forminvoice = () => {
                     <Item className={custom.multipleInput}>
                         <span className={custom.titleInput}>Total</span>
                         <TextField
+                            required
                             sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                             className={classes.root}
                             placeholder={location.state.data.total.toString()}

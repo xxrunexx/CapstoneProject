@@ -11,10 +11,10 @@ const Detailinvoice = () => {
     const [dataApi, setDataApi] = React.useState('');
     useEffect(() => {
         function getApiData() {
-            const paramApi = localStorage.getItem("name");
-            axios.get(`http://localhost:8000/invoice/name/${paramApi}`)
+            const paramApi = localStorage.getItem("id");
+            axios.get(`http://localhost:8000/invoice/${paramApi}`)
                 .then(res => {
-                    setDataApi(res.data);
+                    setDataApi(res.data.data);
                     console.log(res);
                 })
                 .catch(err => {
@@ -28,14 +28,7 @@ const Detailinvoice = () => {
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link} />
-                {console.log("Isinya adalah : " + dataApi)}
-                {dataApi.data?.map((data) => {
-                    console.log(data);
-                    return (
-                        <Detailinvoiceclient status={data.payment_status} data={data} />
-                    )
-                }
-                )}
+                <Detailinvoiceclient status={dataApi.payment_status} data={dataApi} />
             </Box>
         </Box>
     );

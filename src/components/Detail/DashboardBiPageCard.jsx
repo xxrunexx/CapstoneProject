@@ -80,7 +80,7 @@ const style = {
 };
 
 
-const Dashboardbipagecard = ({data, auth}) => {
+const Dashboardbipagecard = ({data}) => {
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(false);
@@ -130,7 +130,7 @@ const Dashboardbipagecard = ({data, auth}) => {
     <>
       <Grid container sx={{color:'white'}}>
           <Grid item xs={12} container>
-              <Detaildashboard status={data.payment_status} data={data} modal={handleOpen}/>
+              <Detaildashboard data={data} modal={handleOpen}/>
           </Grid>
       </Grid>
       <Modal
@@ -159,6 +159,7 @@ const Dashboardbipagecard = ({data, auth}) => {
                               </Grid>
                               <Grid container justifyContent="center" alignItems="center" sx={{mt:4}}>
                                   <TextField
+                                      required
                                       sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                                       className={classes.root}
                                       id="outlined-uncontrolled"
@@ -178,6 +179,7 @@ const Dashboardbipagecard = ({data, auth}) => {
                               </Grid>
                               <Grid container justifyContent="center" alignItems="center" sx={{mt:2}}>
                                   <TextField
+                                      required
                                       sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                                       className={classes.root}
                                       id="outlined-uncontrolled"
@@ -198,6 +200,7 @@ const Dashboardbipagecard = ({data, auth}) => {
                               </Grid>
                               <Grid container justifyContent="center" alignItems="center" sx={{mt:2}}>
                                   <TextField
+                                      required
                                       sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                                       className={classes.root}
                                       id="outlined-uncontrolled"

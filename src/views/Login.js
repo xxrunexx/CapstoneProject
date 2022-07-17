@@ -4,13 +4,9 @@ import { Grid, TextField, Button } from '@mui/material'
 import { InputAdornment } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
 import IconButton from '@mui/material/IconButton';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LockIcon from '@mui/icons-material/Lock';
-// import { styled } from '@mui/material/styles';
 import styles from './Login.module.css';
 import wavebg from '../assets/img/wave.svg';
 import Link from '@mui/material/Link';

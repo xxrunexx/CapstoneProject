@@ -11,12 +11,6 @@ import Button from '@mui/material/Button';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import custom from './dashboardBi.module.css';
-import { InputAdornment } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import CloseIcon from '@mui/icons-material/Close';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -68,7 +62,6 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '100%',
-    // width: 650,
     bgcolor: '#FFC700',
     border: '1px solid #131522',
     borderRadius:3,
@@ -77,7 +70,7 @@ const style = {
     px:1
 };
 
-const Dashboardbipage = ({data, auth}) => {
+const Dashboardbipage = ({auth}) => {
     const history = useHistory();
     const [show, setShow] = useState(true);
     const handle = () => {

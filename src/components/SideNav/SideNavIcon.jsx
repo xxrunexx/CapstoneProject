@@ -36,11 +36,6 @@ const Sidenavicon = (props) => {
             pathname: "/dashboard/draft",
         });
     }
-    const linkProcessed = () => {
-        history.push({
-            pathname: "/dashboard/processed",
-        });
-    }
     const linkPaid = () => {
         history.push({
             pathname: "/dashboard/paid",
@@ -67,11 +62,6 @@ const Sidenavicon = (props) => {
             name: "Unpaid",
             icon: AccountBalanceWalletIcon,
             path: linkUnpaid
-        },
-        {
-            name: "Processed",
-            icon: ReceiptIcon,
-            path: linkProcessed
         },
         {
             name: "Draft",

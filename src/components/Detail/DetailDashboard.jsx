@@ -62,9 +62,9 @@ const Detaildashboard = ({data, modal}) => {
                                     </Item>
                                 </Grid>
                                 {
-                                    data.payment_status === 'paid' ? <StatusPaid status={data.payment_status}/> : 
-                                    data.payment_status === 'unpaid' ? <Statusunpaid status={data.payment_status}/> : 
-                                    data.payment_status === 'draft' ? <StatusDraft status={data.payment_status}/> : 
+                                    data.payment_status === 'paid' ? <StatusPaid/> : 
+                                    data.payment_status === 'unpaid' ? <Statusunpaid/> : 
+                                    data.payment_status === 'draft' ? <StatusDraft/> : 
                                     null 
                                 }
                                 <Grid item xs={12} md={1} >

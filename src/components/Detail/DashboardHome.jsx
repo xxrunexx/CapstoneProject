@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import custom from './dashboardHome.module.css';
 import { InputAdornment } from '@mui/material';
@@ -58,12 +57,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboardhome = () => {
     const history = useHistory();
     const classes = useStyles();
-    // const auth = localStorage.getItem('loggedIn');
-    // const [authed, setAuthed] = React.useState(false);
     const [name, setName] = React.useState('');
-
-    // console.log(auth);
-
     const handleChange = (e) => {
         if (e.target) {
             setName(e.target.value);
@@ -71,19 +65,9 @@ const Dashboardhome = () => {
     }
 
     const passSearch = (e) => { // Handle Submit
-        localStorage.setItem("name", name);
+        localStorage.setItem("id", name);
         history.push({
             pathname: "/detail",
-        });
-    };
-
-    // if (auth !== 'bill_issuer') {
-    //     setAuthed(true);
-    // }
-
-    const passLogin = () => {
-        history.push({
-            pathname: "/login",
         });
     };
     const passDashboard = () => {
@@ -120,22 +104,6 @@ const Dashboardhome = () => {
                                 sx={{ marginLeft: '-1.2%' }}
                             >
                                 <Item>
-                                    {/* {authed ?
-                                        <Button
-                                            variant="contained"
-                                            className={`${custom.btn} ${custom.btnWidth}`}
-                                            onClick={passLogin}
-                                        >
-                                            <LoginOutlinedIcon sx={{ marginRight: '8%' }} />Login Bill Issuer
-                                        </Button> :
-                                        <Button
-                                            variant="contained"
-                                            className={`${custom.btn} ${custom.btnWidth}`}
-                                            onClick={passDashboard}
-                                        >
-                                            Go To Dashboard
-                                        </Button>
-                                    } */}
                                     <Button
                                         variant="contained"
                                         className={`${custom.btn} ${custom.btnWidth}`}
@@ -187,13 +155,7 @@ const Dashboardhome = () => {
                                 <span>{'To input by invoice_id, don’t use white space'}</span>
                             </Grid>
                             <Grid item xs={12} container justifyContent="start" sx={{ ml: 8, mb: 3, fontSize: '1.5rem' }}>
-                                <span>{'> Example : 5FD921'}</span>
-                            </Grid>
-                            <Grid item xs={12} container justifyContent="start" sx={{ fontSize: '2rem' }}>
-                                <span>{'To input by name, you have to input the entire name of client’s name'}</span>
-                            </Grid>
-                            <Grid item xs={12} container justifyContent="start" sx={{ ml: 8, fontSize: '1.5rem' }}>
-                                <span>{'> Example : Dyah Ayu Sekar Kinasih Purwaningrun or Raviy Bayu Setiaji'}</span>
+                                <span>{'> Example : 5921, 621, 51, 21'}</span>
                             </Grid>
                         </Grid>
                     </Box>

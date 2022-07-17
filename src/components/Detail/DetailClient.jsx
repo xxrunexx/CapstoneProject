@@ -181,6 +181,7 @@ const classes = useStyles();
                               </Grid>
                               <Grid container justifyContent="center" alignItems="center" sx={{mt:4}}>
                                   <TextField
+                                      required
                                       sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                                       className={classes.root}
                                       id="outlined-uncontrolled"
@@ -200,6 +201,7 @@ const classes = useStyles();
                               </Grid>
                               <Grid container justifyContent="center" alignItems="center" sx={{mt:2}}>
                                   <TextField
+                                      required
                                       sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                                       className={classes.root}
                                       id="outlined-uncontrolled"
@@ -220,6 +222,7 @@ const classes = useStyles();
                               </Grid>
                               <Grid container justifyContent="center" alignItems="center" sx={{mt:2}}>
                                   <TextField
+                                      required
                                       sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                                       className={classes.root}
                                       id="outlined-uncontrolled"

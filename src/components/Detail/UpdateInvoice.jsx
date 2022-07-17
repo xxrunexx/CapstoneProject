@@ -109,7 +109,8 @@ const Updateinvoice = ({data,dataDetail, status}) => {
                                                     <h3>Status</h3> 
                                                 </Grid>
                                                 <Grid item xs={12} md={5} sx={{mt:0.2}} >
-                                                    <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', py:0.8, borderRadius:6}}>
+                                                    <Item sx={{textAlign: 'center', bgcolor: 'rgba(216,67,67,0.45)', color: 'rgba(231,70,70,0.90)', 
+                                                    py:0.8, borderRadius:6}}>
                                                         <CircleIcon sx={{mr:1, fontSize:'0.875rem'}}/>{status}
                                                     </Item>
                                                 </Grid>
@@ -187,7 +188,6 @@ const Updateinvoice = ({data,dataDetail, status}) => {
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12} md={4} >
                                                     <h5>Invoice Date</h5> 
-                                                    {/* <span>{data.created_at}</span> */}
                                                     <span>{convCreateAt}</span>
                                                 </Grid>
                                                 <Grid item xs={12} md={4} >

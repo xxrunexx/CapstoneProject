@@ -146,7 +146,6 @@ const Forminvoice = () => {
           {
               headers: {
                   'Content-Type': 'application/json',
-                  // Authorization: 'Bearer token...',
               },
           }
       )
@@ -178,6 +177,7 @@ const Forminvoice = () => {
             <Item>
               <span className={custom.titleInput}>Client's Name</span>
               <Select
+                  required
                   sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                   className={classes.root}
                   select 
@@ -237,7 +237,7 @@ const Forminvoice = () => {
                               className={classes.root}
                               placeholder="Input Date for Invoice ..."
                               type="date"
-                              defaultValue="2022-01-27"
+                              defaultValue="2022-07-13"
                               onChange={handleChange('invoiceDate')}
                               fullWidth
                               InputProps={{
@@ -250,6 +250,7 @@ const Forminvoice = () => {
                       <Item className={custom.multipleInput}>
                           <span className={custom.titleInput}>Payment Terms</span>
                           <TextField
+                              required
                               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                               className={classes.root}
                               select
@@ -278,6 +279,7 @@ const Forminvoice = () => {
                       <Item className={custom.multipleInput}>
                           <span className={custom.titleInput}>Item Name</span>
                           <TextField
+                              required
                               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                               className={classes.root}
                               placeholder="Input Item Name for Invoice ..."
@@ -293,6 +295,7 @@ const Forminvoice = () => {
                       <Item className={custom.multipleInput}>
                           <span className={custom.titleInput}>Total</span>
                           <TextField
+                              required
                               sx={{bgcolor: '#FFFFFF', borderRadius:2}}
                               className={classes.root}
                               placeholder="Input Total ..."

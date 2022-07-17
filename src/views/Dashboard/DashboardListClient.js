@@ -6,13 +6,12 @@ import Detailclient from '../../components/Detail/DetailClient';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 
-const DashboardClient = () => {
+const DashboardListClient = () => {
     const link = '/dashboard';
     const title = 'Clients';
     const token = React.useRef('');
     token.current = localStorage.getItem('token');
     const [datas, setDatas] = React.useState(null);
-    const [count, setCount] = React.useState(0);
     React.useEffect(() => {
         const getClient = async () => {
             await axios.get(
@@ -25,18 +24,16 @@ const DashboardClient = () => {
                 }
             )
             .then((response)=>{
-                setCount(response.data.data.length);
                 setDatas(response.data);
             });
         };
         getClient();
     },[]);
-    // console.log(datas);
     return (
         <Box className={Custom.background}>
             <Box className={`container py-5 text-white`}>
                 <NavbarArrowBack link={link}/> 
-                <TitleDashboard title={title} count={count}/>
+                <TitleDashboard title={title}/>
                 {datas?.data.map((value, key) => {
                     return (
                         <Detailclient key={key} data={value}/> 
@@ -47,4 +44,4 @@ const DashboardClient = () => {
     );
 }
 
-export default DashboardClient;
+export default DashboardListClient;

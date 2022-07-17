@@ -17,7 +17,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Detailinvoiceclient = ({ status, data }) => {
-    console.log("Isi di dashboard client = " + data);
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container justifyContent="center">
@@ -123,24 +122,6 @@ const Detailinvoiceclient = ({ status, data }) => {
                                             </Grid>
                                         </Box>
                                     </Item>
-                                </Grid>
-                                <Grid item xs={12} md={12} lg={12} >
-                                    <Box sx={{
-                                        display: 'flex',
-                                        flexDirection: 'row-reverse',
-                                        mt: 3,
-                                    }}>
-                                        <Link sx={{
-                                            bgcolor: '#FFC700',
-                                            color: '#131522',
-                                            px: 3,
-                                            py: 0.5,
-                                            fontSize: '1.5rem',
-                                            borderRadius: 3
-                                        }} component="button" underline="none" className={`${custom.payNow}`}>
-                                            {'PAY NOW'}
-                                        </Link>
-                                    </Box>
                                 </Grid>
                             </Grid>
                         </Box>

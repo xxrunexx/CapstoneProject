@@ -26,9 +26,6 @@ const Useregisterdetail = ({userID}) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const issuerID = userID;
-    console.log(issuerID);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const { companyName, companyAddress, companyPhone, companySite } = values;

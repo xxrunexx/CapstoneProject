@@ -14,7 +14,7 @@ import Dashboarddraft from './views/Dashboard/DashboardDraft';
 import Dashboardpaid from './views/Dashboard/DashboardPaid';
 import Dashboardunpaid from './views/Dashboard/DashboardUnpaid';
 import Editinvoice from './views/EditInvoice/EditInvoice';
-import DashboardClient from './views/Dashboard/DashboardClient';
+import DashboardListClient from './views/Dashboard/DashboardListClient';
 import Dashboardbillissuer from './views/DashboardBillIssuer/DashboardBillIssuer';
 import BillIssuerInfo from './views/BillIssuerInfo/BillIssuerInfo';
 import FormEditInvoice from './components/Detail/FormEditInvoice';
@@ -83,7 +83,7 @@ function App() {
           </GuestRoute>
           <Route
             exact path='/client'
-            component={DashboardClient}
+            component={DashboardListClient}
           />
           <Route
             exact path='/detail'

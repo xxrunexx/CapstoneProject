@@ -239,6 +239,7 @@ const FormBillIssuerInfo = () => {
             </Item>
             <Item>
               <TextField
+                required
                 sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
                 className={classes.root}
                 id="outlined-uncontrolled"
@@ -260,6 +261,7 @@ const FormBillIssuerInfo = () => {
             </Item>
             <Item>
               <TextField
+                required
                 sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
                 className={classes.root}
                 id="outlined-uncontrolled"
@@ -279,6 +281,7 @@ const FormBillIssuerInfo = () => {
             </Item>
             <Item>
               <TextField
+                required
                 sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
                 className={classes.root}
                 id="outlined-uncontrolled"
@@ -298,6 +301,7 @@ const FormBillIssuerInfo = () => {
             </Item>
             <Item>
               <TextField
+                required
                 sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
                 className={classes.root}
                 id="outlined-uncontrolled"
@@ -317,6 +321,7 @@ const FormBillIssuerInfo = () => {
             </Item>
             <Item>
               <TextField
+                required
                 sx={{ bgcolor: '#FFFFFF', borderRadius: 2 }}
                 className={classes.root}
                 id="outlined-uncontrolled"
@@ -335,7 +340,6 @@ const FormBillIssuerInfo = () => {
               />
             </Item>
             <Item sx={{ textAlign: 'center', }}>
-              {/* JANGAN LUPA DIHAPUS */}
               <Box
               sx={{
                 bgcolor: '#FFC700',

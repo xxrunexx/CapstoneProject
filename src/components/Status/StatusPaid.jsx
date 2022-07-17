@@ -11,7 +11,7 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none'
 }));
 
-const Statuspaid = ({data}) => {
+const Statuspaid = () => {
     return (
         <Grid item xs={12} md={2} >
             <Item sx={{textAlign: 'center', bgcolor: 'rgba(22,136,4,0.29)', color: '#168804', py:0.8, borderRadius:6}}>
